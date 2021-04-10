@@ -61,7 +61,7 @@ public class AreaController {
 	public ResponseEntity<Area> createArea(@RequestBody Area area) {
 		try {
 			
-			Area aux = areaRepository.save(new Area(area.getNombre()));
+			Area aux = areaRepository.save(new Area(area.getNombre(), area.getIdioma()));
 			
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -76,6 +76,7 @@ public class AreaController {
 		if (areaData.isPresent()) {
 			Area aux = areaData.get();
 			aux.setNombre(area.getNombre());
+			aux.setIdioma(area.getIdioma());
 			return new ResponseEntity<>(areaRepository.save(aux), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -62,7 +62,7 @@ public class RespuestaController {
 		try {
 
 			Respuesta aux = respuestaRepository.save(new Respuesta(respuesta.getRespuestas(),
-					respuesta.getPosRespuestaAdecuada(), respuesta.getIdRecomendacion()));
+					respuesta.getPosRespuestaAdecuada(), respuesta.getRecomendacion()));
 
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public class RespuestaController {
 			Respuesta aux = respuestaData.get();
 			aux.setRespuestas(respuesta.getRespuestas());
 			aux.setPosRespuestaAdecuada(respuesta.getPosRespuestaAdecuada());
-			aux.setIdRecomendacion(respuesta.getIdRecomendacion());
+			aux.setRecomendacion(respuesta.getRecomendacion());
 			return new ResponseEntity<>(respuestaRepository.save(aux), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

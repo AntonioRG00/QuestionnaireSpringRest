@@ -1,10 +1,16 @@
 package es.antoniorg.myspringrest.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -24,7 +30,15 @@ public class Area {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	public Area(String nombre) {
+	@ManyToOne
+	@JoinColumn(name = "id_idioma")
+	private Idioma idioma;
+	
+	@OneToMany
+	private List<Categoria> categorias = new ArrayList<Categoria>();
+
+	public Area(String nombre, Idioma idioma) {
 		this.nombre = nombre;
+		this.idioma = idioma;
 	}
 }

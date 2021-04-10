@@ -1,10 +1,16 @@
 package es.antoniorg.myspringrest.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -27,12 +33,16 @@ public class Respuesta {
 	@Column(name = "pos_respuesta_adecuada")
 	private int posRespuestaAdecuada;
 	
-	@Column(name = "id_recomendacion")
-	private Long idRecomendacion;
+	@ManyToOne
+	@JoinColumn(name = "id_recomendacion")
+	private Recomendacion recomendacion;
 
-	public Respuesta(String[] respuestas, int posRespuestaAdecuada, Long idRecomendacion) {
+	@OneToMany
+	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
+
+	public Respuesta(String[] respuestas, int posRespuestaAdecuada, Recomendacion recomendacion) {
 		this.respuestas = respuestas;
 		this.posRespuestaAdecuada = posRespuestaAdecuada;
-		this.idRecomendacion = idRecomendacion;
-	}
+		this.recomendacion = recomendacion;
+	}	
 }

@@ -1,10 +1,16 @@
 package es.antoniorg.myspringrest.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -27,8 +33,9 @@ public class Categoria {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@Column(name = "id_area")
-	private Long idArea;
+	@ManyToOne
+	@JoinColumn(name = "id_area")
+	private Area area;
 	
 	@Column(name = "explicacion")
 	private String explicacion;
@@ -36,15 +43,19 @@ public class Categoria {
 	@Column(name = "max_para_recomendacion")
 	private int maxParaRecomendacion;
 	
-	@Column(name = "id_recomendacion")
-	private Long idRecomendacion;
+	@ManyToOne
+	@JoinColumn(name = "id_recomendacion")
+	private Recomendacion recomendacion;
 
-	public Categoria(String nombre, String descripcion, Long idArea, String explicacion, int maxParaRecomendacion, Long idRecomendacion) {
+	@OneToMany
+	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
+
+	public Categoria(String nombre, String descripcion, Area area, String explicacion, int maxParaRecomendacion, Recomendacion recomendacion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.idArea = idArea;
+		this.area = area;
 		this.explicacion = explicacion;
 		this.maxParaRecomendacion = maxParaRecomendacion;
-		this.idRecomendacion = idRecomendacion;
+		this.recomendacion = recomendacion;
 	}
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -24,15 +26,17 @@ public class Pregunta {
 	@Column(name = "pregunta")
 	private String pregunta;
 	
-	@Column(name = "id_categoria")
-	private Long idCategoria;
+	@ManyToOne
+	@JoinColumn(name = "id_categoria")
+	private Categoria categoria;
 	
-	@Column(name = "id_respuesta")
-	private Long idRespuesta;
+	@ManyToOne
+	@JoinColumn(name = "id_respuesta")
+	private Respuesta respuesta;
 
-	public Pregunta(String pregunta, Long idCategoria, Long idRespuesta) {
+	public Pregunta(String pregunta, Categoria categoria, Respuesta respuesta) {
 		this.pregunta = pregunta;
-		this.idCategoria = idCategoria;
-		this.idRespuesta = idRespuesta;
+		this.categoria = categoria;
+		this.respuesta = respuesta;
 	}
 }

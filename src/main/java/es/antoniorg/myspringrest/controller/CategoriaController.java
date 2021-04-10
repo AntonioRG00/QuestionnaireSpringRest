@@ -62,8 +62,8 @@ public class CategoriaController {
 		try {
 
 			Categoria aux = categoriaRepository.save(new Categoria(categoria.getNombre(), categoria.getDescripcion(),
-					categoria.getIdArea(), categoria.getExplicacion(), categoria.getMaxParaRecomendacion(),
-					categoria.getIdRecomendacion()));
+					categoria.getArea(), categoria.getExplicacion(), categoria.getMaxParaRecomendacion(),
+					categoria.getRecomendacion()));
 
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -79,10 +79,10 @@ public class CategoriaController {
 			Categoria aux = idiomaData.get();
 			aux.setNombre(categoria.getNombre());
 			aux.setDescripcion(categoria.getDescripcion());
-			aux.setIdArea(categoria.getIdArea());
+			aux.setArea(categoria.getArea());
 			aux.setExplicacion(categoria.getExplicacion());
 			aux.setMaxParaRecomendacion(categoria.getMaxParaRecomendacion());
-			aux.setIdRecomendacion(categoria.getIdRecomendacion());
+			aux.setRecomendacion(categoria.getRecomendacion());
 			return new ResponseEntity<>(categoriaRepository.save(aux), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
