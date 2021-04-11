@@ -10,4 +10,9 @@ public class MainController {
 	public String inicio() {
 		return "index";
 	}
+	
+	@GetMapping("/body_consulta_select")
+	public void select() { 
+		
+	}
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Fragmentos del crud</title>
+</head>
+<body>
+
+	<div style="display: none" id="fragment-consulta-select" th:fragment="fragment-consulta-select">
+		<h1>Consulta select!</h1>
+	</div>
+	<div style="display: none" id="fragment-consulta-update" th:fragment="fragment-consulta-update">
+		<h1>Consulta update!</h1>
+	</div>
+	<div style="display: none" id="fragment-consulta-delete" th:fragment="fragment-consulta-delete">
+		<h1>Consulta delete!</h1>
+	</div>
+	<div id="fragment-consulta-insert" th:fragment="fragment-consulta-insert">
+		<div class="row mt-2">
+			<div class="col-12">
+				<select class="form-select" aria-label="Default select example">
+					<option selected>Selecciona la tabla</option>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<script src="/js/consulta-insert.js"></script>
+		</div>
+	</div>
+
+</body>
+</html>
