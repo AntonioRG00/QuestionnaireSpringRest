@@ -34,13 +34,13 @@ public class Respuesta {
 	private int posRespuestaAdecuada;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_recomendacion")
-	private Recomendacion recomendacion;
+	@JoinColumn(name = "recomendacion")
+	private String recomendacion;
 
 	@OneToMany
 	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
-	public Respuesta(String[] respuestas, int posRespuestaAdecuada, Recomendacion recomendacion) {
+	public Respuesta(String[] respuestas, int posRespuestaAdecuada, String recomendacion) {
 		this.respuestas = respuestas;
 		this.posRespuestaAdecuada = posRespuestaAdecuada;
 		this.recomendacion = recomendacion;

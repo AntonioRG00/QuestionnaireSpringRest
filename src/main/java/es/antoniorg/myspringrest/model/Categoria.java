@@ -44,13 +44,13 @@ public class Categoria {
 	private int maxParaRecomendacion;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_recomendacion")
-	private Recomendacion recomendacion;
+	@JoinColumn(name = "recomendacion")
+	private String recomendacion;
 
 	@OneToMany
 	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
-	public Categoria(String nombre, String descripcion, Area area, String explicacion, int maxParaRecomendacion, Recomendacion recomendacion) {
+	public Categoria(String nombre, String descripcion, Area area, String explicacion, int maxParaRecomendacion, String recomendacion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.area = area;
