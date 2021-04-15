@@ -61,7 +61,7 @@ public class IdiomaController {
 	public ResponseEntity<Idioma> createIdioma(@RequestBody Idioma idioma) {
 		try {
 			
-			Idioma aux = idiomaRepository.save(new Idioma(idioma.getNombreIdioma(), idioma.getUrlImagen()));
+			Idioma aux = idiomaRepository.save(new Idioma(idioma.getNombre(), idioma.getUrlImagen()));
 			
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class IdiomaController {
 
 		if (idiomaData.isPresent()) {
 			Idioma aux = idiomaData.get();
-			aux.setNombreIdioma(idioma.getNombreIdioma());
+			aux.setNombre(idioma.getNombre());
 			aux.setUrlImagen(idioma.getUrlImagen());
 			return new ResponseEntity<>(idiomaRepository.save(aux), HttpStatus.OK);
 		} else {

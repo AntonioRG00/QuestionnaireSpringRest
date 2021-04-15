@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Inicio</title>
-<link rel="stylesheet" href="/css/index.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/primeui/4.1.7/primeui-all.css" th:href="@{/webjars/primeui/primeui-all.css}" rel="stylesheet" />
+<link th:href="@{/webjars/primeui/themes/hot-sneaks/theme.css}" rel="stylesheet" />
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+<link rel="stylesheet" href="/css/index.css">
 </head>
 <!-- <body class="welcome">
 	<span id="splash-overlay" class="splash"></span>
@@ -28,48 +30,42 @@
 		</nav>
 	</header>
 
-	<!-- Cuerpo -->
 	<div class="container-fluid">
+
+		<!-- Mensajes -->
+		<p-growl id="messages"></p-growl>
+
+		<!-- DataTables -->
 		<div class="row mt-2">
 			<div class="col-12">
-				<h1 class="shadow encabezado centrado text-center bg-light rounded">Operaciones por REST</h1>
-			</div>
-		</div>
+				<div class="row mt-2">
+					<div class="col-12">
+						<h1 id="h1-datatable" class="shadow encabezado centrado text-center bg-light rounded">Tablas de datos</h1>
+					</div>
+				</div>
 
-		<!-- Botones del CRUD -->
-		<div class="row">
-			<div class="col-sm-6 mt-2">
-				<button type="button" class="btn btn-primary btn-lg col-12" onclick="onClickCrearDato()">Crear un dato</button>
+				<!-- Menú de los DataTables -->
+				<div class="row mt-2">
+					<div class="col-12">
+						<p-tabview> <th:block th:each="NombreTabla : ${listaNombreTablas}">
+							<p-tab th:title="${#strings.capitalize(NombreTabla)}">
+							<div th:replace="/fragments/fragments_crud.html :: ${'DataTable-' + #strings.capitalize(NombreTabla)}"></div>
+							</p-tab>
+						</th:block> </p-tabview>
+					</div>
+				</div>
 			</div>
-			<div class="col-sm-6 mt-2">
-				<button type="button" class="btn btn-warning btn-lg col-12" onclick="onClickActualizarDato()">Actualizar un dato</button>
-			</div>
-			<div class="col-sm-6 mt-2">
-				<button type="button" class="btn btn-danger btn-lg col-12" onclick="onClickBorrarDato()">Borrar un dato</button>
-			</div>
-			<div class="col-sm-6 mt-2">
-				<button type="button" class="btn btn-info btn-lg col-12" onclick="onClickConsultarDato()">Consultar un dato</button>
-			</div>
-		</div>
-
-		<!-- Cargamos el tipo de operación -->
-		<div class="row mt-2">
-			<div class="col-12">
-				<h1 id="tipo-operacion" class="shadow encabezado centrado text-center bg-light rounded">Tipo de operación</h1>
-			</div>
-		</div>
-		<div class="row mt-2">
-			<div th:replace="/fragments/fragments_crud.html :: fragment-consulta-select"></div>
-			<div th:replace="/fragments/fragments_crud.html :: fragment-consulta-update"></div>
-			<div th:replace="/fragments/fragments_crud.html :: fragment-consulta-insert"></div>
-			<div th:replace="/fragments/fragments_crud.html :: fragment-consulta-delete"></div>
 		</div>
 	</div>
 
-	<script th:src="@{/js/index.js}"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" th:src="@{/webjars/font-awesome/js/all.min.js}"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" th:src="@{/webjars/jquery/jquery.js}" type="text/javascript"></script>
+	<script th:src="@{/webjars/mustache/mustache.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/primeui/4.1.7/primeui-all.js" th:src="@{/webjars/primeui/primeui-all.js}"></script>
+	<script th:src="@{/webjars/x-tag-core/dist/x-tag-core.js}"></script>
+	<script th:src="@{/webjars/primeui/primeelements.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" th:src="@{/webjars/popper.js/umd/popper.min.js}" type="text/javascript"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" th:src="@{/webjars/font-awesome/js/all.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/index.js}" type="text/javascript"></script>
 </body>
 </html>

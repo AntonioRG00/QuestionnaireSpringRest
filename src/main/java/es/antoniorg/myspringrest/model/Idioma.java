@@ -3,6 +3,7 @@ package es.antoniorg.myspringrest.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,17 +26,17 @@ public class Idioma {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@Column(name = "nombre_idioma")
-	private String nombreIdioma;
+	@Column(name = "nombre_idioma", nullable = false, length = 50)
+	private String nombre;
 	
-	@Column(name = "url_imagen")
+	@Column(name = "url_imagen", nullable = false, length = 250)
 	private String urlImagen;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma")
 	private List<Area> areas = new ArrayList<Area>();
 
 	public Idioma(String nombreIdioma, String urlImagen) {
-		this.nombreIdioma = nombreIdioma;
+		this.nombre = nombreIdioma;
 		this.urlImagen = urlImagen;
 	}
 }

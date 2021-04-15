@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.ui-tabview .ui-tabview-panel {
+    padding: 1px 1px;
+}
+
+td {
+	text-align: center;
+}
+
 body {
   display: flex;
   min-height: 100vh;

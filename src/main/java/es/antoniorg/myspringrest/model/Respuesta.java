@@ -1,16 +1,14 @@
 package es.antoniorg.myspringrest.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -27,22 +25,14 @@ public class Respuesta {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@Column(name = "respuestas")
-	private String[] respuestas;
-	
-	@Column(name = "pos_respuesta_adecuada")
-	private int posRespuestaAdecuada;
-	
-	@ManyToOne
-	@JoinColumn(name = "recomendacion")
-	private String recomendacion;
+	@Column(name = "respuesta", nullable = false, length = 20)
+	private String respuesta;
 
-	@OneToMany
-	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
+	@ManyToMany(mappedBy = "respuestas")
+	private Set<Pregunta> preguntas = new HashSet<>();
 
-	public Respuesta(String[] respuestas, int posRespuestaAdecuada, String recomendacion) {
-		this.respuestas = respuestas;
-		this.posRespuestaAdecuada = posRespuestaAdecuada;
-		this.recomendacion = recomendacion;
+	public Respuesta(String respuesta) {
+		this.respuesta = respuesta;
+		
 	}	
 }

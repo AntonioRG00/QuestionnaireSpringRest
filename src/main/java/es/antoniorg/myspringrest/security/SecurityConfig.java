@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/webjars/**", "/css/**").permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/webjars/**", "/css/**","**").permitAll().anyRequest().authenticated();
 		http.formLogin().loginPage("/login").permitAll().and().logout();
 		http.sessionManagement().maximumSessions(1);
 	}

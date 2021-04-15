@@ -61,8 +61,7 @@ public class RespuestaController {
 	public ResponseEntity<Respuesta> createRespuesta(@RequestBody Respuesta respuesta) {
 		try {
 
-			Respuesta aux = respuestaRepository.save(new Respuesta(respuesta.getRespuestas(),
-					respuesta.getPosRespuestaAdecuada(), respuesta.getRecomendacion()));
+			Respuesta aux = respuestaRepository.save(new Respuesta(respuesta.getRespuesta()));
 
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -76,9 +75,7 @@ public class RespuestaController {
 
 		if (respuestaData.isPresent()) {
 			Respuesta aux = respuestaData.get();
-			aux.setRespuestas(respuesta.getRespuestas());
-			aux.setPosRespuestaAdecuada(respuesta.getPosRespuestaAdecuada());
-			aux.setRecomendacion(respuesta.getRecomendacion());
+			aux.setRespuesta(respuesta.getRespuesta());
 			return new ResponseEntity<>(respuestaRepository.save(aux), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

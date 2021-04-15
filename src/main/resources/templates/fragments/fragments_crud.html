@@ -1,40 +1,78 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Fragmentos del crud</title>
-</head>
-<body>
+<div id="DataTable-Idioma" th:fragment="DataTable-Idioma">
+	<p-datatable datasource="DataTables.idioma" paginator rows="10" selectionmode="single"
+		onrowselect="RowSelect.idioma">
+		<th:block th:each="CampoTabla : ${listaCamposIdioma}">
+			<p-column th:field="${CampoTabla}" th:headertext="${#strings.capitalize(CampoTabla)}" sortable filter
+				filtermatchmode="contains"></p-column>
+		</th:block>
+		<p-column th:headertext="Operaciones">
+			<template>
+				<button type="button" class="btn btn-warning">Actualizar</button>
+				<button type="button" class="btn btn-danger">Borrar</button>
+			</template>
+		</p-column>
+	</p-datatable>
+</div>
 
-	<!-- Fragment para los Select -->
-	<div style="display: none" id="fragment-consulta-select" th:fragment="fragment-consulta-select">
-		<h1>Consulta select!</h1>
-	</div>
-	
-	<!-- Fragment para los Update -->
-	<div style="display: none" id="fragment-consulta-update" th:fragment="fragment-consulta-update">
-		<h1>Consulta update!</h1>
-	</div>
-	
-	<!-- Fragment para los Delete -->
-	<div style="display: none" id="fragment-consulta-delete" th:fragment="fragment-consulta-delete">
-		<h1>Consulta delete!</h1>
-	</div>
-	
-	<!-- Fragment para los Insert -->
-	<div id="fragment-consulta-insert" th:fragment="fragment-consulta-insert">
-		<div class="row mt-2">
-			<div class="col-12">
-				<select class="form-select" aria-label="Default select example">
-					<option selected>Selecciona la tabla</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
-				</select>
-			</div>
-			<script src="/js/consulta-insert.js"></script>
-		</div>
-	</div>
+<div id="DataTable-Area" th:fragment="DataTable-Area">
+	<p-datatable datasource="DataTables.area" paginator rows="10" selectionmode="single" onrowselect="RowSelect.area">
+		<th:block th:each="CampoTabla : ${listaCamposArea}">
+			<p-column th:field="${CampoTabla}" th:headertext="${#strings.capitalize(CampoTabla)}" sortable filter
+				filtermatchmode="contains"></p-column>
+		</th:block>
+		<p-column th:headertext="Operaciones">
+			<template>
+				<button type="button" class="btn btn-warning">Actualizar</button>
+				<button type="button" class="btn btn-danger">Borrar</button>
+			</template>
+		</p-column>
+	</p-datatable>
+</div>
 
-</body>
-</html>
+<div id="DataTable-Categoria" th:fragment="DataTable-Categoria">
+	<p-datatable datasource="DataTables.categoria" paginator rows="10" selectionmode="single"
+		onrowselect="RowSelect.categoria">
+		<th:block th:each="CampoTabla : ${listaCamposCategoria}">
+			<p-column th:field="${CampoTabla}" th:headertext="${#strings.capitalize(CampoTabla)}" sortable filter
+				filtermatchmode="contains"></p-column>
+		</th:block>
+		<p-column th:headertext="Operaciones">
+			<template>
+				<button type="button" class="btn btn-warning">Actualizar</button>
+				<button type="button" class="btn btn-danger">Borrar</button>
+			</template>
+		</p-column>
+	</p-datatable>
+</div>
+
+<div id="DataTable-Pregunta" th:fragment="DataTable-Pregunta">
+	<p-datatable datasource="DataTables.pregunta" paginator rows="10" selectionmode="single"
+		onrowselect="RowSelect.pregunta">
+		<th:block th:each="CampoTabla : ${listaCamposPregunta}">
+			<p-column th:field="${CampoTabla}" th:headertext="${#strings.capitalize(CampoTabla)}" sortable filter
+				filtermatchmode="contains"></p-column>
+		</th:block>
+		<p-column th:headertext="Operaciones">
+			<template>
+				<button type="button" class="btn btn-warning">Actualizar</button>
+				<button type="button" class="btn btn-danger">Borrar</button>
+			</template>
+		</p-column>
+	</p-datatable>
+</div>
+
+<div id="DataTable-Respuesta" th:fragment="DataTable-Respuesta">
+	<p-datatable datasource="DataTables.respuesta" paginator rows="10" selectionmode="single"
+		onrowselect="RowSelect.respuesta">
+		<th:block th:each="CampoTabla : ${listaCamposRespuesta}">
+			<p-column th:field="${CampoTabla}" th:headertext="${#strings.capitalize(CampoTabla)}" sortable filter
+				filtermatchmode="contains"></p-column>
+		</th:block>
+		<p-column th:headertext="Operaciones">
+			<template>
+				<button type="button" class="btn btn-warning">Actualizar</button>
+				<button type="button" class="btn btn-danger">Borrar</button>
+			</template>
+		</p-column>
+	</p-datatable>
+</div>

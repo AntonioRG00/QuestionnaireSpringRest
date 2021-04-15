@@ -3,6 +3,7 @@ package es.antoniorg.myspringrest.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,14 +28,14 @@ public class Area {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@Column(name = "nombre")
+	@Column(name = "nombre", nullable = false, length = 25)
 	private String nombre;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_idioma")
 	private Idioma idioma;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 
 	public Area(String nombre, Idioma idioma) {

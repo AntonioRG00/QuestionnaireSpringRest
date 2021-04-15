@@ -31,6 +31,9 @@ dependencies {
 	compile 'org.webjars:popper.js:2.5.4'
 	compile 'org.webjars:font-awesome:5.15.2'
 	compile 'org.webjars:jquery:3.6.0'
+	compile 'org.webjars.npm:primeui:4.1.15'
+	compile 'org.webjars.bowergithub.x-tag:core:1.5.11'
+	compile 'org.webjars.bower:mustache:4.0.1'
 	implementation group: 'org.webjars', name: 'webjars-locator', version: '0.40'
 
 	compileOnly 'org.projectlombok:lombok'

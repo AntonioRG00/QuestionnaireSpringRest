@@ -61,7 +61,7 @@ public class PreguntaController {
 	public ResponseEntity<Pregunta> createPregunta(@RequestBody Pregunta pregunta) {
 		try {
 
-			Pregunta aux = preguntaRepository.save(new Pregunta(pregunta.getPregunta(), pregunta.getCategoria(), pregunta.getRespuesta()));
+			Pregunta aux = preguntaRepository.save(new Pregunta(pregunta.getPregunta(), pregunta.getCategoria(), pregunta.getRecomendacion(), pregunta.getPuntuacionRecomendacion()));
 
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -77,7 +77,8 @@ public class PreguntaController {
 			Pregunta aux = preguntaData.get();
 			aux.setPregunta(pregunta.getPregunta());
 			aux.setCategoria(pregunta.getCategoria());
-			aux.setRespuesta(pregunta.getRespuesta());
+			aux.setRecomendacion(pregunta.getRecomendacion());
+			aux.setPuntuacionRecomendacion(pregunta.getPuntuacionRecomendacion());
 			return new ResponseEntity<>(preguntaRepository.save(aux), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
