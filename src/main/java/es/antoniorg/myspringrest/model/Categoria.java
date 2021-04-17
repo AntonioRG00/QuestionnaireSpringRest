@@ -38,7 +38,7 @@ public class Categoria {
 	@JoinColumn(name = "id_area")
 	private Area area;
 	
-	@Column(name = "explicacion", length = 200)
+	@Column(name = "explicacion", nullable = false, length = 200)
 	private String explicacion;
 	
 	@Column(name = "max_para_recomendacion", nullable = false)

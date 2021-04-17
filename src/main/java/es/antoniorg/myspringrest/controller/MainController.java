@@ -7,7 +7,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import es.antoniorg.myspringrest.model.Area;
+import es.antoniorg.myspringrest.model.Categoria;
+import es.antoniorg.myspringrest.model.Idioma;
+import es.antoniorg.myspringrest.model.Pregunta;
+import es.antoniorg.myspringrest.model.Respuesta;
 import es.antoniorg.myspringrest.repository.AreaRepository;
 import es.antoniorg.myspringrest.repository.CategoriaRepository;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
@@ -59,14 +66,65 @@ public class MainController {
 		model.addAttribute("listaCamposCategoria", camposTablaCategoria);
 		model.addAttribute("listaCamposPregunta", camposTablaPregunta);
 		model.addAttribute("listaCamposRespuesta", camposTablaRespuesta);
+		
+		// Añadimos los objetos del formulario
+		model.addAttribute("idiomaForm", new Idioma());
+		model.addAttribute("areaForm", new Area());
+		model.addAttribute("categoriaForm", new Categoria());
+		model.addAttribute("preguntaForm", new Pregunta());
+		model.addAttribute("respuestaForm", new Respuesta());
 
 		// Vamos al index.html
 		return "index";
 	}
-
-	@GetMapping("/body_consulta_select")
-	public void select() {
-
+	
+	@PostMapping("/idioma/new/submit")
+	public String createIdiomaForm(@ModelAttribute("idiomaForm") Idioma idioma) {
+		try {
+			idiomaRepository.save(new Idioma(idioma.getNombre(), idioma.getUrlImagen()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
 	}
 
+	@PostMapping("/area/new/submit")
+	public String createAreaForm(@ModelAttribute("areaForm") Area area) {
+		try {
+			areaRepository.save(new Area(area.getNombre(), area.getIdioma()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping("/categoria/new/submit")
+	public String createCategoriaForm(@ModelAttribute("categoriaForm") Categoria categoria) {
+		try {
+			categoriaRepository.save(new Categoria(categoria.getNombre(), categoria.getDescripcion(), categoria.getArea(), categoria.getExplicacion(), categoria.getMaxParaRecomendacion(), categoria.getRecomendacion()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping("/pregunta/new/submit")
+	public String createPreguntaForm(@ModelAttribute("preguntaForm") Pregunta pregunta) {
+		try {
+			preguntaRepository.save(new Pregunta(pregunta.getPregunta(), pregunta.getCategoria(), pregunta.getRecomendacion(), pregunta.getPuntuacionRecomendacion()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping("/respuesta/new/submit")
+	public String createRespuestaForm(@ModelAttribute("respuestaForm") Respuesta respuesta) {
+		try {
+			respuestaRepository.save(new Respuesta(respuesta.getRespuesta()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
 }

@@ -66,7 +66,8 @@ var DataTables = {
 /*** Eventos de RowSelect para cada tabla */
 var RowSelect = {
 	idioma: function(event, data) {
-		document.getElementById('messages').show([{ severity: 'info', summary: 'Row Selected', detail: data.id + ' ' + data.nombre }]);
+		document.getElementById('messages').show([{ severity: 'info', summary: 'Fila seleccionada', detail: "ID: " + data.id}]);
+		 $('#DataTable-Idioma-Dialog').puidialog('show');
 	},
 	area: function(event, data) {
 
@@ -82,14 +83,24 @@ var RowSelect = {
 	}
 }
 
-function test() {
-	window.alert("lol")
-	return $('<button type="button"></button>').puibutton({
-		icon: 'fa-search'
-	});
+function test(){
+	window.alert("xdd")
+	$('#DataTable-Idioma').puidatatable('reload');
 }
 
-$(document).ready(function() {
-
-
+$(document).ready(function(){
+	   $('#DataTable-Idioma-Dialog').puidialog({
+        showEffect: 'fade',
+        hideEffect: 'fade',
+		resizable: false,
+		width: 500,
+        minimizable: false,
+        maximizable: false,
+		closeOnEscape: true,
+        responsive: true,
+        modal: true,
+		title: " "
+    });
 })
+
+
