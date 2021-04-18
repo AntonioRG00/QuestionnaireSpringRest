@@ -13,7 +13,7 @@ public class PreguntaRespuestaPK implements Serializable{
 
 	private static final long serialVersionUID = 357307440151420380L;
 
-	private Pregunta pregunta;
+	private Long pregunta;
 	
-	private Respuesta respuesta;
+	private Long respuesta;
 }
