@@ -1,5 +1,6 @@
 package es.antoniorg.myspringrest.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,9 @@ import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor
 @Entity @Table(name = "area")
-public class Area {
+public class Area implements Serializable {
+
+	private static final long serialVersionUID = 2341129915698318755L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

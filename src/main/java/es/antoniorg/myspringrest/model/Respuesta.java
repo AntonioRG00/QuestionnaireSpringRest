@@ -1,14 +1,16 @@
 package es.antoniorg.myspringrest.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -18,7 +20,9 @@ import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor
 @Entity @Table(name = "respuesta")
-public class Respuesta {
+public class Respuesta implements Serializable {
+
+	private static final long serialVersionUID = 480089179196269564L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,11 +32,10 @@ public class Respuesta {
 	@Column(name = "respuesta", nullable = false, length = 20)
 	private String respuesta;
 
-	@ManyToMany(mappedBy = "respuestas")
-	private Set<Pregunta> preguntas = new HashSet<>();
+	@OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL)
+	private Set<PreguntaRespuesta> preguntas_respuestas = new HashSet<>();
 
 	public Respuesta(String respuesta) {
 		this.respuesta = respuesta;
-		
 	}	
 }
