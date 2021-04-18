@@ -33,5 +33,10 @@
     "name": "datatable.respuesta",
     "type": "java.lang.String",
     "description": "A description for 'datatable.respuesta'"
+  },
+  {
+    "name": "datatable.preguntarespuesta",
+    "type": "java.lang.String",
+    "description": "A description for 'datatable.preguntarespuesta'"
   }
 ]}

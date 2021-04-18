@@ -163,4 +163,35 @@
 		</div>
 	</div>
 </div>
+
+<div id="DataTable-Preguntarespuesta" th:fragment="DataTable-Preguntarespuesta">
+	<p-datatable datasource="DataTables.preguntarespuesta" paginator rows="10" selectionmode="single" onrowselect="RowSelect.preguntarespuesta"> <th:block th:each="CampoTabla : ${listaCamposPreguntarespuesta}">
+		<p-column th:field="${CampoTabla}" th:headertext="${#strings.capitalize(CampoTabla)}" sortable filter filtermatchmode="contains"></p-column>
+	</th:block> </p-datatable>
+	<!-- <p-column th:headertext="Operaciones">
+	<template>
+		<button type="button" class="btn btn-warning">Actualizar</button>
+		<button type="button" class="btn btn-danger">Borrar</button>
+	</template>
+	</p-column> -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<p class="h2 text-center bg-light encabezado mt-3">Asociar una pregunta con una respuesta</p>
+				<form method="post" action="#" th:action="@{/preguntarespuesta/new/submit}" th:object="${preguntarespuestaForm}">
+					<div class="form-group">
+						<input placeholder="ID_Pregunta" type="number" class="form-control" th:field="*{pregunta}" required>
+					</div>
+					<div class="form-group mt-2">
+						<input placeholder="ID_Respuesta" type="number" class="form-control" th:field="*{respuesta}" required>
+					</div>
+					<div class="form-group mt-2">
+						<input placeholder="Puntuación" type="number" class="form-control" th:field="*{puntuacion}" required>
+					</div>
+					<button type="submit" class="btn btn-primary col-12 mt-2">Enviar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 </html>

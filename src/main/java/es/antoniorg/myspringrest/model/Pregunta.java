@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,7 @@ public class Pregunta implements Serializable {
 	private static final long serialVersionUID = -1755610604523990931L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
 
@@ -44,6 +46,7 @@ public class Pregunta implements Serializable {
 	@Column(name = "puntuacion_recomendacion", nullable = false)
 	private int puntuacionRecomendacion;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
 	private Set<PreguntaRespuesta> preguntas_respuestas = new HashSet<>();
 

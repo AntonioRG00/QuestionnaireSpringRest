@@ -14,11 +14,13 @@ import es.antoniorg.myspringrest.model.Area;
 import es.antoniorg.myspringrest.model.Categoria;
 import es.antoniorg.myspringrest.model.Idioma;
 import es.antoniorg.myspringrest.model.Pregunta;
+import es.antoniorg.myspringrest.model.PreguntaRespuesta;
 import es.antoniorg.myspringrest.model.Respuesta;
 import es.antoniorg.myspringrest.repository.AreaRepository;
 import es.antoniorg.myspringrest.repository.CategoriaRepository;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
 import es.antoniorg.myspringrest.repository.PreguntaRepository;
+import es.antoniorg.myspringrest.repository.PreguntaRespuestaRepository;
 import es.antoniorg.myspringrest.repository.RespuestaRepository;
 
 @Controller
@@ -29,6 +31,7 @@ public class MainController {
 	private @Autowired CategoriaRepository categoriaRepository;
 	private @Autowired PreguntaRepository preguntaRepository;
 	private @Autowired RespuestaRepository respuestaRepository;
+	private @Autowired PreguntaRespuestaRepository prRepository;
 
 	/** Lista con los nombres de las tablas de la base de datos */
 	@Value("#{'${crud.tablas}'.split(',')}")
@@ -48,7 +51,10 @@ public class MainController {
 
 	@Value("#{'${datatable.respuesta}'.split(',')}")
 	private List<String> camposTablaRespuesta;
-
+	
+	@Value("#{'${datatable.preguntarespuesta}'.split(',')}")
+	private List<String> camposTablaPreguntarespuesta;
+	
 	@GetMapping("/")
 	public String inicio(Model model) {
 		model.addAttribute("listaIdioma", idiomaRepository.findAll());
@@ -66,6 +72,7 @@ public class MainController {
 		model.addAttribute("listaCamposCategoria", camposTablaCategoria);
 		model.addAttribute("listaCamposPregunta", camposTablaPregunta);
 		model.addAttribute("listaCamposRespuesta", camposTablaRespuesta);
+		model.addAttribute("listaCamposPreguntarespuesta", camposTablaPreguntarespuesta);
 		
 		// Añadimos los objetos del formulario
 		model.addAttribute("idiomaForm", new Idioma());
@@ -73,6 +80,7 @@ public class MainController {
 		model.addAttribute("categoriaForm", new Categoria());
 		model.addAttribute("preguntaForm", new Pregunta());
 		model.addAttribute("respuestaForm", new Respuesta());
+		model.addAttribute("preguntarespuestaForm", new PreguntaRespuesta());
 
 		// Vamos al index.html
 		return "index";
@@ -122,6 +130,16 @@ public class MainController {
 	public String createRespuestaForm(@ModelAttribute("respuestaForm") Respuesta respuesta) {
 		try {
 			respuestaRepository.save(new Respuesta(respuesta.getRespuesta()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping("/preguntarespuesta/new/submit")
+	public String createPreguntarespuestaForm(@ModelAttribute("respuestaForm") PreguntaRespuesta pr) {
+		try {
+			prRepository.save(new PreguntaRespuesta(pr.getPregunta(), pr.getRespuesta(), pr.getPuntuacion()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

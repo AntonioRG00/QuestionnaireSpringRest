@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +27,7 @@ public class Idioma implements Serializable {
 	private static final long serialVersionUID = 3384608419515916422L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
 	
@@ -35,6 +37,7 @@ public class Idioma implements Serializable {
 	@Column(name = "url_imagen", nullable = false, length = 250)
 	private String urlImagen;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma")
 	private List<Area> areas = new ArrayList<Area>();
 

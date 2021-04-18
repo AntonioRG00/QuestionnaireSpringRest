@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,7 @@ public class Categoria implements Serializable {
 	private static final long serialVersionUID = 3470881883939542678L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
 	
@@ -50,6 +52,7 @@ public class Categoria implements Serializable {
 	@Column(name = "recomendacion", columnDefinition="TEXT")
 	private String recomendacion;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
 	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
