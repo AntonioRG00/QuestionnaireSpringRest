@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +23,14 @@ public class PreguntaRespuesta implements Serializable {
 	
 	private static final long serialVersionUID = 6001634131165241957L;
 	
+	@JsonIgnore
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "pregunta_id")
 	@EqualsAndHashCode.Include
 	private Pregunta pregunta;
 	
+	@JsonIgnore
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "respuesta_id")

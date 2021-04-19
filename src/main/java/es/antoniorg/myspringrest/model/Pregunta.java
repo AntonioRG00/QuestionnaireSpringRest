@@ -36,6 +36,7 @@ public class Pregunta implements Serializable {
 	@Column(name = "pregunta", nullable = false, length = 150)
 	private String pregunta;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
@@ -46,7 +47,6 @@ public class Pregunta implements Serializable {
 	@Column(name = "puntuacion_recomendacion", nullable = false)
 	private int puntuacionRecomendacion;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
 	private Set<PreguntaRespuesta> preguntas_respuestas = new HashSet<>();
 

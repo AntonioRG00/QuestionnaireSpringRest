@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -37,7 +38,6 @@ public class Idioma implements Serializable {
 	@Column(name = "url_imagen", nullable = false, length = 250)
 	private String urlImagen;
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma")
 	private List<Area> areas = new ArrayList<Area>();
 

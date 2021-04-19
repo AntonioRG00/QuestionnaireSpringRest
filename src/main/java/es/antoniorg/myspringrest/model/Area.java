@@ -36,11 +36,11 @@ public class Area implements Serializable {
 	@Column(name = "nombre", nullable = false, length = 25)
 	private String nombre;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_idioma")
 	private Idioma idioma;
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 

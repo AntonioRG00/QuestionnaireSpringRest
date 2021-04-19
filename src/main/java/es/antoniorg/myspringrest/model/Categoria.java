@@ -39,6 +39,7 @@ public class Categoria implements Serializable {
 	@Column(name = "descripcion", nullable = false, length = 100)
 	private String descripcion;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_area")
 	private Area area;
@@ -52,7 +53,6 @@ public class Categoria implements Serializable {
 	@Column(name = "recomendacion", columnDefinition="TEXT")
 	private String recomendacion;
 
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
 	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
