@@ -28,7 +28,7 @@ public class Idioma implements Serializable {
 	private static final long serialVersionUID = 3384608419515916422L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@EqualsAndHashCode.Include
 	private Long id;
 	

@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.Area;
 import es.antoniorg.myspringrest.repository.AreaRepository;
 
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin(origins = "http://localhost:80", methods = {RequestMethod.GET})
 @RestController
 @RequestMapping("/rest_area")
 public class AreaController {
