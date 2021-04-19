@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import es.antoniorg.myspringrest.model.Idioma;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
 
-@CrossOrigin(origins = "http://localhost:9000")
 @RestController
 @RequestMapping("/rest_idioma")
 public class IdiomaController {

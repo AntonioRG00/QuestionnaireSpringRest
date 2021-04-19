@@ -20,7 +20,6 @@ import es.antoniorg.myspringrest.repository.PreguntaRepository;
 import es.antoniorg.myspringrest.repository.PreguntaRespuestaRepository;
 import es.antoniorg.myspringrest.repository.RespuestaRepository;
 
-@CrossOrigin(origins = "http://localhost:9000")
 @RestController
 @RequestMapping("/rest")
 public class ControladorRest {

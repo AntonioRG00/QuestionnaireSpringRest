@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import es.antoniorg.myspringrest.model.Area;
 import es.antoniorg.myspringrest.repository.AreaRepository;
 
-@CrossOrigin(origins = "http://localhost:80", methods = {RequestMethod.GET})
 @RestController
 @RequestMapping("/rest_area")
 public class AreaController {

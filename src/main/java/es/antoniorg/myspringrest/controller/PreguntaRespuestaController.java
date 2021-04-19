@@ -21,7 +21,6 @@ import es.antoniorg.myspringrest.model.PreguntaRespuesta;
 import es.antoniorg.myspringrest.model.PreguntaRespuestaPK;
 import es.antoniorg.myspringrest.repository.PreguntaRespuestaRepository;
 
-@CrossOrigin(origins = "http://localhost:9000")
 @RestController
 @RequestMapping("/rest_preguntarespuesta")
 public class PreguntaRespuestaController {

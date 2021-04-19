@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import es.antoniorg.myspringrest.model.Respuesta;
 import es.antoniorg.myspringrest.repository.RespuestaRepository;
 
-@CrossOrigin(origins = "http://localhost:9000")
 @RestController
 @RequestMapping("/rest_respuesta")
 public class RespuestaController {
