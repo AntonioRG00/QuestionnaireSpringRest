@@ -16,8 +16,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor
+@Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor @ToString
 @Entity @Table(name = "pregunta_respuesta") @IdClass(PreguntaRespuestaPK.class)
 public class PreguntaRespuesta implements Serializable {
 	

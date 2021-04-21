@@ -1,0 +1,91 @@
+<ui:composition template="/WEB-INF/Plantilla/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form id="formMain">
+			<p:tabView>
+				<p:tab title="Idioma">
+					<p:dataTable var="idioma" value="#{mainController.idiomas}" emptyMessage="No se encontraron idiomas" id="idiomaDataTable"
+						widgetVar="idiomaDataTable" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{idioma.id}"
+						paginatorPosition="bottom" rows="5">
+
+						<p:column headerText="ID" sortBy="#{idioma.id}" filterBy="#{idioma.id}" filterMatchMode="contains">
+							<h:outputText value="#{idioma.id}" />
+						</p:column>
+
+						<p:column headerText="Nombre" sortBy="#{idioma.nombre}" filterBy="#{idioma.id}" filterMatchMode="contains">
+							<h:outputText value="#{idioma.nombre}" />
+						</p:column>
+
+						<p:column headerText="Operaciones">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarIdioma(idioma)}"
+								oncomplete="PF('EditarIdiomaDialog').show()">
+								<span class="pi pi-pencil btn btn-warning" />
+							</p:commandLink>
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarIdioma(idioma)}">
+								<span class="pi pi-trash btn btn-danger" />
+							</p:commandLink>
+						</p:column>
+					</p:dataTable>
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir un Idioma" action="#{mainController.crearIdioma()}"
+						oncomplete="PF('EditarIdiomaDialog').show()" process="@this" />
+				</p:tab>
+
+				<p:tab title="Área">
+				</p:tab>
+				<p:tab title="Categoría">
+				</p:tab>
+				<p:tab title="Pregunta">
+				</p:tab>
+				<p:tab title="Respuesta">
+				</p:tab>
+				<p:tab title="Pregunta-Respuesta">
+				</p:tab>
+			</p:tabView>
+		</h:form>
+
+		<p:dialog id="EditarIdiomaDialog" widgetVar="EditarIdiomaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+			header="Editar idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			<h:form id="EditarIdiomaForm">
+				<div class="container-fluid" style="padding: 0px !important;">
+					<div class="row">
+						<div class="col-3">
+							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre idioma(*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true" requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="Url Imagen(*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistIdioma()}"
+								onclick="PF('EditarIdiomaDialog').hide()" update="formMain">
+								<span class="pi pi-check-circle" />
+								<span>Aceptar</span>
+								<span class="pi pi-check-circle" />
+							</p:commandLink>
+						</div>
+						<div class="col-6">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarIdiomaDialog').hide()" immediate="true">
+								<span class="pi pi-times-circle" />
+								<span>Cancelar</span>
+								<span class="pi pi-times-circle" />
+							</p:commandLink>
+						</div>
+					</div>
+				</div>
+
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

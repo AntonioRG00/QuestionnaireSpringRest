@@ -1,148 +1,75 @@
 package es.antoniorg.myspringrest.controller;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.stereotype.Component;
 
-import es.antoniorg.myspringrest.model.Area;
-import es.antoniorg.myspringrest.model.Categoria;
 import es.antoniorg.myspringrest.model.Idioma;
-import es.antoniorg.myspringrest.model.Pregunta;
-import es.antoniorg.myspringrest.model.PreguntaRespuesta;
-import es.antoniorg.myspringrest.model.Respuesta;
-import es.antoniorg.myspringrest.repository.AreaRepository;
-import es.antoniorg.myspringrest.repository.CategoriaRepository;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
-import es.antoniorg.myspringrest.repository.PreguntaRepository;
-import es.antoniorg.myspringrest.repository.PreguntaRespuestaRepository;
-import es.antoniorg.myspringrest.repository.RespuestaRepository;
+import lombok.Getter;
+import lombok.Setter;
 
-@Controller
-public class MainController {
+@Component("mainController")
+@ViewScoped
+public class MainController implements Serializable {
 
+	private static final long serialVersionUID = 8929086073643011545L;
+
+	private Logger logger = LoggerFactory.getLogger(MainController.class);
+	
 	private @Autowired IdiomaRepository idiomaRepository;
-	private @Autowired AreaRepository areaRepository;
-	private @Autowired CategoriaRepository categoriaRepository;
-	private @Autowired PreguntaRepository preguntaRepository;
-	private @Autowired RespuestaRepository respuestaRepository;
-	private @Autowired PreguntaRespuestaRepository prRepository;
-
-	/** Lista con los nombres de las tablas de la base de datos */
-	@Value("#{'${crud.tablas}'.split(',')}")
-	private List<String> nombreTablas;
-
-	@Value("#{'${datatable.idioma}'.split(',')}")
-	private List<String> camposTablaIdioma;
-
-	@Value("#{'${datatable.area}'.split(',')}")
-	private List<String> camposTablaArea;
-
-	@Value("#{'${datatable.categoria}'.split(',')}")
-	private List<String> camposTablaCategoria;
-
-	@Value("#{'${datatable.pregunta}'.split(',')}")
-	private List<String> camposTablaPregunta;
-
-	@Value("#{'${datatable.respuesta}'.split(',')}")
-	private List<String> camposTablaRespuesta;
 	
-	@Value("#{'${datatable.preguntarespuesta}'.split(',')}")
-	private List<String> camposTablaPreguntarespuesta;
+	/** Lista con los idiomas de la tabla */
+	private @Getter @Setter List<Idioma> idiomas;
 	
-	@GetMapping("/")
-	public String inicio(Model model) {
-		model.addAttribute("listaIdioma", idiomaRepository.findAll());
-		model.addAttribute("listaArea", areaRepository.findAll());
-		model.addAttribute("listaCategoria", categoriaRepository.findAll());
-		model.addAttribute("listaPregunta", preguntaRepository.findAll());
-		model.addAttribute("listaRespuesta", respuestaRepository.findAll());
+	private @Getter @Setter Idioma idiomaEdit;
+	
+	private @Getter @Setter String test = "";
 
-		// Añadimos las tablas
-		model.addAttribute("listaNombreTablas", nombreTablas);
-
-		// Añadimos los campos de las tablas
-		model.addAttribute("listaCamposIdioma", camposTablaIdioma);
-		model.addAttribute("listaCamposArea", camposTablaArea);
-		model.addAttribute("listaCamposCategoria", camposTablaCategoria);
-		model.addAttribute("listaCamposPregunta", camposTablaPregunta);
-		model.addAttribute("listaCamposRespuesta", camposTablaRespuesta);
-		model.addAttribute("listaCamposPreguntarespuesta", camposTablaPreguntarespuesta);
+	@PostConstruct
+	public void init() {
+		logger.info("MainController init");
 		
-		// Añadimos los objetos del formulario
-		model.addAttribute("idiomaForm", new Idioma());
-		model.addAttribute("areaForm", new Area());
-		model.addAttribute("categoriaForm", new Categoria());
-		model.addAttribute("preguntaForm", new Pregunta());
-		model.addAttribute("respuestaForm", new Respuesta());
-		model.addAttribute("preguntarespuestaForm", new PreguntaRespuesta());
-
-		// Vamos al index.html
-		return "index";
-	}
-	
-	@PostMapping("/idioma/new/submit")
-	public String createIdiomaForm(@ModelAttribute("idiomaForm") Idioma idioma) {
-		try {
-			idiomaRepository.save(new Idioma(idioma.getNombre(), idioma.getUrlImagen()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
+		limpiarVariables();
+		
+		idiomas = idiomaRepository.findAll();
+		
+		logger.info("MainController end");
 	}
 
-	@PostMapping("/area/new/submit")
-	public String createAreaForm(@ModelAttribute("areaForm") Area area) {
-		try {
-			areaRepository.save(new Area(area.getNombre(), area.getIdioma()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
+	/** Inicializa todas las variables */
+	public void limpiarVariables() {
+		idiomaEdit = new Idioma();
 	}
 	
-	@PostMapping("/categoria/new/submit")
-	public String createCategoriaForm(@ModelAttribute("categoriaForm") Categoria categoria) {
-		try {
-			categoriaRepository.save(new Categoria(categoria.getNombre(), categoria.getDescripcion(), categoria.getArea(), categoria.getExplicacion(), categoria.getMaxParaRecomendacion(), categoria.getRecomendacion()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
+	/** Actualiza el idioma seleccionado para después llamar a crearIdioma */
+	public void actualizarIdioma(Idioma idioma) {
+		logger.info("actualizarIdioma init: Se procede a actualizar el idioma seleccionado a: " + idioma.toString());
+		idiomaEdit = idioma;
 	}
 	
-	@PostMapping("/pregunta/new/submit")
-	public String createPreguntaForm(@ModelAttribute("preguntaForm") Pregunta pregunta) {
-		try {
-			preguntaRepository.save(new Pregunta(pregunta.getPregunta(), pregunta.getCategoria(), pregunta.getRecomendacion(), pregunta.getPuntuacionRecomendacion()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
+	/** Asigna un nuevo idioma a la variable idioma editable */
+	public void crearIdioma() {
+		logger.info("crearIdioma init: Aplastando la variable idiomaEdit");
+		idiomaEdit = new Idioma();
 	}
 	
-	@PostMapping("/respuesta/new/submit")
-	public String createRespuestaForm(@ModelAttribute("respuestaForm") Respuesta respuesta) {
-		try {
-			respuestaRepository.save(new Respuesta(respuesta.getRespuesta()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
+	/** Persiste un nuevo idioma con la variable idiomaEdit */
+	public void persistIdioma() {
+		logger.info("crearIdioma init: Se procede a persistir el idioma " + idiomaEdit.toString());
+		idiomaRepository.saveAndFlush(idiomaEdit);
 	}
 	
-	@PostMapping("/preguntarespuesta/new/submit")
-	public String createPreguntarespuestaForm(@ModelAttribute("respuestaForm") PreguntaRespuesta pr) {
-		try {
-			prRepository.save(new PreguntaRespuesta(pr.getPregunta(), pr.getRespuesta(), pr.getPuntuacion()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
+	/** Elimina el idioma pasado por parámetro */
+	public void eliminarIdioma(Idioma idioma) {
+		logger.info("eliminarIdioma init: Se va a borrar el idioma: " + idioma.toString());
+		idiomaRepository.delete(idioma);
 	}
 }

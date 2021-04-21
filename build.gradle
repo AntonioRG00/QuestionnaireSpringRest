@@ -16,11 +16,13 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven {
+		url = "https://repository.primefaces.org"
+	}
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	
@@ -29,12 +31,17 @@ dependencies {
 	/** Webjars */
 	compile 'org.webjars:bootstrap:5.0.0-beta3'
 	compile 'org.webjars:popper.js:2.5.4'
+	/**compile 'org.webjars:jquery:3.6.0'
 	compile 'org.webjars:font-awesome:5.15.2'
-	compile 'org.webjars:jquery:3.6.0'
 	compile 'org.webjars.npm:primeui:4.1.15'
 	compile 'org.webjars.bowergithub.x-tag:core:1.5.11'
 	compile 'org.webjars.bower:mustache:4.0.1'
-	implementation group: 'org.webjars', name: 'webjars-locator', version: '0.40'
+	implementation group: 'org.webjars', name: 'webjars-locator', version: '0.40'*/
+	
+	/** JSF y Primefaces*/
+	implementation group: 'org.joinfaces', name: 'jsf-spring-boot-starter', version: '4.4.3'
+	implementation group: 'org.primefaces', name: 'primefaces', version: '10.0.0'
+	implementation group: 'org.primefaces.themes', name: 'hot-sneaks', version: '1.0.10'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

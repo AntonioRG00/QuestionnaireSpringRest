@@ -1,4 +1,4 @@
-package es.antoniorg.myspringrest.controller;
+package es.antoniorg.myspringrest.rest_controllers;
 
 import java.util.ArrayList;
 import java.util.List;

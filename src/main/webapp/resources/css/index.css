@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-.ui-tabview .ui-tabview-panel {
-    padding: 1px 1px;
-}
-
 td {
 	text-align: center;
 }
@@ -12,6 +8,8 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  margin: 2px;
+  padding: 2px;
 } 
 
 main {
@@ -175,4 +173,16 @@ body.welcome {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+h1 {
+	color: blue !important;
+}
+
+.ui-tabs-panel .ui-widget-content .ui-corner-bottom{
+	padding: 1px 1px !important;
+}
+
+.ui-tabs .ui-tabs-panel{
+	padding: 1px 1px !important;
 }
