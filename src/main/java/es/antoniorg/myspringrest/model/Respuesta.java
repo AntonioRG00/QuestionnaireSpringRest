@@ -33,6 +33,7 @@ public class Respuesta implements Serializable {
 	@Column(name = "respuesta", nullable = false, length = 20)
 	private String respuesta;
 
+	@ToString.Exclude
 	@OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL)
 	private Set<PreguntaRespuesta> preguntas_respuestas = new HashSet<>();
 

@@ -48,6 +48,7 @@ public class Pregunta implements Serializable {
 	@Column(name = "puntuacion_recomendacion", nullable = false)
 	private int puntuacionRecomendacion;
 
+	@ToString.Exclude
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
 	private Set<PreguntaRespuesta> preguntas_respuestas = new HashSet<>();
 

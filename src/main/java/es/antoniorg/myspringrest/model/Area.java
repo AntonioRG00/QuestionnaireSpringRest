@@ -42,6 +42,7 @@ public class Area implements Serializable {
 	@JoinColumn(name = "id_idioma")
 	private Idioma idioma;
 	
+	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 

@@ -54,6 +54,7 @@ public class Categoria implements Serializable {
 	@Column(name = "recomendacion", columnDefinition="TEXT")
 	private String recomendacion;
 
+	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
 	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
 

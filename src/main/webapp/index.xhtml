@@ -3,12 +3,17 @@
 
 	<ui:define name="content">
 		<h:form id="formMain">
+			<p:growl id="growl" showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
 			<p:tabView>
+
 				<p:tab title="Idioma">
 					<p:dataTable var="idioma" value="#{mainController.idiomas}" emptyMessage="No se encontraron idiomas" id="idiomaDataTable"
-						widgetVar="idiomaDataTable" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						widgetVar="idiomaDataTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{idioma.id}"
-						paginatorPosition="bottom" rows="5">
+						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
 						<p:column headerText="ID" sortBy="#{idioma.id}" filterBy="#{idioma.id}" filterMatchMode="contains">
 							<h:outputText value="#{idioma.id}" />
@@ -25,29 +30,107 @@
 							</p:commandLink>
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarIdioma(idioma)}">
 								<span class="pi pi-trash btn btn-danger" />
+								<p:confirm header="Confirmación" message="Se va a borrar el idioma #{idioma.nombre}" />
 							</p:commandLink>
 						</p:column>
+
+						<p:autoUpdate />
 					</p:dataTable>
 					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir un Idioma" action="#{mainController.crearIdioma()}"
 						oncomplete="PF('EditarIdiomaDialog').show()" process="@this" />
 				</p:tab>
 
 				<p:tab title="Área">
+					<p:dataTable var="area" value="#{mainController.areas}" emptyMessage="No se encontraron areas" id="areaDataTable" widgetVar="areaDataTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{area.id}"
+						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
+
+						<p:column headerText="ID" sortBy="#{area.id}" filterBy="#{area.id}" filterMatchMode="contains">
+							<h:outputText value="#{area.id}" />
+						</p:column>
+
+						<p:column headerText="Nombre" sortBy="#{area.nombre}" filterBy="#{area.id}" filterMatchMode="contains">
+							<h:outputText value="#{area.nombre}" />
+						</p:column>
+
+						<p:column headerText="ID_Idioma" sortBy="#{area.idioma.id}" filterBy="#{area.idioma.id}" filterMatchMode="contains">
+							<h:outputText value="#{area.idioma.id}" />
+						</p:column>
+
+						<p:column headerText="Operaciones">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarArea(area)}"
+								oncomplete="PF('EditarAreaDialog').show()">
+								<span class="pi pi-pencil btn btn-warning" />
+							</p:commandLink>
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarArea(area)}">
+								<span class="pi pi-trash btn btn-danger" />
+								<p:confirm header="Confirmación" message="Se va a borrar el area #{area.nombre}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:autoUpdate />
+					</p:dataTable>
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir un Área" action="#{mainController.crearArea()}"
+						oncomplete="PF('EditarAreaDialog').show()" process="@this" />
 				</p:tab>
+
 				<p:tab title="Categoría">
+					<p:dataTable var="categoria" value="#{mainController.categorias}" emptyMessage="No se encontraron categoria" id="categoriaDataTable"
+						widgetVar="categoriaDataTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{categoria.id}"
+						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
+
+						<p:column headerText="ID" sortBy="#{categoria.id}" filterBy="#{categoria.id}" filterMatchMode="contains">
+							<h:outputText value="#{categoria.id}" />
+						</p:column>
+
+						<p:column headerText="Nombre" sortBy="#{categoria.nombre}" filterBy="#{categoria.nombre}" filterMatchMode="contains">
+							<h:outputText value="#{categoria.nombre}" />
+						</p:column>
+
+						<p:column headerText="ID_Area" sortBy="#{categoria.area.id}" filterBy="#{categoria.area.id}" filterMatchMode="contains">
+							<h:outputText value="#{categoria.area.id}" />
+						</p:column>
+
+						<p:column headerText="MaxRec" sortBy="#{categoria.maxParaRecomendacion}" filterBy="#{categoria.maxParaRecomendacion}" filterMatchMode="contains">
+							<h:outputText value="#{categoria.maxParaRecomendacion}" />
+						</p:column>
+
+						<p:column headerText="Operaciones">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarCategoria(categoria)}"
+								oncomplete="PF('EditarCategoriaDialog').show()">
+								<span class="pi pi-pencil btn btn-warning" />
+							</p:commandLink>
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarCategoria(categoria)}">
+								<span class="pi pi-trash btn btn-danger" />
+								<p:confirm header="Confirmación" message="Se va a borrar la categoría #{categoria.nombre}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:autoUpdate />
+					</p:dataTable>
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una Categoría" action="#{mainController.crearCategoria()}"
+						oncomplete="PF('EditarCategoriaDialog').show()" process="@this" />
 				</p:tab>
+
 				<p:tab title="Pregunta">
 				</p:tab>
+
 				<p:tab title="Respuesta">
 				</p:tab>
+
 				<p:tab title="Pregunta-Respuesta">
 				</p:tab>
+
 			</p:tabView>
 		</h:form>
 
 		<p:dialog id="EditarIdiomaDialog" widgetVar="EditarIdiomaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
 			header="Editar idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarIdiomaForm">
+				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
 						<div class="col-3">
@@ -69,7 +152,7 @@
 					<div class="row mt-2">
 						<div class="col-6">
 							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistIdioma()}"
-								onclick="PF('EditarIdiomaDialog').hide()" update="formMain">
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarIdiomaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -84,8 +167,132 @@
 						</div>
 					</div>
 				</div>
-
 			</h:form>
 		</p:dialog>
+
+		<p:dialog id="EditarAreaDialog" widgetVar="EditarAreaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+			header="Editar idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			<h:form id="EditarAreaForm">
+				<p:autoUpdate />
+				<div class="container-fluid" style="padding: 0px !important;">
+					<div class="row">
+						<div class="col-3">
+							<h:outputLabel for="nombreArea" style="float:left!important;" value="Nombre área(*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.areaEdit.nombre}" id="nombreArea" required="true" requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="areaIdIdioma" style="float:left!important;" value="ID Idioma(*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.areaEdit.idioma.id}" id="areaIdIdioma" required="true" requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistArea()}">
+								<span class="pi pi-check-circle" />
+								<span>Aceptar</span>
+								<span class="pi pi-check-circle" />
+							</p:commandLink>
+						</div>
+						<div class="col-6">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarAreaDialog').hide()" immediate="true">
+								<span class="pi pi-times-circle" />
+								<span>Cancelar</span>
+								<span class="pi pi-times-circle" />
+							</p:commandLink>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="EditarCategoriaDialog" widgetVar="EditarCategoriaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+			header="Editar idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			<h:form id="EditarCategoriaForm">
+				<p:autoUpdate />
+				<div class="container-fluid" style="padding: 0px !important;">
+					<div class="row">
+						<div class="col-3">
+							<h:outputLabel for="nombreCategoria" style="float:left!important;" value="Nombre (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" size="25" value="#{mainController.categoriaEdit.nombre}" id="nombreCategoria" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="descripcionCategoria" style="float:left!important;" value="Descripción (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" size="100" value="#{mainController.categoriaEdit.descripcion}" id="descripcionCategoria" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="idAreaCategoria" style="float:left!important;" value="ID_Area (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.categoriaEdit.area.id}" id="idAreaCategoria" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="explicacionCategoria" style="float:left!important;" value="Explicación (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" size="200" value="#{mainController.categoriaEdit.explicacion}" id="explicacionCategoria" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="maxRecCategoria" style="float:left!important;" value="MaxParaRecomendación (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.categoriaEdit.maxParaRecomendacion}" id="maxRecCategoria" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="recomendacionCategoria" style="float:left!important;" value="Recomendación:" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.categoriaEdit.recomendacion}" id="recomendacionCategoria" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistCategoria()}">
+								<span class="pi pi-check-circle" />
+								<span>Aceptar</span>
+								<span class="pi pi-check-circle" />
+							</p:commandLink>
+						</div>
+						<div class="col-6">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarCategoriaDialog').hide()"
+								immediate="true">
+								<span class="pi pi-times-circle" />
+								<span>Cancelar</span>
+								<span class="pi pi-times-circle" />
+							</p:commandLink>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+			<p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes" />
+			<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
+		</p:confirmDialog>
 	</ui:define>
 </ui:composition>
