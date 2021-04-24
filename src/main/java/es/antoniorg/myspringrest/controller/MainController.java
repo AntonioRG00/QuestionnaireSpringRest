@@ -220,13 +220,20 @@ public class MainController implements Serializable {
 	public void crearPregunta() {
 		logger.info("crearPregunta init: Aplastando la variable preguntaEdit");
 		preguntaEdit = new Pregunta();
+		preguntaEdit.setCategoria(new Categoria());
 	}
 
 	/** Persiste una nueva pregunta con la variable preguntaEdit */
 	public void persistPregunta() {
 		logger.info("crearPregunta init: Se procede a persistir la pregunta " + preguntaEdit.toString());
-		preguntaRepository.saveAndFlush(preguntaEdit);
-		limpiarVariables();
+		try {
+			preguntaRepository.saveAndFlush(preguntaEdit);
+			PrimeFaces.current().executeScript("PF('EditarPreguntaDialog').hide()");
+			limpiarVariables();
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
+					"El objeto no ha sido guardado, quizás porque el id de categoria introducido no existe"));
+		}
 	}
 
 	/** Elimina la pregunta pasada por parámetro */
@@ -282,13 +289,21 @@ public class MainController implements Serializable {
 	public void crearPreRes() {
 		logger.info("crearPreRes init: Aplastando la variable preResEdit");
 		preResEdit = new PreguntaRespuesta();
+		preResEdit.setPregunta(new Pregunta());
+		preResEdit.setRespuesta(new Respuesta());
 	}
 
 	/** Persiste una nueva Pregunta-Respuesta con la variable preResEdit */
 	public void persistPreRes() {
 		logger.info("persistPreRes init: Se procede a persistir la preRes " + preRes.toString());
-		preResRepository.saveAndFlush(preResEdit);
-		limpiarVariables();
+		try {
+			preResRepository.saveAndFlush(preResEdit);
+			PrimeFaces.current().executeScript("PF('EditarPreResDialog').hide()");
+			limpiarVariables();
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
+					"El objeto no ha sido guardado, quizás porque algunos de los ids introducidos no existen"));
+		}
 	}
 
 	/** Elimina la Pregunta-Respuesta pasada por parámetro */

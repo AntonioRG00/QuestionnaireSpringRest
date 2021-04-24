@@ -76,7 +76,7 @@
 				</p:tab>
 
 				<p:tab title="Categoría">
-					<p:dataTable var="categoria" value="#{mainController.categorias}" emptyMessage="No se encontraron categoria" id="categoriaDataTable"
+					<p:dataTable var="categoria" value="#{mainController.categorias}" emptyMessage="No se encontraron categorias" id="categoriaDataTable"
 						widgetVar="categoriaDataTable"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{categoria.id}"
@@ -116,12 +116,109 @@
 				</p:tab>
 
 				<p:tab title="Pregunta">
+					<p:dataTable var="pregunta" value="#{mainController.preguntas}" emptyMessage="No se encontraron preguntas" id="preguntaDataTable"
+						widgetVar="preguntaDataTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{pregunta.id}"
+						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
+
+						<p:column headerText="ID" sortBy="#{pregunta.id}" filterBy="#{pregunta.id}" filterMatchMode="contains">
+							<h:outputText value="#{pregunta.id}" />
+						</p:column>
+
+						<p:column headerText="ID_Categoría" sortBy="#{pregunta.categoria.id}" filterBy="#{pregunta.categoria.id}" filterMatchMode="contains">
+							<h:outputText value="#{pregunta.categoria.id}" />
+						</p:column>
+
+						<p:column headerText="Puntuación" sortBy="#{pregunta.puntuacionRecomendacion}" filterBy="#{pregunta.puntuacionRecomendacion}"
+							filterMatchMode="contains">
+							<h:outputText value="#{pregunta.puntuacionRecomendacion}" />
+						</p:column>
+
+						<p:column headerText="Operaciones">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarPregunta(pregunta)}"
+								oncomplete="PF('EditarPreguntaDialog').show()">
+								<span class="pi pi-pencil btn btn-warning" />
+							</p:commandLink>
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPregunta(pregunta)}">
+								<span class="pi pi-trash btn btn-danger" />
+								<p:confirm header="Confirmación" message="Se va a borrar la pregunta con id #{pregunta.id}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:autoUpdate />
+					</p:dataTable>
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una Pregunta" action="#{mainController.crearPregunta()}"
+						oncomplete="PF('EditarPreguntaDialog').show()" process="@this" />
 				</p:tab>
 
 				<p:tab title="Respuesta">
+					<p:dataTable var="respuesta" value="#{mainController.respuestas}" emptyMessage="No se encontraron preguntas" id="respuestaDataTable"
+						widgetVar="respuestaDataTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{respuesta.id}"
+						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
+
+						<p:column headerText="ID" sortBy="#{respuesta.id}" filterBy="#{respuesta.id}" filterMatchMode="contains">
+							<h:outputText value="#{respuesta.id}" />
+						</p:column>
+
+						<p:column headerText="Respuesta" sortBy="#{respuesta.respuesta}" filterBy="#{respuesta.respuesta}" filterMatchMode="contains">
+							<h:outputText value="#{respuesta.respuesta}" />
+						</p:column>
+
+						<p:column headerText="Operaciones">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarRespuesta(respuesta)}"
+								oncomplete="PF('EditarRespuestaDialog').show()">
+								<span class="pi pi-pencil btn btn-warning" />
+							</p:commandLink>
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuesta(respuesta)}">
+								<span class="pi pi-trash btn btn-danger" />
+								<p:confirm header="Confirmación" message="Se va a borrar la respuesta con id #{respuesta.id}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:autoUpdate />
+					</p:dataTable>
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una Respuesta" action="#{mainController.crearRespuesta()}"
+						oncomplete="PF('EditarRespuestaDialog').show()" process="@this" />
 				</p:tab>
 
 				<p:tab title="Pregunta-Respuesta">
+					<p:dataTable var="preRes" value="#{mainController.preRes}" emptyMessage="No se encontraron preguntas-respuestas" id="preResDataTable"
+						widgetVar="preResDataTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{preRes.id}"
+						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
+
+						<p:column headerText="ID_Pregunta" sortBy="#{preRes.pregunta.id}" filterBy="#{preRes.pregunta.id}" filterMatchMode="contains">
+							<h:outputText value="#{preRes.pregunta.id}" />
+						</p:column>
+
+						<p:column headerText="ID_Respuesta" sortBy="#{preRes.respuesta.id}" filterBy="#{preRes.respuesta.id}" filterMatchMode="contains">
+							<h:outputText value="#{preRes.respuesta.id}" />
+						</p:column>
+
+						<p:column headerText="Puntuacion" sortBy="#{preRes.puntuacion}" filterBy="#{preRes.puntuacion}" filterMatchMode="contains">
+							<h:outputText value="#{preRes.puntuacion}" />
+						</p:column>
+
+						<p:column headerText="Operaciones">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarPreRes(preRes)}"
+								oncomplete="PF('EditarPreResDialog').show()">
+								<span class="pi pi-pencil btn btn-warning" />
+							</p:commandLink>
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(PreRes)}">
+								<span class="pi pi-trash btn btn-danger" />
+								<p:confirm header="Confirmación"
+									message="Se va a borrar la relación entre la pregunta #{preRes.pregunta.id} y la respuesta #{preRes.respuesta.id}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:autoUpdate />
+					</p:dataTable>
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una Pregunta-Respuesta" action="#{mainController.crearPreRes()}"
+						oncomplete="PF('EditarPreResDialog').show()" process="@this" />
 				</p:tab>
 
 			</p:tabView>
@@ -137,7 +234,8 @@
 							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre idioma(*):" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true" requiredMessage="Campo requerido" />
+							<h:inputText class="col-12" size="50" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true"
+								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
@@ -145,7 +243,7 @@
 							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="Url Imagen(*):" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
+							<h:inputText class="col-12" size="250" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
@@ -212,7 +310,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarCategoriaDialog" widgetVar="EditarCategoriaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar Categoría" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarCategoriaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -279,6 +377,157 @@
 						</div>
 						<div class="col-6">
 							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarCategoriaDialog').hide()"
+								immediate="true">
+								<span class="pi pi-times-circle" />
+								<span>Cancelar</span>
+								<span class="pi pi-times-circle" />
+							</p:commandLink>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="EditarPreguntaDialog" widgetVar="EditarPreguntaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+			header="Editar pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			<h:form id="EditarPreguntaForm">
+				<p:autoUpdate />
+				<div class="container-fluid" style="padding: 0px !important;">
+					<div class="row">
+						<div class="col-3">
+							<h:outputLabel for="preguntaPregunta" style="float:left!important;" value="Pregunta (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" size="150" value="#{mainController.preguntaEdit.pregunta}" id="preguntaPregunta" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="idCategoriaPregunta" style="float:left!important;" value="ID_Categoría (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.preguntaEdit.categoria.id}" id="idCategoriaPregunta" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="recomendacionPregunta" style="float:left!important;" value="Recomendación (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.preguntaEdit.recomendacion}" id="recomendacionPregunta" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="puntuacionPregunta" style="float:left!important;" value="Puntuación (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.preguntaEdit.puntuacionRecomendacion}" id="puntuacionPregunta" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPregunta()}">
+								<span class="pi pi-check-circle" />
+								<span>Aceptar</span>
+								<span class="pi pi-check-circle" />
+							</p:commandLink>
+						</div>
+						<div class="col-6">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarPreguntaDialog').hide()"
+								immediate="true">
+								<span class="pi pi-times-circle" />
+								<span>Cancelar</span>
+								<span class="pi pi-times-circle" />
+							</p:commandLink>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="EditarRespuestaDialog" widgetVar="EditarRespuestaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+			header="Editar respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			<h:form id="EditarRespuestaForm">
+				<p:autoUpdate />
+				<div class="container-fluid" style="padding: 0px !important;">
+					<div class="row">
+						<div class="col-3">
+							<h:outputLabel for="respuestaRespuesta" style="float:left!important;" value="Respuesta (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" size="20" value="#{mainController.respuestaEdit.respuesta}" id="respuestaRespuesta" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistRespuesta()}"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDialog').hide()">
+								<span class="pi pi-check-circle" />
+								<span>Aceptar</span>
+								<span class="pi pi-check-circle" />
+							</p:commandLink>
+						</div>
+						<div class="col-6">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarRespuestaDialog').hide()"
+								immediate="true">
+								<span class="pi pi-times-circle" />
+								<span>Cancelar</span>
+								<span class="pi pi-times-circle" />
+							</p:commandLink>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="EditarPreResDialog" widgetVar="EditarPreResDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+			header="Editar Pregunta-Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			<h:form id="EditarPreResForm">
+				<p:autoUpdate />
+				<div class="container-fluid" style="padding: 0px !important;">
+					<div class="row">
+						<div class="col-3">
+							<h:outputLabel for="preguntaPreRes" style="float:left!important;" value="ID_Pregunta (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.preResEdit.pregunta.id}" id="preguntaPreRes" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="respuestaPreRes" style="float:left!important;" value="ID_Respuesta (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.preResEdit.respuesta.id}" id="respuestaPreRes" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-3">
+							<h:outputLabel for="puntuacionPreRes" style="float:left!important;" value="Puntuación (*):" />
+						</div>
+						<div class="col-9">
+							<h:inputText class="col-12" value="#{mainController.preResEdit.puntuacion}" id="puntuacionPreRes" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPreRes()}">
+								<span class="pi pi-check-circle" />
+								<span>Aceptar</span>
+								<span class="pi pi-check-circle" />
+							</p:commandLink>
+						</div>
+						<div class="col-6">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarPreResDialog').hide()"
 								immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>

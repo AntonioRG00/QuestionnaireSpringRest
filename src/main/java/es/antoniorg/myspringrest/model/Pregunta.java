@@ -50,7 +50,7 @@ public class Pregunta implements Serializable {
 
 	@ToString.Exclude
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
-	private Set<PreguntaRespuesta> preguntas_respuestas = new HashSet<>();
+	private Set<PreguntaRespuesta> respuestas = new HashSet<>();
 
 	public Pregunta(String pregunta, Categoria categoria, String recomendacion, int puntuacionRecomendacion) {
 		this.pregunta = pregunta;

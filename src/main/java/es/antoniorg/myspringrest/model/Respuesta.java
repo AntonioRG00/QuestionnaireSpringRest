@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,7 @@ public class Respuesta implements Serializable {
 	@Column(name = "respuesta", nullable = false, length = 20)
 	private String respuesta;
 
+	@JsonIgnore
 	@ToString.Exclude
 	@OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL)
 	private Set<PreguntaRespuesta> preguntas_respuestas = new HashSet<>();

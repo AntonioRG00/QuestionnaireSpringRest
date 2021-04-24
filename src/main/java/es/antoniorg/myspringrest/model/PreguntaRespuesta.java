@@ -31,7 +31,6 @@ public class PreguntaRespuesta implements Serializable {
 	@EqualsAndHashCode.Include
 	private Pregunta pregunta;
 	
-	@JsonIgnore
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "respuesta_id")
