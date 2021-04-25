@@ -6,7 +6,7 @@ plugins {
 
 group = 'es.antoniorg'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '16'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -36,6 +36,9 @@ dependencies {
 	implementation group: 'org.joinfaces', name: 'jsf-spring-boot-starter', version: '4.4.3'
 	implementation group: 'org.primefaces', name: 'primefaces', version: '10.0.0'
 	implementation group: 'org.primefaces.themes', name: 'hot-sneaks', version: '1.0.10'
+	
+	// HTML Sanitizer para evitar fallos de seguirdad XSS
+	implementation group: 'com.googlecode.owasp-java-html-sanitizer', name: 'owasp-java-html-sanitizer', version: '20200713.1'
 
 	/** Lombok */
 	compileOnly 'org.projectlombok:lombok'

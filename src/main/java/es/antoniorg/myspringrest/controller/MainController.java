@@ -148,7 +148,6 @@ public class MainController implements Serializable {
 	public void crearArea() {
 		logger.info("crearArea init: Aplastando la variable areaEdit");
 		areaEdit = new Area();
-		areaEdit.setIdioma(new Idioma());
 	}
 
 	/** Persiste un nuevo area con la variable areaEdit */
@@ -184,7 +183,6 @@ public class MainController implements Serializable {
 	public void crearCategoria() {
 		logger.info("crearCategoria init: Aplastando la variable categoriaEdit");
 		categoriaEdit = new Categoria();
-		categoriaEdit.setArea(new Area());
 	}
 
 	/** Persiste una nueva categoria con la variable categoriaEdit */
@@ -220,7 +218,6 @@ public class MainController implements Serializable {
 	public void crearPregunta() {
 		logger.info("crearPregunta init: Aplastando la variable preguntaEdit");
 		preguntaEdit = new Pregunta();
-		preguntaEdit.setCategoria(new Categoria());
 	}
 
 	/** Persiste una nueva pregunta con la variable preguntaEdit */
@@ -289,8 +286,6 @@ public class MainController implements Serializable {
 	public void crearPreRes() {
 		logger.info("crearPreRes init: Aplastando la variable preResEdit");
 		preResEdit = new PreguntaRespuesta();
-		preResEdit.setPregunta(new Pregunta());
-		preResEdit.setRespuesta(new Respuesta());
 	}
 
 	/** Persiste una nueva Pregunta-Respuesta con la variable preResEdit */

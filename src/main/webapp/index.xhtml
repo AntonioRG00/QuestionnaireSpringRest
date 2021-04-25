@@ -15,10 +15,6 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{idioma.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="ID" sortBy="#{idioma.id}" filterBy="#{idioma.id}" filterMatchMode="contains">
-							<h:outputText value="#{idioma.id}" />
-						</p:column>
-
 						<p:column headerText="Nombre" sortBy="#{idioma.nombre}" filterBy="#{idioma.id}" filterMatchMode="contains">
 							<h:outputText value="#{idioma.nombre}" />
 						</p:column>
@@ -46,16 +42,12 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{area.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="ID" sortBy="#{area.id}" filterBy="#{area.id}" filterMatchMode="contains">
-							<h:outputText value="#{area.id}" />
-						</p:column>
-
 						<p:column headerText="Nombre" sortBy="#{area.nombre}" filterBy="#{area.id}" filterMatchMode="contains">
 							<h:outputText value="#{area.nombre}" />
 						</p:column>
 
-						<p:column headerText="ID_Idioma" sortBy="#{area.idioma.id}" filterBy="#{area.idioma.id}" filterMatchMode="contains">
-							<h:outputText value="#{area.idioma.id}" />
+						<p:column headerText="Idioma" sortBy="#{area.idioma.nombre}" filterBy="#{area.idioma.nombre}" filterMatchMode="contains">
+							<h:outputText value="#{area.idioma.nombre}" />
 						</p:column>
 
 						<p:column headerText="Operaciones">
@@ -82,20 +74,16 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{categoria.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="ID" sortBy="#{categoria.id}" filterBy="#{categoria.id}" filterMatchMode="contains">
-							<h:outputText value="#{categoria.id}" />
-						</p:column>
-
 						<p:column headerText="Nombre" sortBy="#{categoria.nombre}" filterBy="#{categoria.nombre}" filterMatchMode="contains">
 							<h:outputText value="#{categoria.nombre}" />
 						</p:column>
 
-						<p:column headerText="ID_Area" sortBy="#{categoria.area.id}" filterBy="#{categoria.area.id}" filterMatchMode="contains">
-							<h:outputText value="#{categoria.area.id}" />
-						</p:column>
-
 						<p:column headerText="MaxRec" sortBy="#{categoria.maxParaRecomendacion}" filterBy="#{categoria.maxParaRecomendacion}" filterMatchMode="contains">
 							<h:outputText value="#{categoria.maxParaRecomendacion}" />
+						</p:column>
+
+						<p:column headerText="Área" sortBy="#{categoria.area.nombre}" filterBy="#{categoria.area.nombre}" filterMatchMode="contains">
+							<h:outputText value="#{categoria.area.nombre}" />
 						</p:column>
 
 						<p:column headerText="Operaciones">
@@ -122,17 +110,17 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{pregunta.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="ID" sortBy="#{pregunta.id}" filterBy="#{pregunta.id}" filterMatchMode="contains">
-							<h:outputText value="#{pregunta.id}" />
-						</p:column>
-
-						<p:column headerText="ID_Categoría" sortBy="#{pregunta.categoria.id}" filterBy="#{pregunta.categoria.id}" filterMatchMode="contains">
-							<h:outputText value="#{pregunta.categoria.id}" />
+						<p:column headerText="Pregunta" sortBy="#{pregunta.pregunta}" filterBy="#{pregunta.pregunta}" filterMatchMode="contains">
+							<h:outputText value="#{pregunta.pregunta}" />
 						</p:column>
 
 						<p:column headerText="Puntuación" sortBy="#{pregunta.puntuacionRecomendacion}" filterBy="#{pregunta.puntuacionRecomendacion}"
 							filterMatchMode="contains">
 							<h:outputText value="#{pregunta.puntuacionRecomendacion}" />
+						</p:column>
+
+						<p:column headerText="Categoría" sortBy="#{pregunta.categoria.nombre}" filterBy="#{pregunta.categoria.nombre}" filterMatchMode="contains">
+							<h:outputText value="#{pregunta.categoria.nombre}" />
 						</p:column>
 
 						<p:column headerText="Operaciones">
@@ -158,10 +146,6 @@
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{respuesta.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
-
-						<p:column headerText="ID" sortBy="#{respuesta.id}" filterBy="#{respuesta.id}" filterMatchMode="contains">
-							<h:outputText value="#{respuesta.id}" />
-						</p:column>
 
 						<p:column headerText="Respuesta" sortBy="#{respuesta.respuesta}" filterBy="#{respuesta.respuesta}" filterMatchMode="contains">
 							<h:outputText value="#{respuesta.respuesta}" />
@@ -191,12 +175,12 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{preRes.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="ID_Pregunta" sortBy="#{preRes.pregunta.id}" filterBy="#{preRes.pregunta.id}" filterMatchMode="contains">
-							<h:outputText value="#{preRes.pregunta.id}" />
+						<p:column headerText="Pregunta" sortBy="#{preRes.pregunta.pregunta}" filterBy="#{preRes.pregunta.pregunta}" filterMatchMode="contains">
+							<h:outputText value="#{preRes.pregunta.pregunta}" />
 						</p:column>
 
-						<p:column headerText="ID_Respuesta" sortBy="#{preRes.respuesta.id}" filterBy="#{preRes.respuesta.id}" filterMatchMode="contains">
-							<h:outputText value="#{preRes.respuesta.id}" />
+						<p:column headerText="Respuesta" sortBy="#{preRes.respuesta.respuesta}" filterBy="#{preRes.respuesta.respuesta}" filterMatchMode="contains">
+							<h:outputText value="#{preRes.respuesta.respuesta}" />
 						</p:column>
 
 						<p:column headerText="Puntuacion" sortBy="#{preRes.puntuacion}" filterBy="#{preRes.puntuacion}" filterMatchMode="contains">
@@ -208,7 +192,7 @@
 								oncomplete="PF('EditarPreResDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(PreRes)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(preRes)}">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación"
 									message="Se va a borrar la relación entre la pregunta #{preRes.pregunta.id} y la respuesta #{preRes.respuesta.id}" />
@@ -232,20 +216,20 @@
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-3">
+						<div class="col-md-3">
 							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre:" />
 						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" size="50" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true"
+						<div class="col-md-9">
+							<h:inputText class="col-12" maxlength="50" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
-					<div class="row mt-2">
+					<div class="row mt-md-2">
 						<div class="col-3">
 							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="Url Imagen:" />
 						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" size="250" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
+						<div class="col-md-9">
+							<h:inputText class="col-12" maxlength="250" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
@@ -271,7 +255,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarAreaDialog" widgetVar="EditarAreaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear área" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
+			header="Editar/Crear área" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarAreaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -285,10 +269,32 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-md-3">
-							<h:outputLabel for="areaIdIdioma" style="float:left!important;" value="ID Idioma:" />
+							<h:outputLabel for="areaIdIdioma" style="float:left!important;" value="Idioma:" />
 						</div>
 						<div class="col-md-9">
-							<h:inputText class="col-12" value="#{mainController.areaEdit.idioma.id}" id="areaIdIdioma" required="true" requiredMessage="Campo requerido" />
+							<p:selectOneMenu id="oneMenuIdiomaArea" value="#{mainController.areaEdit.idioma}" effect="fade" var="i" filter="true"
+								filterMatchMode="contains" converter="idiomaConverter" style="width: 100%">
+
+								<f:selectItems value="#{mainController.idiomas}" var="idioma" itemLabel="#{idioma.nombre}" itemValue="#{idioma}" />
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Bandera" />
+									</f:facet>
+									<p:graphicImage value="#{i.urlImagen}" width="35px" height="25px" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{i.nombre}" />
+								</p:column>
+
+								<f:facet name="footer">
+									<h:outputText value="#{mainController.idiomas.size()} idiomas en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+								</f:facet>
+							</p:selectOneMenu>
 						</div>
 					</div>
 					<div class="row mt-2">
@@ -312,61 +318,77 @@
 		</p:dialog>
 
 		<p:dialog id="EditarCategoriaDialog" widgetVar="EditarCategoriaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar Categoría" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
+			header="Editar/Crear Categoría" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarCategoriaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-3">
-							<h:outputLabel for="nombreCategoria" style="float:left!important;" value="Nombre (*):" />
+						<div class="col-md-3">
+							<h:outputLabel for="nombreCategoria" style="float:left!important;" value="Nombre:" />
 						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" size="25" value="#{mainController.categoriaEdit.nombre}" id="nombreCategoria" required="true"
+						<div class="col-md-9">
+							<h:inputText class="col-12" maxlength="25" value="#{mainController.categoriaEdit.nombre}" id="nombreCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
-							<h:outputLabel for="descripcionCategoria" style="float:left!important;" value="Descripción (*):" />
+						<div class="col-md-3">
+							<h:outputLabel for="descripcionCategoria" style="float:left!important;" value="Descripción:" />
 						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" size="100" value="#{mainController.categoriaEdit.descripcion}" id="descripcionCategoria" required="true"
+						<div class="col-md-9">
+							<h:inputText class="col-12" maxlength="100" value="#{mainController.categoriaEdit.descripcion}" id="descripcionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
-							<h:outputLabel for="idAreaCategoria" style="float:left!important;" value="ID_Area (*):" />
+						<div class="col-md-3">
+							<h:outputLabel for="idAreaCategoria" style="float:left!important;" value="Área:" />
 						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.categoriaEdit.area.id}" id="idAreaCategoria" required="true"
+						<div class="col-md-9">
+							<p:selectOneMenu id="oneMenuAreaCategoria" value="#{mainController.categoriaEdit.area}" effect="fade" var="i" filter="true"
+								filterMatchMode="contains" converter="areaConverter" style="width: 100%">
+
+								<f:selectItems value="#{mainController.areas}" var="area" itemLabel="#{area.nombre}" itemValue="#{area}" />
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{i.nombre}" />
+								</p:column>
+
+								<f:facet name="footer">
+									<h:outputText value="#{mainController.areas.size()} áreas en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+								</f:facet>
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-md-3">
+							<h:outputLabel for="explicacionCategoria" style="float:left!important;" value="Explicación:" />
+						</div>
+						<div class="col-md-9">
+							<h:inputText class="col-12" maxlength="200" value="#{mainController.categoriaEdit.explicacion}" id="explicacionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
-							<h:outputLabel for="explicacionCategoria" style="float:left!important;" value="Explicación (*):" />
+						<div class="col-md-3">
+							<h:outputLabel for="maxRecCategoria" style="float:left!important;" value="MaxParaRecomendación:" />
 						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" size="200" value="#{mainController.categoriaEdit.explicacion}" id="explicacionCategoria" required="true"
+						<div class="col-md-9">
+							<h:inputText class="col-12" maxlength="10" value="#{mainController.categoriaEdit.maxParaRecomendacion}" id="maxRecCategoria" required="true"
 								requiredMessage="Campo requerido" />
+							<p:keyFilter mask="num" for="maxRecCategoria" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
-							<h:outputLabel for="maxRecCategoria" style="float:left!important;" value="MaxParaRecomendación (*):" />
-						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.categoriaEdit.maxParaRecomendacion}" id="maxRecCategoria" required="true"
-								requiredMessage="Campo requerido" />
-						</div>
-					</div>
-					<div class="row mt-2">
-						<div class="col-3">
+						<div class="col-md-3">
 							<h:outputLabel for="recomendacionCategoria" style="float:left!important;" value="Recomendación:" />
 						</div>
-						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.categoriaEdit.recomendacion}" id="recomendacionCategoria" />
+						<div class="col-md-9">
+							<p:textEditor value="#{mainController.categoriaEdit.recomendacion}" id="recomendacionCategoria" height="300" required="true"
+								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
@@ -391,43 +413,58 @@
 		</p:dialog>
 
 		<p:dialog id="EditarPreguntaDialog" widgetVar="EditarPreguntaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
+			header="Editar/Crear pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarPreguntaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
 						<div class="col-3">
-							<h:outputLabel for="preguntaPregunta" style="float:left!important;" value="Pregunta (*):" />
+							<h:outputLabel for="preguntaPregunta" style="float:left!important;" value="Pregunta:" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" size="150" value="#{mainController.preguntaEdit.pregunta}" id="preguntaPregunta" required="true"
+							<h:inputText class="col-12" maxlength="150" value="#{mainController.preguntaEdit.pregunta}" id="preguntaPregunta" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-3">
-							<h:outputLabel for="idCategoriaPregunta" style="float:left!important;" value="ID_Categoría (*):" />
+							<h:outputLabel for="idCategoriaPregunta" style="float:left!important;" value="Categoría:" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.preguntaEdit.categoria.id}" id="idCategoriaPregunta" required="true"
-								requiredMessage="Campo requerido" />
+							<p:selectOneMenu id="oneMenuCategoriaPregunta" value="#{mainController.preguntaEdit.categoria}" effect="fade" var="i" filter="true"
+								filterMatchMode="contains" converter="categoriaConverter" style="width: 100%">
+
+								<f:selectItems value="#{mainController.categorias}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}" />
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{i.nombre}" />
+								</p:column>
+
+								<f:facet name="footer">
+									<h:outputText value="#{mainController.categorias.size()} categorías en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+								</f:facet>
+							</p:selectOneMenu>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-3">
-							<h:outputLabel for="recomendacionPregunta" style="float:left!important;" value="Recomendación (*):" />
+							<h:outputLabel for="puntuacionPregunta" style="float:left!important;" value="Puntuación:" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.preguntaEdit.recomendacion}" id="recomendacionPregunta" required="true"
-								requiredMessage="Campo requerido" />
+							<h:inputText class="col-12" maxlength="10" value="#{mainController.preguntaEdit.puntuacionRecomendacion}" id="puntuacionPregunta"
+								required="true" requiredMessage="Campo requerido" />
+							<p:keyFilter mask="num" for="puntuacionPregunta" />
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-3">
-							<h:outputLabel for="puntuacionPregunta" style="float:left!important;" value="Puntuación (*):" />
+							<h:outputLabel for="recomendacionPregunta" style="float:left!important;" value="Recomendación:" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.preguntaEdit.puntuacionRecomendacion}" id="puntuacionPregunta" required="true"
+							<p:textEditor value="#{mainController.preguntaEdit.recomendacion}" id="recomendacionPregunta" height="300" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
@@ -453,16 +490,16 @@
 		</p:dialog>
 
 		<p:dialog id="EditarRespuestaDialog" widgetVar="EditarRespuestaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
+			header="Editar respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarRespuestaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
 						<div class="col-3">
-							<h:outputLabel for="respuestaRespuesta" style="float:left!important;" value="Respuesta (*):" />
+							<h:outputLabel for="respuestaRespuesta" style="float:left!important;" value="Respuesta:" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" size="20" value="#{mainController.respuestaEdit.respuesta}" id="respuestaRespuesta" required="true"
+							<h:inputText class="col-12" maxlength="20" value="#{mainController.respuestaEdit.respuesta}" id="respuestaRespuesta" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
@@ -489,35 +526,64 @@
 		</p:dialog>
 
 		<p:dialog id="EditarPreResDialog" widgetVar="EditarPreResDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar Pregunta-Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
+			header="Editar/Crear Pregunta-Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarPreResForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
 						<div class="col-3">
-							<h:outputLabel for="preguntaPreRes" style="float:left!important;" value="ID_Pregunta (*):" />
+							<h:outputLabel for="oneMenuPreguntaPre" style="float:left!important;" value="Pregunta:" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.preResEdit.pregunta.id}" id="preguntaPreRes" required="true"
-								requiredMessage="Campo requerido" />
+							<p:selectOneMenu id="oneMenuPreguntaPre" value="#{mainController.preResEdit.pregunta}" effect="fade" var="i" filter="true"
+								filterMatchMode="contains" converter="preguntaConverter" style="width: 100%">
+
+								<f:selectItems value="#{mainController.preguntas}" var="pregunta" itemLabel="#{pregunta.pregunta}" itemValue="#{pregunta}" />
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Pregunta" />
+									</f:facet>
+									<h:outputText value="#{i.pregunta}" />
+								</p:column>
+
+								<f:facet name="footer">
+									<h:outputText value="#{mainController.preguntas.size()} preguntas en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+								</f:facet>
+							</p:selectOneMenu>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-3">
-							<h:outputLabel for="respuestaPreRes" style="float:left!important;" value="ID_Respuesta (*):" />
+							<h:outputLabel for="respuestaPreRes" style="float:left!important;" value="Respuesta:" />
 						</div>
 						<div class="col-9">
-							<h:inputText class="col-12" value="#{mainController.preResEdit.respuesta.id}" id="respuestaPreRes" required="true"
-								requiredMessage="Campo requerido" />
+							<p:selectOneMenu id="oneMenuRespuestaPre" value="#{mainController.preResEdit.respuesta}" effect="fade" var="i" filter="true"
+								filterMatchMode="contains" converter="respuestaConverter" style="width: 100%">
+
+								<f:selectItems value="#{mainController.respuestas}" var="respuesta" itemLabel="#{respuesta.respuesta}" itemValue="#{respuesta}" />
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Respuesta" />
+									</f:facet>
+									<h:outputText value="#{i.respuesta}" />
+								</p:column>
+
+								<f:facet name="footer">
+									<h:outputText value="#{mainController.respuestas.size()} respuestas en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+								</f:facet>
+							</p:selectOneMenu>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-3">
-							<h:outputLabel for="puntuacionPreRes" style="float:left!important;" value="Puntuación (*):" />
+							<h:outputLabel for="puntuacionPreRes" style="float:left!important;" value="Puntuación:" />
 						</div>
 						<div class="col-9">
 							<h:inputText class="col-12" value="#{mainController.preResEdit.puntuacion}" id="puntuacionPreRes" required="true"
 								requiredMessage="Campo requerido" />
+							<p:keyFilter mask="num" for="puntuacionPreRes" />
 						</div>
 					</div>
 					<div class="row mt-2">
