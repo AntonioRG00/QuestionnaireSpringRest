@@ -30,7 +30,7 @@
 							</p:commandLink>
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarIdioma(idioma)}">
 								<span class="pi pi-trash btn btn-danger" />
-								<p:confirm header="Confirmación" message="Se va a borrar el idioma #{idioma.nombre}" />
+								<p:confirm type="popup" header="Confirmación" message="Se va a borrar el idioma #{idioma.nombre}" />
 							</p:commandLink>
 						</p:column>
 
@@ -65,7 +65,7 @@
 							</p:commandLink>
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarArea(area)}">
 								<span class="pi pi-trash btn btn-danger" />
-								<p:confirm header="Confirmación" message="Se va a borrar el area #{area.nombre}" />
+								<p:confirm type="popup" header="Confirmación" message="Se va a borrar el area #{area.nombre}" />
 							</p:commandLink>
 						</p:column>
 
@@ -105,7 +105,7 @@
 							</p:commandLink>
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarCategoria(categoria)}">
 								<span class="pi pi-trash btn btn-danger" />
-								<p:confirm header="Confirmación" message="Se va a borrar la categoría #{categoria.nombre}" />
+								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la categoría #{categoria.nombre}" />
 							</p:commandLink>
 						</p:column>
 
@@ -142,7 +142,7 @@
 							</p:commandLink>
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPregunta(pregunta)}">
 								<span class="pi pi-trash btn btn-danger" />
-								<p:confirm header="Confirmación" message="Se va a borrar la pregunta con id #{pregunta.id}" />
+								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la pregunta con id #{pregunta.id}" />
 							</p:commandLink>
 						</p:column>
 
@@ -174,7 +174,7 @@
 							</p:commandLink>
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuesta(respuesta)}">
 								<span class="pi pi-trash btn btn-danger" />
-								<p:confirm header="Confirmación" message="Se va a borrar la respuesta con id #{respuesta.id}" />
+								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la respuesta con id #{respuesta.id}" />
 							</p:commandLink>
 						</p:column>
 
@@ -210,7 +210,7 @@
 							</p:commandLink>
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(PreRes)}">
 								<span class="pi pi-trash btn btn-danger" />
-								<p:confirm header="Confirmación"
+								<p:confirm type="popup" header="Confirmación"
 									message="Se va a borrar la relación entre la pregunta #{preRes.pregunta.id} y la respuesta #{preRes.respuesta.id}" />
 							</p:commandLink>
 						</p:column>
@@ -222,16 +222,18 @@
 				</p:tab>
 
 			</p:tabView>
+
+
 		</h:form>
 
 		<p:dialog id="EditarIdiomaDialog" widgetVar="EditarIdiomaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarIdiomaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
 						<div class="col-3">
-							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre idioma(*):" />
+							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre:" />
 						</div>
 						<div class="col-9">
 							<h:inputText class="col-12" size="50" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true"
@@ -240,7 +242,7 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-3">
-							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="Url Imagen(*):" />
+							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="Url Imagen:" />
 						</div>
 						<div class="col-9">
 							<h:inputText class="col-12" size="250" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
@@ -269,23 +271,23 @@
 		</p:dialog>
 
 		<p:dialog id="EditarAreaDialog" widgetVar="EditarAreaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear área" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
 			<h:form id="EditarAreaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-3">
-							<h:outputLabel for="nombreArea" style="float:left!important;" value="Nombre área(*):" />
+						<div class="col-md-3">
+							<h:outputLabel for="nombreArea" style="float:left!important;" value="Nombre:" />
 						</div>
-						<div class="col-9">
+						<div class="col-md-9">
 							<h:inputText class="col-12" value="#{mainController.areaEdit.nombre}" id="nombreArea" required="true" requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
-							<h:outputLabel for="areaIdIdioma" style="float:left!important;" value="ID Idioma(*):" />
+						<div class="col-md-3">
+							<h:outputLabel for="areaIdIdioma" style="float:left!important;" value="ID Idioma:" />
 						</div>
-						<div class="col-9">
+						<div class="col-md-9">
 							<h:inputText class="col-12" value="#{mainController.areaEdit.idioma.id}" id="areaIdIdioma" required="true" requiredMessage="Campo requerido" />
 						</div>
 					</div>
@@ -310,7 +312,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarCategoriaDialog" widgetVar="EditarCategoriaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar Categoría" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar Categoría" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
 			<h:form id="EditarCategoriaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -389,7 +391,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarPreguntaDialog" widgetVar="EditarPreguntaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
 			<h:form id="EditarPreguntaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -451,7 +453,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarRespuestaDialog" widgetVar="EditarRespuestaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
 			<h:form id="EditarRespuestaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -487,7 +489,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarPreResDialog" widgetVar="EditarPreResDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar Pregunta-Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar Pregunta-Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="100%" resizable="false">
 			<h:form id="EditarPreResForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -527,8 +529,7 @@
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarPreResDialog').hide()"
-								immediate="true">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarPreResDialog').hide()" immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
 								<span class="pi pi-times-circle" />
@@ -539,7 +540,12 @@
 			</h:form>
 		</p:dialog>
 
-		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+		<p:confirmPopup global="true" width="350" style="text-align: center; margin: none">
+			<p:commandButton value="Cancelar" type="button" styleClass="ui-confirm-popup-no ui-button-flat" />
+			<p:commandButton value="Confirmar" type="button" styleClass="ui-confirm-popup-yes" />
+		</p:confirmPopup>
+
+		<p:confirmDialog showEffect="fade" hideEffect="fade" responsive="true" width="350">
 			<p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes" />
 			<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
 		</p:confirmDialog>
