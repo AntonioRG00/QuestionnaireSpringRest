@@ -1,16 +1,13 @@
 package es.antoniorg.myspringrest.controller;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
-import org.postgresql.util.PSQLException;
-import org.primefaces.PrimeFaces;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +79,12 @@ public class MainController implements Serializable {
 	/** Lista con las Pregunta-Respuestas de la tabla persistente */
 	private @Getter @Setter List<PreguntaRespuesta> preRes;
 
+	/** Árbol con todos los datos relacionados */
+	private @Getter @Setter TreeNode arbolDatos;
+	
+	/** False: árbol contraido, True: árbol abierto */
+	private @Getter @Setter boolean arbolShowed;
+
 	@PostConstruct
 	public void init() {
 		logger.info("MainController init");
@@ -106,6 +109,8 @@ public class MainController implements Serializable {
 		preguntas = preguntaRepository.findAll();
 		respuestas = respuestaRepository.findAll();
 		preRes = preResRepository.findAll();
+
+		arbolDatos = getTreeNode();
 	}
 
 	// -----------------------------------Crud Tabla Idioma
@@ -153,14 +158,8 @@ public class MainController implements Serializable {
 	/** Persiste un nuevo area con la variable areaEdit */
 	public void persistArea() {
 		logger.info("crearArea init: Se procede a persistir el area " + areaEdit.toString());
-		try {
-			areaRepository.saveAndFlush(areaEdit);
-			PrimeFaces.current().executeScript("PF('EditarAreaDialog').hide()");
-			limpiarVariables();
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
-					"El objeto no ha sido guardado, quizás porque el id de idioma introducido no existe"));
-		}
+		areaRepository.saveAndFlush(areaEdit);
+		limpiarVariables();
 	}
 
 	/** Elimina el area pasado por parámetro */
@@ -188,14 +187,8 @@ public class MainController implements Serializable {
 	/** Persiste una nueva categoria con la variable categoriaEdit */
 	public void persistCategoria() {
 		logger.info("crearCategoria init: Se procede a persistir la categoría " + categoriaEdit.toString());
-		try {
-			categoriaRepository.saveAndFlush(categoriaEdit);
-			PrimeFaces.current().executeScript("PF('EditarCategoriaDialog').hide()");
-			limpiarVariables();
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
-					"El objeto no ha sido guardado, quizás porque el id de area introducido no existe"));
-		}
+		categoriaRepository.saveAndFlush(categoriaEdit);
+		limpiarVariables();
 	}
 
 	/** Elimina la categoria pasada por parámetro */
@@ -223,14 +216,7 @@ public class MainController implements Serializable {
 	/** Persiste una nueva pregunta con la variable preguntaEdit */
 	public void persistPregunta() {
 		logger.info("crearPregunta init: Se procede a persistir la pregunta " + preguntaEdit.toString());
-		try {
-			preguntaRepository.saveAndFlush(preguntaEdit);
-			PrimeFaces.current().executeScript("PF('EditarPreguntaDialog').hide()");
-			limpiarVariables();
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
-					"El objeto no ha sido guardado, quizás porque el id de categoria introducido no existe"));
-		}
+		preguntaRepository.saveAndFlush(preguntaEdit);
 	}
 
 	/** Elimina la pregunta pasada por parámetro */
@@ -271,18 +257,13 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Pregunta-Respuesta
 
-	/**
-	 * Actualiza la Pregunta-Respuesta seleccionada para después llamar a
-	 * crearRespuesta
-	 */
+	/** Actualiza la PreRes seleccionada para después llamar a crearRespuesta */
 	public void actualizarPreRes(PreguntaRespuesta preRes) {
 		logger.info("actualizarPreRes init: Se procede a actualizar la preRes seleccionada a: " + preRes.toString());
 		preResEdit = preRes;
 	}
 
-	/**
-	 * Asigna una nueva Pregunta-Respuesta a la variable Pregunta-Respuesta editable
-	 */
+	/** Asigna una nueva Pregunta-Respuesta a la variable PreRes editable */
 	public void crearPreRes() {
 		logger.info("crearPreRes init: Aplastando la variable preResEdit");
 		preResEdit = new PreguntaRespuesta();
@@ -291,14 +272,8 @@ public class MainController implements Serializable {
 	/** Persiste una nueva Pregunta-Respuesta con la variable preResEdit */
 	public void persistPreRes() {
 		logger.info("persistPreRes init: Se procede a persistir la preRes " + preRes.toString());
-		try {
-			preResRepository.saveAndFlush(preResEdit);
-			PrimeFaces.current().executeScript("PF('EditarPreResDialog').hide()");
-			limpiarVariables();
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
-					"El objeto no ha sido guardado, quizás porque algunos de los ids introducidos no existen"));
-		}
+		preResRepository.saveAndFlush(preResEdit);
+		limpiarVariables();
 	}
 
 	/** Elimina la Pregunta-Respuesta pasada por parámetro */
@@ -308,4 +283,51 @@ public class MainController implements Serializable {
 		limpiarVariables();
 	}
 
+	// -----------------------------------Funciones
+
+	/** Genera la tabla en forma de árbol para visualizar la estructura de datos */
+	public TreeNode getTreeNode() {
+		TreeNode root = new DefaultTreeNode(new String("MiÁrbol"), null);
+
+		for (Idioma i : idiomas) {
+			TreeNode trIdioma = new DefaultTreeNode(i, root);
+			for (Area a : i.getAreas()) {
+				TreeNode trArea = new DefaultTreeNode(a, trIdioma);
+				for (Categoria c : a.getCategorias()) {
+					TreeNode trCategorias = new DefaultTreeNode(c, trArea);
+					for (Pregunta p : c.getPreguntas()) {
+						TreeNode trPregunta = new DefaultTreeNode(p, trCategorias);
+						for (PreguntaRespuesta r : p.getRespuestas()) {
+							new DefaultTreeNode(r.getRespuesta(), trPregunta);
+						}
+					}
+				}
+			}
+		}
+		return root;
+	}
+	
+	/** Cambia el estado de la variable arbolShowed */
+	public boolean arbolShowedReverse() {
+		if(arbolShowed) {
+			arbolShowed = false;
+			return arbolShowed;
+		}
+		
+		arbolShowed = true;
+		return arbolShowed;
+	}
+
+	/** Expande o contrae los nodos del árbol pasado por parámetro recursivamente */
+	public void mostrarNodos(TreeNode n, boolean option) {
+		if (n.getChildren().size() == 0) {
+			n.setSelected(false);
+		} else {
+			for (TreeNode s : n.getChildren()) {
+				mostrarNodos(s, option);
+			}
+			n.setExpanded(option);
+			n.setSelected(false);
+		}
+	}
 }

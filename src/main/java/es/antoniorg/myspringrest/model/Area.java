@@ -50,4 +50,8 @@ public class Area implements Serializable {
 		this.nombre = nombre;
 		this.idioma = idioma;
 	}
+	
+	public String toStringArbol(){
+		return "Área: " + this.nombre;
+	}
 }

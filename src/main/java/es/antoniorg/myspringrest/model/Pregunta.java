@@ -1,8 +1,8 @@
 package es.antoniorg.myspringrest.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,12 +50,16 @@ public class Pregunta implements Serializable {
 
 	@ToString.Exclude
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
-	private Set<PreguntaRespuesta> respuestas = new HashSet<>();
+	private List<PreguntaRespuesta> respuestas = new ArrayList<>();
 
 	public Pregunta(String pregunta, Categoria categoria, String recomendacion, int puntuacionRecomendacion) {
 		this.pregunta = pregunta;
 		this.categoria = categoria;
 		this.recomendacion = recomendacion;
 		this.puntuacionRecomendacion = puntuacionRecomendacion;
+	}
+	
+	public String toStringArbol(){
+		return "Pregunta: " + this.pregunta + ", Puntuación: " + this.puntuacionRecomendacion;
 	}
 }

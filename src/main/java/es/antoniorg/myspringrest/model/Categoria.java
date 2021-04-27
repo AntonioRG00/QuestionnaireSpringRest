@@ -66,4 +66,8 @@ public class Categoria implements Serializable {
 		this.maxParaRecomendacion = maxParaRecomendacion;
 		this.recomendacion = recomendacion;
 	}
+	
+	public String toStringArbol(){
+		return "Categoría: " + this.nombre + ", MaxRecomendación: " + this.maxParaRecomendacion;
+	}
 }

@@ -45,4 +45,8 @@ public class Idioma implements Serializable {
 		this.nombre = nombreIdioma;
 		this.urlImagen = urlImagen;
 	}
+	
+	public String toStringArbol(){
+		return "Idioma: " + this.nombre;
+	}
 }

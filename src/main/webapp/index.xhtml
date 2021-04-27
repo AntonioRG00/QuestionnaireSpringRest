@@ -15,11 +15,11 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{idioma.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="Nombre" sortBy="#{idioma.nombre}" filterBy="#{idioma.id}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{idioma.nombre}" filterBy="#{idioma.id}" filterMatchMode="contains">
 							<h:outputText value="#{idioma.nombre}" />
 						</p:column>
 
-						<p:column headerText="Operaciones">
+						<p:column headerText="Operaciones" styleClass="centeredColumnContent">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarIdioma(idioma)}"
 								oncomplete="PF('EditarIdiomaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
@@ -42,15 +42,16 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{area.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="Nombre" sortBy="#{area.nombre}" filterBy="#{area.id}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{area.nombre}" filterBy="#{area.id}" filterMatchMode="contains">
 							<h:outputText value="#{area.nombre}" />
 						</p:column>
 
-						<p:column headerText="Idioma" sortBy="#{area.idioma.nombre}" filterBy="#{area.idioma.nombre}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Idioma" sortBy="#{area.idioma.nombre}" filterBy="#{area.idioma.nombre}"
+							filterMatchMode="contains">
 							<h:outputText value="#{area.idioma.nombre}" />
 						</p:column>
 
-						<p:column headerText="Operaciones">
+						<p:column styleClass="centeredColumnContent" headerText="Operaciones">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarArea(area)}"
 								oncomplete="PF('EditarAreaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
@@ -74,19 +75,22 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{categoria.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="Nombre" sortBy="#{categoria.nombre}" filterBy="#{categoria.nombre}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{categoria.nombre}" filterBy="#{categoria.nombre}"
+							filterMatchMode="contains">
 							<h:outputText value="#{categoria.nombre}" />
 						</p:column>
 
-						<p:column headerText="MaxRec" sortBy="#{categoria.maxParaRecomendacion}" filterBy="#{categoria.maxParaRecomendacion}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="MaxRec" sortBy="#{categoria.maxParaRecomendacion}"
+							filterBy="#{categoria.maxParaRecomendacion}" filterMatchMode="contains">
 							<h:outputText value="#{categoria.maxParaRecomendacion}" />
 						</p:column>
 
-						<p:column headerText="Área" sortBy="#{categoria.area.nombre}" filterBy="#{categoria.area.nombre}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Área" sortBy="#{categoria.area.nombre}" filterBy="#{categoria.area.nombre}"
+							filterMatchMode="contains">
 							<h:outputText value="#{categoria.area.nombre}" />
 						</p:column>
 
-						<p:column headerText="Operaciones">
+						<p:column styleClass="centeredColumnContent" headerText="Operaciones">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarCategoria(categoria)}"
 								oncomplete="PF('EditarCategoriaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
@@ -110,20 +114,22 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{pregunta.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="Pregunta" sortBy="#{pregunta.pregunta}" filterBy="#{pregunta.pregunta}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Pregunta" sortBy="#{pregunta.pregunta}" filterBy="#{pregunta.pregunta}"
+							filterMatchMode="contains">
 							<h:outputText value="#{pregunta.pregunta}" />
 						</p:column>
 
-						<p:column headerText="Puntuación" sortBy="#{pregunta.puntuacionRecomendacion}" filterBy="#{pregunta.puntuacionRecomendacion}"
-							filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Puntuación" sortBy="#{pregunta.puntuacionRecomendacion}"
+							filterBy="#{pregunta.puntuacionRecomendacion}" filterMatchMode="contains">
 							<h:outputText value="#{pregunta.puntuacionRecomendacion}" />
 						</p:column>
 
-						<p:column headerText="Categoría" sortBy="#{pregunta.categoria.nombre}" filterBy="#{pregunta.categoria.nombre}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Categoría" sortBy="#{pregunta.categoria.nombre}"
+							filterBy="#{pregunta.categoria.nombre}" filterMatchMode="contains">
 							<h:outputText value="#{pregunta.categoria.nombre}" />
 						</p:column>
 
-						<p:column headerText="Operaciones">
+						<p:column styleClass="centeredColumnContent" headerText="Operaciones">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarPregunta(pregunta)}"
 								oncomplete="PF('EditarPreguntaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
@@ -147,11 +153,12 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{respuesta.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="Respuesta" sortBy="#{respuesta.respuesta}" filterBy="#{respuesta.respuesta}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Respuesta" sortBy="#{respuesta.respuesta}" filterBy="#{respuesta.respuesta}"
+							filterMatchMode="contains">
 							<h:outputText value="#{respuesta.respuesta}" />
 						</p:column>
 
-						<p:column headerText="Operaciones">
+						<p:column styleClass="centeredColumnContent" headerText="Operaciones">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarRespuesta(respuesta)}"
 								oncomplete="PF('EditarRespuestaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
@@ -175,19 +182,22 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{preRes.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column headerText="Pregunta" sortBy="#{preRes.pregunta.pregunta}" filterBy="#{preRes.pregunta.pregunta}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Pregunta" sortBy="#{preRes.pregunta.pregunta}" filterBy="#{preRes.pregunta.pregunta}"
+							filterMatchMode="contains">
 							<h:outputText value="#{preRes.pregunta.pregunta}" />
 						</p:column>
 
-						<p:column headerText="Respuesta" sortBy="#{preRes.respuesta.respuesta}" filterBy="#{preRes.respuesta.respuesta}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Respuesta" sortBy="#{preRes.respuesta.respuesta}"
+							filterBy="#{preRes.respuesta.respuesta}" filterMatchMode="contains">
 							<h:outputText value="#{preRes.respuesta.respuesta}" />
 						</p:column>
 
-						<p:column headerText="Puntuacion" sortBy="#{preRes.puntuacion}" filterBy="#{preRes.puntuacion}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Puntuacion" sortBy="#{preRes.puntuacion}" filterBy="#{preRes.puntuacion}"
+							filterMatchMode="contains">
 							<h:outputText value="#{preRes.puntuacion}" />
 						</p:column>
 
-						<p:column headerText="Operaciones">
+						<p:column styleClass="centeredColumnContent" headerText="Operaciones">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarPreRes(preRes)}"
 								oncomplete="PF('EditarPreResDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
@@ -207,6 +217,23 @@
 
 			</p:tabView>
 
+			<p:treeTable multiViewState="true" class="mt-2" value="#{mainController.arbolDatos}" var="arbol">
+				<p:autoUpdate />
+				<f:facet name="header">
+					<p:commandLink style="text-decoration: none;" process="@this"
+						action="#{mainController.mostrarNodos(mainController.arbolDatos, mainController.arbolShowedReverse())}">
+						<span class="pi pi-arrow-down btn btn-warning" />
+					</p:commandLink>
+					<span>Árbol JSON Api Rest</span>
+					<p:commandLink style="text-decoration: none;" process="@this"
+						action="#{mainController.mostrarNodos(mainController.arbolDatos, mainController.arbolShowedReverse())}">
+						<span class="pi pi-arrow-down btn btn-warning" />
+					</p:commandLink>
+				</f:facet>
+				<p:column>
+					<h:outputText value="#{arbol.toStringArbol()}" />
+				</p:column>
+			</p:treeTable>
 
 		</h:form>
 
@@ -226,7 +253,7 @@
 					</div>
 					<div class="row mt-md-2">
 						<div class="col-3">
-							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="Url Imagen:" />
+							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="UrlImagen:" />
 						</div>
 						<div class="col-md-9">
 							<h:inputText class="col-12" maxlength="250" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
@@ -299,7 +326,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistArea()}">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistArea()}"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarAreaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -393,7 +421,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistCategoria()}">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistCategoria()}"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarCategoriaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -470,7 +499,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPregunta()}">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPregunta()}"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreguntaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -588,7 +618,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPreRes()}">
+							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPreRes()}"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreResDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
