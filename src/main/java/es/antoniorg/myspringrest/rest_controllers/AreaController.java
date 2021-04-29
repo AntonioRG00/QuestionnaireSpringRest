@@ -46,6 +46,21 @@ public class AreaController {
 		}
 	}
 
+	@GetMapping("/idioma/{id}")
+	public ResponseEntity<List<Area>> getAreasByIdIdioma(@PathVariable("id") Long id) {
+		try {
+			List<Area> areas = areaRepository.getAllAreasByIdiomaId(id);
+
+			if (areas.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+
+			return new ResponseEntity<>(areas, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	@GetMapping("/area/{id}")
 	public ResponseEntity<Area> getAreaById(@PathVariable("id") Long id) {
 		Optional<Area> areaData = areaRepository.findById(id);
@@ -60,9 +75,9 @@ public class AreaController {
 	@PostMapping("/area")
 	public ResponseEntity<Area> createArea(@RequestBody Area area) {
 		try {
-			
+
 			Area aux = areaRepository.save(new Area(area.getNombre(), area.getIdioma()));
-			
+
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -55,7 +55,7 @@ public class IdiomaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
 	@PostMapping("/idioma")
 	public ResponseEntity<Idioma> createIdioma(@RequestBody Idioma idioma) {
 		try {
