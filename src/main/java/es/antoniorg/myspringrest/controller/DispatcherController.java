@@ -57,6 +57,6 @@ public class DispatcherController {
 	
 	@GetMapping("/")
 	public String inicio() {
-		return "forward:/index.xhtml";
+		return "index.xhtml";
 	}
 }
