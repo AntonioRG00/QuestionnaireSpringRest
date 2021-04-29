@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 	<title>Login</title>
+	<meta charset="UTF-8" />
 	<h:outputStylesheet name="/css/login.css" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet name="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css" />
+	<h:outputScript name="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js" />
 </h:head>
 
 <h:body>
 	<h:form prependId="false">
-
-		<p:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
-			<h2>Please login</h2>
-
-			<p:outputLabel value="Login failed!" styleClass="red" rendered="${!empty param['error']}" />
-
-			<p:inputText id="username" placeholder="User name" />
-			<p:password id="password" placeholder="Password" />
-
-			<p:commandButton value="Login" ajax="false" />
-		</p:panelGrid>
-
+		<div class="wrapper fadeInDown">
+			<div id="formContent">
+				<h1 class="fadeIn first fw-bolder font-monospace" style="text-align: center">Login</h1>
+				<p:inputText id="username" class="fadeIn second col-10 mt-2" placeholder="Usuario" />
+				<p:password id="password" class="fadeIn third col-10 mt-2" placeholder="Contraseña" />
+				<p:commandButton class="fadeIn fourth col-12 fw-bolder mt-2" value="Entrar" ajax="false" />
+			</div>
+		</div>
 	</h:form>
 </h:body>
 </html>

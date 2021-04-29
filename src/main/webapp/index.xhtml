@@ -243,26 +243,26 @@
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="50" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
-					<div class="row mt-md-2">
-						<div class="col-3">
+					<div class="row mt-2">
+						<div class="col-md-2">
 							<h:outputLabel for="urlImagenIdioma" style="float:left!important;" value="UrlImagen:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="250" value="#{mainController.idiomaEdit.urlImagen}" id="urlImagenIdioma" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistIdioma()}"
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistIdioma()}"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarIdiomaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
@@ -270,7 +270,8 @@
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarIdiomaDialog').hide()" immediate="true">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarIdiomaDialog').hide()"
+								immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
 								<span class="pi pi-times-circle" />
@@ -287,18 +288,18 @@
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<h:outputLabel for="nombreArea" style="float:left!important;" value="Nombre:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-10">
 							<h:inputText class="col-12" value="#{mainController.areaEdit.nombre}" id="nombreArea" required="true" requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<h:outputLabel for="areaIdIdioma" style="float:left!important;" value="Idioma:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-10">
 							<p:selectOneMenu id="oneMenuIdiomaArea" value="#{mainController.areaEdit.idioma}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="idiomaConverter" style="width: 100%">
 
@@ -326,7 +327,7 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistArea()}"
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistArea()}"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarAreaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
@@ -334,7 +335,8 @@
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarAreaDialog').hide()" immediate="true">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarAreaDialog').hide()"
+								immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
 								<span class="pi pi-times-circle" />
@@ -351,28 +353,28 @@
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-12">
 							<h:outputLabel for="nombreCategoria" style="float:left!important;" value="Nombre:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-12">
 							<h:inputText class="col-12" maxlength="25" value="#{mainController.categoriaEdit.nombre}" id="nombreCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-md-3">
+						<div class="col-12">
 							<h:outputLabel for="descripcionCategoria" style="float:left!important;" value="Descripción:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-12">
 							<h:inputText class="col-12" maxlength="100" value="#{mainController.categoriaEdit.descripcion}" id="descripcionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-md-3">
+						<div class="col-12">
 							<h:outputLabel for="idAreaCategoria" style="float:left!important;" value="Área:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-12">
 							<p:selectOneMenu id="oneMenuAreaCategoria" value="#{mainController.categoriaEdit.area}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="areaConverter" style="width: 100%">
 
@@ -392,36 +394,36 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-md-3">
+						<div class="col-12">
 							<h:outputLabel for="explicacionCategoria" style="float:left!important;" value="Explicación:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-12">
 							<h:inputText class="col-12" maxlength="200" value="#{mainController.categoriaEdit.explicacion}" id="explicacionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-md-3">
+						<div class="col-12">
 							<h:outputLabel for="maxRecCategoria" style="float:left!important;" value="MaxParaRecomendación:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-12">
 							<h:inputText class="col-12" maxlength="10" value="#{mainController.categoriaEdit.maxParaRecomendacion}" id="maxRecCategoria" required="true"
 								requiredMessage="Campo requerido" />
 							<p:keyFilter mask="num" for="maxRecCategoria" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-md-3">
+						<div class="col-12">
 							<h:outputLabel for="recomendacionCategoria" style="float:left!important;" value="Recomendación:" />
 						</div>
-						<div class="col-md-9">
+						<div class="col-12">
 							<p:textEditor value="#{mainController.categoriaEdit.recomendacion}" id="recomendacionCategoria" height="300" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistCategoria()}"
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistCategoria()}"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarCategoriaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
@@ -429,7 +431,7 @@
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarCategoriaDialog').hide()"
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarCategoriaDialog').hide()"
 								immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
@@ -447,19 +449,19 @@
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-3">
+						<div class="col-12">
 							<h:outputLabel for="preguntaPregunta" style="float:left!important;" value="Pregunta:" />
 						</div>
-						<div class="col-9">
+						<div class="col-12">
 							<h:inputText class="col-12" maxlength="150" value="#{mainController.preguntaEdit.pregunta}" id="preguntaPregunta" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
+						<div class="col-12">
 							<h:outputLabel for="idCategoriaPregunta" style="float:left!important;" value="Categoría:" />
 						</div>
-						<div class="col-9">
+						<div class="col-12">
 							<p:selectOneMenu id="oneMenuCategoriaPregunta" value="#{mainController.preguntaEdit.categoria}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="categoriaConverter" style="width: 100%">
 
@@ -479,27 +481,27 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
+						<div class="col-12">
 							<h:outputLabel for="puntuacionPregunta" style="float:left!important;" value="Puntuación:" />
 						</div>
-						<div class="col-9">
+						<div class="col-12">
 							<h:inputText class="col-12" maxlength="10" value="#{mainController.preguntaEdit.puntuacionRecomendacion}" id="puntuacionPregunta"
 								required="true" requiredMessage="Campo requerido" />
 							<p:keyFilter mask="num" for="puntuacionPregunta" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
+						<div class="col-12">
 							<h:outputLabel for="recomendacionPregunta" style="float:left!important;" value="Recomendación:" />
 						</div>
-						<div class="col-9">
+						<div class="col-12">
 							<p:textEditor value="#{mainController.preguntaEdit.recomendacion}" id="recomendacionPregunta" height="300" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPregunta()}"
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPregunta()}"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreguntaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
@@ -507,7 +509,7 @@
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarPreguntaDialog').hide()"
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPreguntaDialog').hide()"
 								immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
@@ -525,17 +527,17 @@
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-3">
+						<div class="col-md-2">
 							<h:outputLabel for="respuestaRespuesta" style="float:left!important;" value="Respuesta:" />
 						</div>
-						<div class="col-9">
+						<div class="col-10">
 							<h:inputText class="col-12" maxlength="20" value="#{mainController.respuestaEdit.respuesta}" id="respuestaRespuesta" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistRespuesta()}"
+						<div class="col-md-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuesta()}"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
@@ -543,7 +545,7 @@
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarRespuestaDialog').hide()"
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarRespuestaDialog').hide()"
 								immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
@@ -561,10 +563,10 @@
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-3">
+						<div class="col-md-2">
 							<h:outputLabel for="oneMenuPreguntaPre" style="float:left!important;" value="Pregunta:" />
 						</div>
-						<div class="col-9">
+						<div class="col-md-10">
 							<p:selectOneMenu id="oneMenuPreguntaPre" value="#{mainController.preResEdit.pregunta}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="preguntaConverter" style="width: 100%">
 
@@ -584,10 +586,10 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
+						<div class="col-md-2">
 							<h:outputLabel for="respuestaPreRes" style="float:left!important;" value="Respuesta:" />
 						</div>
-						<div class="col-9">
+						<div class="col-md-10">
 							<p:selectOneMenu id="oneMenuRespuestaPre" value="#{mainController.preResEdit.respuesta}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="respuestaConverter" style="width: 100%">
 
@@ -607,10 +609,10 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-3">
+						<div class="col-md-2">
 							<h:outputLabel for="puntuacionPreRes" style="float:left!important;" value="Puntuación:" />
 						</div>
-						<div class="col-9">
+						<div class="col-md-10">
 							<h:inputText class="col-12" value="#{mainController.preResEdit.puntuacion}" id="puntuacionPreRes" required="true"
 								requiredMessage="Campo requerido" />
 							<p:keyFilter mask="num" for="puntuacionPreRes" />
@@ -618,7 +620,7 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info col-12" action="#{mainController.persistPreRes()}"
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPreRes()}"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreResDialog').hide()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
@@ -626,7 +628,7 @@
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary col-12" onclick="PF('EditarPreResDialog').hide()" immediate="true">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPreResDialog').hide()" immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
 								<span class="pi pi-times-circle" />
