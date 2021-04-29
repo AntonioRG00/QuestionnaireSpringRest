@@ -6,12 +6,17 @@ plugins {
 
 group = 'es.antoniorg'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '15'
 
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+}
+
+apply plugin: 'java'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 repositories {
@@ -49,4 +54,5 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	systemProperty "file.encoding", "utf-8"
 }
