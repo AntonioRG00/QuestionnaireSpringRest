@@ -218,6 +218,7 @@ public class MainController implements Serializable {
 	public void persistPregunta() {
 		logger.info("crearPregunta init: Se procede a persistir la pregunta " + preguntaEdit.toString());
 		preguntaRepository.saveAndFlush(preguntaEdit);
+		limpiarVariables();
 	}
 
 	/** Elimina la pregunta pasada por parámetro */
