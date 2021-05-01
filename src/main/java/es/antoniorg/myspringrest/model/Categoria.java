@@ -48,8 +48,8 @@ public class Categoria implements Serializable {
 	@Column(name = "explicacion", nullable = false, length = 200)
 	private String explicacion;
 	
-	@Column(name = "max_para_recomendacion", nullable = false)
-	private int maxParaRecomendacion;
+	@Column(name = "puntuacion", nullable = false)
+	private int puntuacion;
 	
 	@Column(name = "recomendacion", columnDefinition="TEXT")
 	private String recomendacion;
@@ -58,16 +58,16 @@ public class Categoria implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
 	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
-	public Categoria(String nombre, String descripcion, Area area, String explicacion, int maxParaRecomendacion, String recomendacion) {
+	public Categoria(String nombre, String descripcion, Area area, String explicacion, int puntuacion, String recomendacion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.area = area;
 		this.explicacion = explicacion;
-		this.maxParaRecomendacion = maxParaRecomendacion;
+		this.puntuacion = puntuacion;
 		this.recomendacion = recomendacion;
 	}
 	
 	public String toStringArbol(){
-		return "Categoría: " + this.nombre + ", MaxRecomendación: " + this.maxParaRecomendacion;
+		return "Categoría: " + this.nombre + ", Puntuación: " + this.puntuacion;
 	}
 }

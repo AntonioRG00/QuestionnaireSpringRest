@@ -292,15 +292,15 @@ public class MainController implements Serializable {
 		TreeNode root = new DefaultTreeNode(new String("Mi¡rbol"), null);
 
 		for (Idioma i : idiomas) {
-			TreeNode trIdioma = new DefaultTreeNode(i, root);
+			TreeNode trIdioma = new DefaultTreeNode(i.toStringArbol(), root);
 			for (Area a : i.getAreas()) {
-				TreeNode trArea = new DefaultTreeNode(a, trIdioma);
+				TreeNode trArea = new DefaultTreeNode(a.toStringArbol(), trIdioma);
 				for (Categoria c : a.getCategorias()) {
-					TreeNode trCategorias = new DefaultTreeNode(c, trArea);
+					TreeNode trCategorias = new DefaultTreeNode(c.toStringArbol(), trArea);
 					for (Pregunta p : c.getPreguntas()) {
-						TreeNode trPregunta = new DefaultTreeNode(p, trCategorias);
+						TreeNode trPregunta = new DefaultTreeNode(p.toStringArbol(), trCategorias);
 						for (PreguntaRespuesta r : p.getRespuestas()) {
-							new DefaultTreeNode(r.getRespuesta(), trPregunta);
+							new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(), trPregunta);
 						}
 					}
 				}

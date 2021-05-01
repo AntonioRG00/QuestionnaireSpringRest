@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,7 +60,7 @@ public class CategoriaController {
 		try {
 
 			Categoria aux = categoriaRepository.save(new Categoria(categoria.getNombre(), categoria.getDescripcion(),
-					categoria.getArea(), categoria.getExplicacion(), categoria.getMaxParaRecomendacion(),
+					categoria.getArea(), categoria.getExplicacion(), categoria.getPuntuacion(),
 					categoria.getRecomendacion()));
 
 			return new ResponseEntity<>(aux, HttpStatus.CREATED);
@@ -80,7 +79,7 @@ public class CategoriaController {
 			aux.setDescripcion(categoria.getDescripcion());
 			aux.setArea(categoria.getArea());
 			aux.setExplicacion(categoria.getExplicacion());
-			aux.setMaxParaRecomendacion(categoria.getMaxParaRecomendacion());
+			aux.setPuntuacion(categoria.getPuntuacion());
 			aux.setRecomendacion(categoria.getRecomendacion());
 			return new ResponseEntity<>(categoriaRepository.save(aux), HttpStatus.OK);
 		} else {

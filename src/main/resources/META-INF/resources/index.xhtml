@@ -80,9 +80,9 @@
 							<h:outputText value="#{categoria.nombre}" />
 						</p:column>
 
-						<p:column styleClass="centeredColumnContent" headerText="MaxRec" sortBy="#{categoria.maxParaRecomendacion}"
-							filterBy="#{categoria.maxParaRecomendacion}" filterMatchMode="contains">
-							<h:outputText value="#{categoria.maxParaRecomendacion}" />
+						<p:column styleClass="centeredColumnContent" headerText="Puntuación" sortBy="#{categoria.puntuacion}"
+							filterBy="#{categoria.puntuacion}" filterMatchMode="contains">
+							<h:outputText value="#{categoria.puntuacion}" />
 						</p:column>
 
 						<p:column styleClass="centeredColumnContent" headerText="Área" sortBy="#{categoria.area.nombre}" filterBy="#{categoria.area.nombre}"
@@ -231,7 +231,7 @@
 					</p:commandLink>
 				</f:facet>
 				<p:column>
-					<h:outputText value="#{arbol.toStringArbol()}" />
+					<h:outputText value="#{arbol}" />
 				</p:column>
 			</p:treeTable>
 
@@ -407,9 +407,9 @@
 							<h:outputLabel for="maxRecCategoria" style="float:left!important;" value="MaxParaRecomendación:" />
 						</div>
 						<div class="col-12">
-							<h:inputText class="col-12" maxlength="10" value="#{mainController.categoriaEdit.maxParaRecomendacion}" id="maxRecCategoria" required="true"
+							<h:inputText class="col-12" maxlength="10" value="#{mainController.categoriaEdit.puntuacion}" id="puntuacionCategoria" required="true"
 								requiredMessage="Campo requerido" />
-							<p:keyFilter mask="num" for="maxRecCategoria" />
+							<p:keyFilter mask="num" for="puntuacionCategoria" />
 						</div>
 					</div>
 					<div class="row mt-2">
