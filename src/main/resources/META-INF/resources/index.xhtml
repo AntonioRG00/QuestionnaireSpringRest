@@ -25,7 +25,7 @@
 								oncomplete="PF('EditarIdiomaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarIdioma(idioma)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarIdioma(idioma)}" onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar el idioma #{idioma.nombre}" />
 							</p:commandLink>
@@ -96,7 +96,7 @@
 								oncomplete="PF('EditarCategoriaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarCategoria(categoria)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarCategoria(categoria)}" onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la categoría #{categoria.nombre}" />
 							</p:commandLink>
@@ -135,7 +135,7 @@
 								oncomplete="PF('EditarPreguntaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPregunta(pregunta)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPregunta(pregunta)}" onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la pregunta con id #{pregunta.id}" />
 							</p:commandLink>
@@ -164,7 +164,7 @@
 								oncomplete="PF('EditarRespuestaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuesta(respuesta)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuesta(respuesta)}" onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la respuesta con id #{respuesta.id}" />
 							</p:commandLink>
@@ -203,7 +203,7 @@
 								oncomplete="PF('EditarPreResDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(preRes)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(preRes)}" onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación"
 									message="Se va a borrar la relación entre la pregunta #{preRes.pregunta.id} y la respuesta #{preRes.respuesta.id}" />
@@ -244,7 +244,7 @@
 								oncomplete="PF('EditarRespuestaDefectoDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuestaDefecto(respuestaDefecto)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuestaDefecto(respuestaDefecto)}" onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación"
 									message="Se va a borrar la relación entre el área #{respuestaDefecto.area.nombre} y la respuesta #{respuestaDefecto.respuesta.respuesta}" />
@@ -253,8 +253,8 @@
 
 						<p:autoUpdate />
 					</p:dataTable>
-					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una respuesta por defecto" action="#{mainController.crearRespuestaDefecto()}"
-						oncomplete="PF('EditarRespuestaDefectoDialog').show()" process="@this" />
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una respuesta por defecto"
+						action="#{mainController.crearRespuestaDefecto()}" oncomplete="PF('EditarRespuestaDefectoDialog').show()" process="@this" />
 				</p:tab>
 
 			</p:tabView>
@@ -304,8 +304,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistIdioma()}"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarIdiomaDialog').hide()">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistIdioma()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarIdiomaDialog').hide();stop()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -370,8 +370,8 @@
 				</div>
 				<div class="row mt-2">
 					<div class="col-6">
-						<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistArea()}"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarAreaDialog').hide()">
+						<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistArea()}" onstart="start()"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarAreaDialog').hide();stop()">
 							<span class="pi pi-check-circle" />
 							<span>Aceptar</span>
 							<span class="pi pi-check-circle" />
@@ -465,8 +465,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistCategoria()}"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarCategoriaDialog').hide()">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistCategoria()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarCategoriaDialog').hide();stop()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -543,8 +543,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPregunta()}"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreguntaDialog').hide()">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPregunta()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreguntaDialog').hide();stop()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -579,8 +579,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-md-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuesta()}"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDialog').hide()">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuesta()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDialog').hide();stop()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -662,8 +662,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPreRes()}"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreResDialog').hide()">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPreRes()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreResDialog').hide();stop()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -682,8 +682,8 @@
 			</h:form>
 		</p:dialog>
 
-		<p:dialog id="EditarRespuestaDefectoDialog" widgetVar="EditarRespuestaDefectoDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear Respuesta por defecto" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+		<p:dialog id="EditarRespuestaDefectoDialog" widgetVar="EditarRespuestaDefectoDialog" modal="true" showEffect="fade" hideEffect="fade"
+			responsive="true" header="Editar/Crear Respuesta por defecto" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarRespuestaDefectoForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -745,16 +745,16 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuestaDefecto()}"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDefectoDialog').hide()">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuestaDefecto()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDefectoDialog').hide();stop()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
 							</p:commandLink>
 						</div>
 						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarRespuestaDefectoDialog').hide()"
-								immediate="true">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12"
+								onclick="PF('EditarRespuestaDefectoDialog').hide()" immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
 								<span class="pi pi-times-circle" />
@@ -774,5 +774,12 @@
 			<p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes" />
 			<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
 		</p:confirmDialog>
+
+		<p:dialog modal="true" header="Espere..." widgetVar="statusDialog" id="statusDialog" draggable="false" closable="false" resizable="false" width="120px" style="height=120px">
+			<p:graphicImage value="/resources/ajax-loader.gif" style="display: block; margin: 0px auto; width:50px" />
+		</p:dialog>
+
+		<h:outputScript name="js/index.js" />
+
 	</ui:define>
 </ui:composition>

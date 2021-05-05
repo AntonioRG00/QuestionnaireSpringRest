@@ -106,7 +106,7 @@ public class MainController implements Serializable {
 		logger.info("MainController end");
 	}
 
-	/** Inicializa todas las variables y recarga las tablas */
+	/** Limpia todas las variables y recarga las tablas */
 	public void limpiarVariables() {
 		idiomaEdit = new Idioma();
 		areaEdit = new Area();
