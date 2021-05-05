@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.view.ViewScoped;
 
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
@@ -31,7 +31,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Component("mainController")
-@ApplicationScoped
+@ViewScoped
 public class MainController implements Serializable {
 
 	private static final long serialVersionUID = 8929086073643011545L;
