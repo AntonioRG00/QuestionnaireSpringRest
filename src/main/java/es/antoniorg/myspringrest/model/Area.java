@@ -44,7 +44,12 @@ public class Area implements Serializable {
 	
 	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
-	private List<Categoria> categorias = new ArrayList<Categoria>();
+	private List<Categoria> categorias = new ArrayList<>();
+	
+	@JsonIgnore
+	@ToString.Exclude
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+	private List<RespuestaPorDefecto> respuestasPorDefecto = new ArrayList<>();
 
 	public Area(String nombre, Idioma idioma) {
 		this.nombre = nombre;

@@ -39,6 +39,11 @@ public class Respuesta implements Serializable {
 	@ToString.Exclude
 	@OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL)
 	private List<PreguntaRespuesta> preguntas_respuestas = new ArrayList<>();
+	
+	@JsonIgnore
+	@ToString.Exclude
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+	private List<RespuestaPorDefecto> respuestasPorDefecto = new ArrayList<>();
 
 	public Respuesta(String respuesta) {
 		this.respuesta = respuesta;

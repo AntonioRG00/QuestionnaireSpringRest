@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/rest_categoria/**", "/rest_pregunta/**", "/rest_respuesta/**", "/rest_preguntarespuesta/**")
 				.permitAll().anyRequest().authenticated();
 		http.formLogin().loginPage("/login.xhtml").permitAll().and().logout();
-		http.sessionManagement().maximumSessions(1);
+		http.sessionManagement().maximumSessions(3);
 
 		// Parte del logout
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/");

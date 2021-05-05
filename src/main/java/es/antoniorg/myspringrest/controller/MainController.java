@@ -11,7 +11,6 @@ import org.primefaces.model.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Component;
 
 import es.antoniorg.myspringrest.model.Area;
@@ -20,11 +19,13 @@ import es.antoniorg.myspringrest.model.Idioma;
 import es.antoniorg.myspringrest.model.Pregunta;
 import es.antoniorg.myspringrest.model.PreguntaRespuesta;
 import es.antoniorg.myspringrest.model.Respuesta;
+import es.antoniorg.myspringrest.model.RespuestaPorDefecto;
 import es.antoniorg.myspringrest.repository.AreaRepository;
 import es.antoniorg.myspringrest.repository.CategoriaRepository;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
 import es.antoniorg.myspringrest.repository.PreguntaRepository;
 import es.antoniorg.myspringrest.repository.PreguntaRespuestaRepository;
+import es.antoniorg.myspringrest.repository.RespuestaPorDefectoRepository;
 import es.antoniorg.myspringrest.repository.RespuestaRepository;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,6 +44,7 @@ public class MainController implements Serializable {
 	private @Autowired PreguntaRepository preguntaRepository;
 	private @Autowired RespuestaRepository respuestaRepository;
 	private @Autowired PreguntaRespuestaRepository preResRepository;
+	private @Autowired RespuestaPorDefectoRepository respuestaDefaultRepository;
 
 	/** Lista con los idiomas de la tabla persistente */
 	private @Getter @Setter List<Idioma> idiomas;
@@ -50,11 +52,11 @@ public class MainController implements Serializable {
 	/** Idioma para el crud */
 	private @Getter @Setter Idioma idiomaEdit;
 
-	/** Area para el crud */
-	private @Getter @Setter Area areaEdit;
-
 	/** Lista con las áreas de la tabla persistente */
 	private @Getter @Setter List<Area> areas;
+
+	/** Area para el crud */
+	private @Getter @Setter Area areaEdit;
 
 	/** Categoría para el crud */
 	private @Getter @Setter Categoria categoriaEdit;
@@ -79,12 +81,21 @@ public class MainController implements Serializable {
 
 	/** Lista con las Pregunta-Respuestas de la tabla persistente */
 	private @Getter @Setter List<PreguntaRespuesta> preRes;
+	
+	/** Pregunta por defecto para el crud */
+	private @Getter @Setter RespuestaPorDefecto respuestaDefectoEdit;
+	
+	/** Lista con las Respuestas por defecto de la tabla persistente */
+	private @Getter @Setter List<RespuestaPorDefecto> respuestasDefecto;
 
 	/** Árbol con todos los datos relacionados */
 	private @Getter @Setter TreeNode arbolDatos;
 	
 	/** False: árbol contraido, True: árbol abierto */
 	private @Getter @Setter boolean arbolShowed;
+	
+	/** Contiene las respuestas seleccionadas por defecto del último área creado */
+	private @Getter @Setter List<RespuestaPorDefecto> respuestasPorDefectoSeleccionadas;
 
 	@PostConstruct
 	public void init() {
@@ -103,6 +114,7 @@ public class MainController implements Serializable {
 		preguntaEdit = new Pregunta();
 		respuestaEdit = new Respuesta();
 		preResEdit = new PreguntaRespuesta();
+		respuestaDefectoEdit = new RespuestaPorDefecto();
 
 		idiomas = idiomaRepository.findAll();
 		areas = areaRepository.findAll();
@@ -110,6 +122,7 @@ public class MainController implements Serializable {
 		preguntas = preguntaRepository.findAll();
 		respuestas = respuestaRepository.findAll();
 		preRes = preResRepository.findAll();
+		respuestasDefecto = respuestaDefaultRepository.findAll();
 
 		arbolDatos = getTreeNode();
 	}
@@ -232,8 +245,7 @@ public class MainController implements Serializable {
 
 	/** Actualiza la respuesta seleccionada para después llamar a crearRespuesta */
 	public void actualizarRespuesta(Respuesta respuesta) {
-		logger.info("actualizarRespuesta init: Se procede a actualizar la respuesta seleccionada a: "
-				+ respuesta.toString());
+		logger.info("actualizarRespuesta init: Se procede a actualizar la respuesta seleccionada a: " + respuesta.toString());
 		respuestaEdit = respuesta;
 	}
 
@@ -284,23 +296,58 @@ public class MainController implements Serializable {
 		preResRepository.delete(preRes);
 		limpiarVariables();
 	}
+	
+	// -----------------------------------Crud Tabla Area-Respuesta
+	
+	/** Actualiza la respuesta por defecto seleccionada para después llamar a crearRespuestaDefecto */
+	public void actualizarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
+		logger.info("actualizarRespuestaDefecto init: Se procede a actualizar la respuestaDefecto seleccionada a: " + respuestaDefecto.toString());
+		respuestaDefectoEdit = respuestaDefecto;
+	}
+
+	/** Asigna una nueva respuesta por defecto a la variable respuestaDefectoEdit editable */
+	public void crearRespuestaDefecto() {
+		logger.info("crearRespuestaDefecto init: Aplastando la variable respuestaDefectoEdit");
+		respuestaDefectoEdit = new RespuestaPorDefecto();
+	}
+
+	/** Persiste una nueva respuesta por defecto con la variable respuestaDefectoEdit */
+	public void persistRespuestaDefecto() {
+		logger.info("persistRespuestaDefecto init: Se procede a persistir la resupuesta por defecto " + respuestaDefectoEdit.toString());
+		respuestaDefaultRepository.saveAndFlush(respuestaDefectoEdit);
+		limpiarVariables();
+	}
+
+	/** Elimina la respuesta por defecto pasada por parámetro */
+	public void eliminarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
+		logger.info("eliminarRespuestaDefecto init: Se va a borrar la respuesta por defecto: " + respuestaDefecto.toString());
+		respuestaDefaultRepository.delete(respuestaDefecto);
+		limpiarVariables();
+	}
 
 	// -----------------------------------Funciones
 
 	/** Genera la tabla en forma de árbol para visualizar la estructura de datos */
 	public TreeNode getTreeNode() {
-		TreeNode root = new DefaultTreeNode(new String("MiÁrbol"), null);
-
+		TreeNode root = new DefaultTreeNode("MiÁrbol", null);
+		TreeNode header = new DefaultTreeNode("Raíz", root);
+		
 		for (Idioma i : idiomas) {
-			TreeNode trIdioma = new DefaultTreeNode(i.toStringArbol(), root);
+			TreeNode trIdioma = new DefaultTreeNode(i.toStringArbol(), header);
 			for (Area a : i.getAreas()) {
 				TreeNode trArea = new DefaultTreeNode(a.toStringArbol(), trIdioma);
 				for (Categoria c : a.getCategorias()) {
 					TreeNode trCategorias = new DefaultTreeNode(c.toStringArbol(), trArea);
 					for (Pregunta p : c.getPreguntas()) {
 						TreeNode trPregunta = new DefaultTreeNode(p.toStringArbol(), trCategorias);
-						for (PreguntaRespuesta r : p.getRespuestas()) {
-							new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(), trPregunta);
+						if(p.getRespuestas().isEmpty()) {
+							for (RespuestaPorDefecto r : a.getRespuestasPorDefecto()) {
+								new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(), trPregunta);
+							}
+						} else {							
+							for (PreguntaRespuesta r : p.getRespuestas()) {
+								new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(), trPregunta);
+							}
 						}
 					}
 				}

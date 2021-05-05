@@ -10,27 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor @ToString @AllArgsConstructor
-@Entity @Table(name = "pregunta_respuesta") @IdClass(PreguntaRespuestaPK.class)
-public class PreguntaRespuesta implements Serializable {
-	
-	private static final long serialVersionUID = 6001634131165241957L;
-	
-	@JsonIgnore
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "pregunta_id")
-	@EqualsAndHashCode.Include
-	private Pregunta pregunta;
+@Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor @ToString
+@Entity @Table(name = "respuesta_por_defecto") @IdClass(RespuestaPorDefectoPK.class)
+public class RespuestaPorDefecto implements Serializable{
+
+	private static final long serialVersionUID = 7475397784156785171L;
 	
 	@Id
 	@ManyToOne
@@ -38,6 +28,18 @@ public class PreguntaRespuesta implements Serializable {
 	@EqualsAndHashCode.Include
 	private Respuesta respuesta;
 	
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "area_id")
+	@EqualsAndHashCode.Include
+	private Area area;
+	
 	@Column(name = "puntuacion", nullable = false)
 	private int puntuacion;
+
+	public RespuestaPorDefecto(Respuesta respuesta, Area area, int puntuacion) {
+		this.respuesta = respuesta;
+		this.area = area;
+		this.puntuacion = puntuacion;
+	}
 }
