@@ -10,13 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor @ToString
+@Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor @ToString @AllArgsConstructor
 @Entity @Table(name = "respuesta_por_defecto") @IdClass(RespuestaPorDefectoPK.class)
 public class RespuestaPorDefecto implements Serializable{
 
@@ -36,10 +37,4 @@ public class RespuestaPorDefecto implements Serializable{
 	
 	@Column(name = "puntuacion", nullable = false)
 	private int puntuacion;
-
-	public RespuestaPorDefecto(Respuesta respuesta, Area area, int puntuacion) {
-		this.respuesta = respuesta;
-		this.area = area;
-		this.puntuacion = puntuacion;
-	}
 }

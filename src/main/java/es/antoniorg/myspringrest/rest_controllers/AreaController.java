@@ -7,15 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.Area;
@@ -72,41 +66,41 @@ public class AreaController {
 		}
 	}
 
-	@PostMapping("/area")
-	public ResponseEntity<Area> createArea(@RequestBody Area area) {
-		try {
-
-			Area aux = areaRepository.save(new Area(area.getNombre(), area.getIdioma()));
-
-			return new ResponseEntity<>(aux, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
-	@PutMapping("/area/{id}")
-	public ResponseEntity<Area> updateArea(@PathVariable("id") Long id, @RequestBody Area area) {
-		Optional<Area> areaData = areaRepository.findById(id);
-
-		if (areaData.isPresent()) {
-			Area aux = areaData.get();
-			aux.setNombre(area.getNombre());
-			aux.setIdioma(area.getIdioma());
-			return new ResponseEntity<>(areaRepository.save(aux), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	@DeleteMapping("/area/{id}")
-	public ResponseEntity<HttpStatus> deleteArea(@PathVariable("id") Long id) {
-		try {
-			areaRepository.deleteById(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+//	@PostMapping("/area")
+//	public ResponseEntity<Area> createArea(@RequestBody Area area) {
+//		try {
+//
+//			Area aux = areaRepository.save(new Area(area.getNombre(), area.getIdioma()));
+//
+//			return new ResponseEntity<>(aux, HttpStatus.CREATED);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+//
+//	@PutMapping("/area/{id}")
+//	public ResponseEntity<Area> updateArea(@PathVariable("id") Long id, @RequestBody Area area) {
+//		Optional<Area> areaData = areaRepository.findById(id);
+//
+//		if (areaData.isPresent()) {
+//			Area aux = areaData.get();
+//			aux.setNombre(area.getNombre());
+//			aux.setIdioma(area.getIdioma());
+//			return new ResponseEntity<>(areaRepository.save(aux), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//	}
+//
+//	@DeleteMapping("/area/{id}")
+//	public ResponseEntity<HttpStatus> deleteArea(@PathVariable("id") Long id) {
+//		try {
+//			areaRepository.deleteById(id);
+//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
 
 //	@DeleteMapping("/area")
 //	public ResponseEntity<HttpStatus> deleteAllTutorials() {

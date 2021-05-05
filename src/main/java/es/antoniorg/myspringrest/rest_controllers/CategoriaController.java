@@ -7,12 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,45 +51,45 @@ public class CategoriaController {
 		}
 	}
 
-	@PostMapping("/categoria")
-	public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
-		try {
-
-			Categoria aux = categoriaRepository.save(new Categoria(categoria.getNombre(), categoria.getDescripcion(),
-					categoria.getArea(), categoria.getExplicacion(), categoria.getPuntuacion(),
-					categoria.getRecomendacion()));
-
-			return new ResponseEntity<>(aux, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
-	@PutMapping("/categoria/{id}")
-	public ResponseEntity<Categoria> updateCategoria(@PathVariable("id") Long id, @RequestBody Categoria categoria) {
-		Optional<Categoria> idiomaData = categoriaRepository.findById(id);
-
-		if (idiomaData.isPresent()) {
-			Categoria aux = idiomaData.get();
-			aux.setNombre(categoria.getNombre());
-			aux.setDescripcion(categoria.getDescripcion());
-			aux.setArea(categoria.getArea());
-			aux.setExplicacion(categoria.getExplicacion());
-			aux.setPuntuacion(categoria.getPuntuacion());
-			aux.setRecomendacion(categoria.getRecomendacion());
-			return new ResponseEntity<>(categoriaRepository.save(aux), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	@DeleteMapping("/categoria/{id}")
-	public ResponseEntity<HttpStatus> deleteCategoria(@PathVariable("id") Long id) {
-		try {
-			categoriaRepository.deleteById(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+//	@PostMapping("/categoria")
+//	public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
+//		try {
+//
+//			Categoria aux = categoriaRepository.save(new Categoria(categoria.getNombre(), categoria.getDescripcion(),
+//					categoria.getArea(), categoria.getExplicacion(), categoria.getPuntuacion(),
+//					categoria.getRecomendacion()));
+//
+//			return new ResponseEntity<>(aux, HttpStatus.CREATED);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+//
+//	@PutMapping("/categoria/{id}")
+//	public ResponseEntity<Categoria> updateCategoria(@PathVariable("id") Long id, @RequestBody Categoria categoria) {
+//		Optional<Categoria> idiomaData = categoriaRepository.findById(id);
+//
+//		if (idiomaData.isPresent()) {
+//			Categoria aux = idiomaData.get();
+//			aux.setNombre(categoria.getNombre());
+//			aux.setDescripcion(categoria.getDescripcion());
+//			aux.setArea(categoria.getArea());
+//			aux.setExplicacion(categoria.getExplicacion());
+//			aux.setPuntuacion(categoria.getPuntuacion());
+//			aux.setRecomendacion(categoria.getRecomendacion());
+//			return new ResponseEntity<>(categoriaRepository.save(aux), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//	}
+//
+//	@DeleteMapping("/categoria/{id}")
+//	public ResponseEntity<HttpStatus> deleteCategoria(@PathVariable("id") Long id) {
+//		try {
+//			categoriaRepository.deleteById(id);
+//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
 }

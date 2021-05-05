@@ -330,10 +330,9 @@ public class MainController implements Serializable {
 	/** Genera la tabla en forma de árbol para visualizar la estructura de datos */
 	public TreeNode getTreeNode() {
 		TreeNode root = new DefaultTreeNode("MiÁrbol", null);
-		TreeNode header = new DefaultTreeNode("Raíz", root);
 		
 		for (Idioma i : idiomas) {
-			TreeNode trIdioma = new DefaultTreeNode(i.toStringArbol(), header);
+			TreeNode trIdioma = new DefaultTreeNode(i.toStringArbol(), root);
 			for (Area a : i.getAreas()) {
 				TreeNode trArea = new DefaultTreeNode(a.toStringArbol(), trIdioma);
 				for (Categoria c : a.getCategorias()) {

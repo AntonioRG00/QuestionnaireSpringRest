@@ -7,13 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,40 +52,40 @@ public class PreguntaRespuestaController {
 		}
 	}
 
-	@PostMapping("/preguntarespuesta")
-	public ResponseEntity<PreguntaRespuesta> createPreguntaRespuesta(@RequestBody PreguntaRespuesta pr) {
-		try {
-
-			PreguntaRespuesta aux = prRepository.save(new PreguntaRespuesta(pr.getPregunta(), pr.getRespuesta(), pr.getPuntuacion()));
-
-			return new ResponseEntity<>(aux, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
-	@PutMapping("/preguntarespuesta/{idPregunta}/{idRespuesta}")
-	public ResponseEntity<PreguntaRespuesta> updatePreguntaRespuesta(@PathVariable("idPregunta") Long idPregunta, @PathVariable("idRespuesta") Long idRespuesta, @RequestBody PreguntaRespuesta pr) {
-		Optional<PreguntaRespuesta> preguntaData = prRepository.findById(new PreguntaRespuestaPK(idPregunta, idRespuesta));
-
-		if (preguntaData.isPresent()) {
-			PreguntaRespuesta aux = preguntaData.get();
-			aux.setPregunta(pr.getPregunta());
-			aux.setRespuesta(pr.getRespuesta());
-			aux.setPuntuacion(pr.getPuntuacion());
-			return new ResponseEntity<>(prRepository.save(aux), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	@DeleteMapping("/preguntarespuesta/{idPregunta}/{idRespuesta}")
-	public ResponseEntity<HttpStatus> deletePreguntaRespuesta(@PathVariable("idPregunta") Long idPregunta, @PathVariable("idRespuesta") Long idRespuesta) {
-		try {
-			prRepository.deleteById(new PreguntaRespuestaPK(idPregunta, idRespuesta));
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+//	@PostMapping("/preguntarespuesta")
+//	public ResponseEntity<PreguntaRespuesta> createPreguntaRespuesta(@RequestBody PreguntaRespuesta pr) {
+//		try {
+//
+//			PreguntaRespuesta aux = prRepository.save(new PreguntaRespuesta(pr.getPregunta(), pr.getRespuesta(), pr.getPuntuacion()));
+//
+//			return new ResponseEntity<>(aux, HttpStatus.CREATED);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+//
+//	@PutMapping("/preguntarespuesta/{idPregunta}/{idRespuesta}")
+//	public ResponseEntity<PreguntaRespuesta> updatePreguntaRespuesta(@PathVariable("idPregunta") Long idPregunta, @PathVariable("idRespuesta") Long idRespuesta, @RequestBody PreguntaRespuesta pr) {
+//		Optional<PreguntaRespuesta> preguntaData = prRepository.findById(new PreguntaRespuestaPK(idPregunta, idRespuesta));
+//
+//		if (preguntaData.isPresent()) {
+//			PreguntaRespuesta aux = preguntaData.get();
+//			aux.setPregunta(pr.getPregunta());
+//			aux.setRespuesta(pr.getRespuesta());
+//			aux.setPuntuacion(pr.getPuntuacion());
+//			return new ResponseEntity<>(prRepository.save(aux), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//	}
+//
+//	@DeleteMapping("/preguntarespuesta/{idPregunta}/{idRespuesta}")
+//	public ResponseEntity<HttpStatus> deletePreguntaRespuesta(@PathVariable("idPregunta") Long idPregunta, @PathVariable("idRespuesta") Long idRespuesta) {
+//		try {
+//			prRepository.deleteById(new PreguntaRespuestaPK(idPregunta, idRespuesta));
+//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
 }
