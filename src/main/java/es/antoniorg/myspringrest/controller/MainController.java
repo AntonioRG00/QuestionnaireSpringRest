@@ -1,6 +1,7 @@
 package es.antoniorg.myspringrest.controller;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -84,30 +85,35 @@ public class MainController implements Serializable {
 	
 	/** Pregunta por defecto para el crud */
 	private @Getter @Setter RespuestaPorDefecto respuestaDefectoEdit;
-	
+
 	/** Lista con las Respuestas por defecto de la tabla persistente */
 	private @Getter @Setter List<RespuestaPorDefecto> respuestasDefecto;
 
 	/** Árbol con todos los datos relacionados */
 	private @Getter @Setter TreeNode arbolDatos;
-	
+
 	/** False: árbol contraido, True: árbol abierto */
 	private @Getter @Setter boolean arbolShowed;
-	
+
 	/** Contiene las respuestas seleccionadas por defecto del último área creado */
 	private @Getter @Setter List<RespuestaPorDefecto> respuestasPorDefectoSeleccionadas;
+
+	/** Enumerado con las tablas de la base de datos */
+	private @Getter enum EnumTablas {
+		Idioma, Area, Categoria, Pregunta, Respuesta, PreRes, RespuestaDefecto
+	};
 
 	@PostConstruct
 	public void init() {
 		logger.info("MainController init");
 
-		limpiarVariables();
+		limpiarVariables(EnumTablas.values()[0]);
 
 		logger.info("MainController end");
 	}
 
 	/** Limpia todas las variables y recarga las tablas */
-	public void limpiarVariables() {
+	public void limpiarVariables(EnumTablas nomTabla) {
 		idiomaEdit = new Idioma();
 		areaEdit = new Area();
 		categoriaEdit = new Categoria();
@@ -116,13 +122,22 @@ public class MainController implements Serializable {
 		preResEdit = new PreguntaRespuesta();
 		respuestaDefectoEdit = new RespuestaPorDefecto();
 
-		idiomas = idiomaRepository.findAll();
-		areas = areaRepository.findAll();
-		categorias = categoriaRepository.findAll();
-		preguntas = preguntaRepository.findAll();
-		respuestas = respuestaRepository.findAll();
-		preRes = preResRepository.findAll();
-		respuestasDefecto = respuestaDefaultRepository.findAll();
+		switch (nomTabla) {
+		case Idioma:
+			idiomas = idiomaRepository.findAll();
+		case Area:
+			areas = areaRepository.findAll();
+		case Categoria:
+			categorias = categoriaRepository.findAll();
+		case Pregunta:
+			preguntas = preguntaRepository.findAll();
+		case Respuesta:
+			respuestas = respuestaRepository.findAll();
+		case PreRes:
+			preRes = preResRepository.findAll();
+		case RespuestaDefecto:
+			respuestasDefecto = respuestaDefaultRepository.findAll();
+		}
 
 		arbolDatos = getTreeNode();
 	}
@@ -144,15 +159,16 @@ public class MainController implements Serializable {
 	/** Persiste un nuevo idioma con la variable idiomaEdit */
 	public void persistIdioma() {
 		logger.info("crearIdioma init: Se procede a persistir el idioma " + idiomaEdit.toString());
-		idiomaRepository.saveAndFlush(idiomaEdit);
-		limpiarVariables();
+		idiomaEdit = idiomaRepository.saveAndFlush(idiomaEdit);
+		idiomas = idiomaRepository.findAll();
+		Collections.rotate(idiomas, 1);
 	}
 
 	/** Elimina el idioma pasado por parámetro */
 	public void eliminarIdioma(Idioma idioma) {
 		logger.info("eliminarIdioma init: Se va a borrar el idioma: " + idioma.toString());
 		idiomaRepository.delete(idioma);
-		limpiarVariables();
+		limpiarVariables(EnumTablas.Idioma);
 	}
 
 	// -----------------------------------Crud Tabla Area
@@ -172,23 +188,23 @@ public class MainController implements Serializable {
 	/** Persiste un nuevo area con la variable areaEdit */
 	public void persistArea() {
 		logger.info("crearArea init: Se procede a persistir el area " + areaEdit.toString());
-		areaRepository.saveAndFlush(areaEdit);
-		limpiarVariables();
+		areaEdit = areaRepository.saveAndFlush(areaEdit);
+		areas = areaRepository.findAll();
+		Collections.rotate(areas, 1);
 	}
 
 	/** Elimina el area pasado por parámetro */
 	public void eliminarArea(Area area) {
 		logger.info("eliminarArea init: Se va a borrar el area: " + area.toString());
 		areaRepository.delete(area);
-		limpiarVariables();
+		limpiarVariables(EnumTablas.Area);
 	}
 
 	// -----------------------------------Crud Tabla Categoría
 
 	/** Actualiza la categoría seleccionada para después llamar a crearCategoria */
 	public void actualizarCategoria(Categoria categoria) {
-		logger.info("actualizarCategoria init: Se procede a actualizar la categoría seleccionada a: "
-				+ categoria.toString());
+		logger.info("actualizarCategoria init: Se procede a actualizar la categoría seleccionada a: "+ categoria.toString());
 		categoriaEdit = categoria;
 	}
 
@@ -201,23 +217,23 @@ public class MainController implements Serializable {
 	/** Persiste una nueva categoria con la variable categoriaEdit */
 	public void persistCategoria() {
 		logger.info("crearCategoria init: Se procede a persistir la categoría " + categoriaEdit.toString());
-		categoriaRepository.saveAndFlush(categoriaEdit);
-		limpiarVariables();
+		categoriaEdit = categoriaRepository.saveAndFlush(categoriaEdit);
+		categorias = categoriaRepository.findAll();
+		Collections.rotate(categorias, 1);
 	}
 
 	/** Elimina la categoria pasada por parámetro */
 	public void eliminarCategoria(Categoria categoria) {
 		logger.info("eliminarCategoria init: Se va a borrar la categoría: " + categoria.toString());
 		categoriaRepository.delete(categoria);
-		limpiarVariables();
+		limpiarVariables(EnumTablas.Categoria);
 	}
 
 	// -----------------------------------Crud Tabla Pregunta
 
 	/** Actualiza la pregunta seleccionada para después llamar a crearPregunta */
 	public void actualizarPregunta(Pregunta pregunta) {
-		logger.info(
-				"actualizarPregunta init: Se procede a actualizar la pregunta seleccionada a: " + pregunta.toString());
+		logger.info("actualizarPregunta init: Se procede a actualizar la pregunta seleccionada a: " + pregunta.toString());
 		preguntaEdit = pregunta;
 	}
 
@@ -230,15 +246,16 @@ public class MainController implements Serializable {
 	/** Persiste una nueva pregunta con la variable preguntaEdit */
 	public void persistPregunta() {
 		logger.info("crearPregunta init: Se procede a persistir la pregunta " + preguntaEdit.toString());
-		preguntaRepository.saveAndFlush(preguntaEdit);
-		limpiarVariables();
+		preguntaEdit = preguntaRepository.saveAndFlush(preguntaEdit);
+		preguntas = preguntaRepository.findAll();
+		Collections.rotate(preguntas, 1);
 	}
 
 	/** Elimina la pregunta pasada por parámetro */
 	public void eliminarPregunta(Pregunta pregunta) {
 		logger.info("eliminarPregunta init: Se va a borrar la pregunta: " + pregunta.toString());
 		preguntaRepository.delete(pregunta);
-		limpiarVariables();
+		limpiarVariables(EnumTablas.Pregunta);
 	}
 
 	// -----------------------------------Crud Tabla Respuesta
@@ -258,15 +275,16 @@ public class MainController implements Serializable {
 	/** Persiste una nueva respuesta con la variable respuestaEdit */
 	public void persistRespuesta() {
 		logger.info("persistRespuesta init: Se procede a persistir la respuesta " + respuestaEdit.toString());
-		respuestaRepository.saveAndFlush(respuestaEdit);
-		limpiarVariables();
+		respuestaEdit = respuestaRepository.saveAndFlush(respuestaEdit);
+		respuestas = respuestaRepository.findAll();
+		Collections.rotate(respuestas, 1);
 	}
 
 	/** Elimina la respuesta pasada por parámetro */
 	public void eliminarRespuesta(Respuesta respuesta) {
 		logger.info("eliminarRespuesta init: Se va a borrar la respuesta: " + respuesta.toString());
 		respuestaRepository.delete(respuesta);
-		limpiarVariables();
+		limpiarVariables(EnumTablas.Respuesta);
 	}
 
 	// -----------------------------------Crud Tabla Pregunta-Respuesta
@@ -285,20 +303,21 @@ public class MainController implements Serializable {
 
 	/** Persiste una nueva Pregunta-Respuesta con la variable preResEdit */
 	public void persistPreRes() {
-		logger.info("persistPreRes init: Se procede a persistir la preRes " + preRes.toString());
-		preResRepository.saveAndFlush(preResEdit);
-		limpiarVariables();
+		logger.info("persistPreRes init: Se procede a persistir la preRes " + preResEdit.toString());
+		preResEdit = preResRepository.saveAndFlush(preResEdit);
+		preRes = preResRepository.findAll();
+		Collections.rotate(preRes, 1);
 	}
 
 	/** Elimina la Pregunta-Respuesta pasada por parámetro */
 	public void eliminarPreRes(PreguntaRespuesta preRes) {
 		logger.info("eliminarPreRes init: Se va a borrar la preRes: " + preRes.toString());
 		preResRepository.delete(preRes);
-		limpiarVariables();
+		limpiarVariables(EnumTablas.PreRes);
 	}
-	
+
 	// -----------------------------------Crud Tabla Area-Respuesta
-	
+
 	/** Actualiza la respuesta por defecto seleccionada para después llamar a crearRespuestaDefecto */
 	public void actualizarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
 		logger.info("actualizarRespuestaDefecto init: Se procede a actualizar la respuestaDefecto seleccionada a: " + respuestaDefecto.toString());
@@ -314,15 +333,16 @@ public class MainController implements Serializable {
 	/** Persiste una nueva respuesta por defecto con la variable respuestaDefectoEdit */
 	public void persistRespuestaDefecto() {
 		logger.info("persistRespuestaDefecto init: Se procede a persistir la resupuesta por defecto " + respuestaDefectoEdit.toString());
-		respuestaDefaultRepository.saveAndFlush(respuestaDefectoEdit);
-		limpiarVariables();
+		respuestaDefectoEdit = respuestaDefaultRepository.saveAndFlush(respuestaDefectoEdit);
+		respuestasDefecto = respuestaDefaultRepository.findAll();
+		Collections.rotate(respuestasDefecto, 1);
 	}
 
 	/** Elimina la respuesta por defecto pasada por parámetro */
 	public void eliminarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
 		logger.info("eliminarRespuestaDefecto init: Se va a borrar la respuesta por defecto: " + respuestaDefecto.toString());
 		respuestaDefaultRepository.delete(respuestaDefecto);
-		limpiarVariables();
+		limpiarVariables(EnumTablas.RespuestaDefecto);
 	}
 
 	// -----------------------------------Funciones
@@ -330,22 +350,24 @@ public class MainController implements Serializable {
 	/** Genera la tabla en forma de árbol para visualizar la estructura de datos */
 	public TreeNode getTreeNode() {
 		TreeNode root = new DefaultTreeNode("MiÁrbol", null);
-		
+
+		TreeNode container = new DefaultTreeNode("Contenedor", root);
+
 		for (Idioma i : idiomas) {
-			TreeNode trIdioma = new DefaultTreeNode(i.toStringArbol(), root);
+			TreeNode trIdioma = new DefaultTreeNode(i.toStringArbol(), container);
 			for (Area a : i.getAreas()) {
 				TreeNode trArea = new DefaultTreeNode(a.toStringArbol(), trIdioma);
 				for (Categoria c : a.getCategorias()) {
 					TreeNode trCategorias = new DefaultTreeNode(c.toStringArbol(), trArea);
 					for (Pregunta p : c.getPreguntas()) {
 						TreeNode trPregunta = new DefaultTreeNode(p.toStringArbol(), trCategorias);
-						if(p.getRespuestas().isEmpty()) {
+						if (p.getRespuestas().isEmpty()) {
 							for (RespuestaPorDefecto r : a.getRespuestasPorDefecto()) {
-								new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(), trPregunta);
+								new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(),trPregunta);
 							}
-						} else {							
+						} else {
 							for (PreguntaRespuesta r : p.getRespuestas()) {
-								new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(), trPregunta);
+								new DefaultTreeNode(r.getRespuesta().toStringArbol() + ", Valor: " + r.getPuntuacion(),trPregunta);
 							}
 						}
 					}
@@ -354,14 +376,14 @@ public class MainController implements Serializable {
 		}
 		return root;
 	}
-	
+
 	/** Cambia el estado de la variable arbolShowed */
 	public boolean arbolShowedReverse() {
-		if(arbolShowed) {
+		if (arbolShowed) {
 			arbolShowed = false;
 			return arbolShowed;
 		}
-		
+
 		arbolShowed = true;
 		return arbolShowed;
 	}

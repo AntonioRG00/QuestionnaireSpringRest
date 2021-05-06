@@ -177,7 +177,7 @@
 				</p:tab>
 
 				<p:tab title="Pregunta-Respuesta">
-					<p:dataTable var="preRes" value="#{mainController.preRes}" emptyMessage="No se encontraron preguntas-respuestas" id="preResDataTable"
+					<p:dataTable var="preRes" value="#{mainController.preRes}" emptyMessage="No se encontraron relaciones de preguntas con respuestas" id="preResDataTable"
 						widgetVar="preResDataTable"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true"
@@ -212,7 +212,7 @@
 
 						<p:autoUpdate />
 					</p:dataTable>
-					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una Pregunta-Respuesta" action="#{mainController.crearPreRes()}"
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Relacionar pregunta con respuesta" action="#{mainController.crearPreRes()}"
 						oncomplete="PF('EditarPreResDialog').show()" process="@this" />
 				</p:tab>
 
