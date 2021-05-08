@@ -55,7 +55,7 @@ public class Categoria implements Serializable {
 	private String recomendacion;
 
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria", orphanRemoval = true)
 	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
 	public Categoria(String nombre, String descripcion, Area area, String explicacion, int puntuacion, String recomendacion) {

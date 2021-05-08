@@ -49,7 +49,7 @@ public class Pregunta implements Serializable {
 	private int puntuacionRecomendacion;
 
 	@ToString.Exclude
-	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PreguntaRespuesta> respuestas = new ArrayList<>();
 
 	public Pregunta(String pregunta, Categoria categoria, String recomendacion, int puntuacionRecomendacion) {

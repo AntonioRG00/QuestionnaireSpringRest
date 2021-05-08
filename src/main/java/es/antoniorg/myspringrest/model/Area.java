@@ -43,12 +43,12 @@ public class Area implements Serializable {
 	private Idioma idioma;
 	
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area", orphanRemoval = true)
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	@JsonIgnore
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area", orphanRemoval = true)
 	private List<RespuestaPorDefecto> respuestasPorDefecto = new ArrayList<>();
 
 	public Area(String nombre, Idioma idioma) {

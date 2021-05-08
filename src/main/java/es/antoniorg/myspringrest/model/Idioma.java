@@ -38,7 +38,7 @@ public class Idioma implements Serializable {
 	private String urlImagen;
 	
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma", orphanRemoval = true)
 	private List<Area> areas = new ArrayList<Area>();
 
 	public Idioma(String nombreIdioma, String urlImagen) {

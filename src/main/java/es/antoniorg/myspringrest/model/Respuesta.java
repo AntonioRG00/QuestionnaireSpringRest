@@ -37,12 +37,12 @@ public class Respuesta implements Serializable {
 
 	@JsonIgnore
 	@ToString.Exclude
-	@OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PreguntaRespuesta> preguntas_respuestas = new ArrayList<>();
 	
 	@JsonIgnore
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area", orphanRemoval = true)
 	private List<RespuestaPorDefecto> respuestasPorDefecto = new ArrayList<>();
 
 	public Respuesta(String respuesta) {
