@@ -60,6 +60,6 @@ public class Pregunta implements Serializable {
 	}
 	
 	public String toStringArbol(){
-		return "Pregunta: " + this.pregunta + ", Puntuación: " + this.puntuacionRecomendacion;
+		return "Pregunta: " + this.pregunta + ", Puntuacion: " + this.puntuacionRecomendacion;
 	}
 }

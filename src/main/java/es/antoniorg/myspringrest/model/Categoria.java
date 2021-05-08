@@ -68,6 +68,6 @@ public class Categoria implements Serializable {
 	}
 	
 	public String toStringArbol(){
-		return "Categoría: " + this.nombre + ", Puntuación: " + this.puntuacion;
+		return "Categoria: " + this.nombre + ", Puntuacion: " + this.puntuacion;
 	}
 }
