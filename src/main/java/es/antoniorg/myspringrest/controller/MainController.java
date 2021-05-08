@@ -95,9 +95,6 @@ public class MainController implements Serializable {
 	/** False: árbol contraido, True: árbol abierto */
 	private @Getter @Setter boolean arbolShowed;
 
-	/** Contiene las respuestas seleccionadas por defecto del último área creado */
-	private @Getter @Setter List<RespuestaPorDefecto> respuestasPorDefectoSeleccionadas;
-
 	/** Enumerado con las tablas de la base de datos */
 	private @Getter enum EnumTablas {
 		Idioma, Area, Categoria, Pregunta, Respuesta, PreRes, RespuestaDefecto
@@ -121,6 +118,7 @@ public class MainController implements Serializable {
 		respuestaEdit = new Respuesta();
 		preResEdit = new PreguntaRespuesta();
 		respuestaDefectoEdit = new RespuestaPorDefecto();
+		arbolShowed = false;
 
 		switch (nomTabla) {
 		case Idioma:

@@ -38,7 +38,7 @@
 				</p:tab>
 
 				<p:tab title="Área">
-					<p:dataTable var="area" value="#{mainController.areas}" emptyMessage="No se encontraron areas" id="areaDataTable" widgetVar="areaDataTable"
+					<p:dataTable var="area" value="#{mainController.areas}" emptyMessage="No se encontraron áreas" id="areaDataTable" widgetVar="areaDataTable"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{area.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
