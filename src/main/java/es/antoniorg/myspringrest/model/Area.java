@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,9 +33,11 @@ public class Area implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
+	@ApiModelProperty(value="ID del área", dataType="Long", example="1", position=1)
 	private Long id;
 	
 	@Column(name = "nombre", nullable = false, length = 25)
+	@ApiModelProperty(value="Nombre del área", dataType="String", example="1.1 Fase", position=2)
 	private String nombre;
 	
 	@JsonIgnore

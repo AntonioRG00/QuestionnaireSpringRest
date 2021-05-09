@@ -1,5 +1,27 @@
-{"properties": [{
-  "name": "urlsPermitidas",
-  "type": "java.lang.String",
-  "description": "A description for 'urlsPermitidas'"
-}]}
+{"properties": [
+  {
+    "name": "urlsPermitidas",
+    "type": "java.lang.String",
+    "description": "A description for 'urlsPermitidas'"
+  },
+  {
+    "name": "swagger.titulo",
+    "type": "java.lang.String",
+    "description": "A description for 'swagger.titulo'"
+  },
+  {
+    "name": "swagger.descripcion",
+    "type": "java.lang.String",
+    "description": "A description for 'swagger.descripcion'"
+  },
+  {
+    "name": "login.usuario",
+    "type": "java.lang.String",
+    "description": "A description for 'login.usuario'"
+  },
+  {
+    "name": "login.contraseña",
+    "type": "java.lang.String",
+    "description": "A description for 'login.contraseña'"
+  }
+]}

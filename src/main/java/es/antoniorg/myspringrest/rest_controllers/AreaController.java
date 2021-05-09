@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.Area;
 import es.antoniorg.myspringrest.repository.AreaRepository;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/rest_area")
+@Api(tags="ÁreaRest")
 public class AreaController {
 
 	@Autowired

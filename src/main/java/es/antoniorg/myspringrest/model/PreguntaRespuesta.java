@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -39,5 +40,6 @@ public class PreguntaRespuesta implements Serializable {
 	private Respuesta respuesta;
 	
 	@Column(name = "puntuacion", nullable = false)
+	@ApiModelProperty(value="Puntuación de la respuesta", dataType="int", example="1", position=1)
 	private int puntuacion;
 }

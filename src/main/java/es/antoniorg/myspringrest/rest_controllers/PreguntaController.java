@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.Pregunta;
 import es.antoniorg.myspringrest.repository.PreguntaRepository;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/rest_pregunta")
+@Api(tags="PreguntaRest")
 public class PreguntaController {
 
 	@Autowired

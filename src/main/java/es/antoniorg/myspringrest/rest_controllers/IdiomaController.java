@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.Idioma;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/rest_idioma")
+@Api(tags="IdiomaRest")
 public class IdiomaController {
 
 	@Autowired

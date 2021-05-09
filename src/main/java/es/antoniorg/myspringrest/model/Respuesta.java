@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,9 +31,11 @@ public class Respuesta implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
+	@ApiModelProperty(value="ID de respuesta", dataType="Long", example="1", position=1)
 	private Long id;
 	
 	@Column(name = "respuesta", nullable = false, length = 20)
+	@ApiModelProperty(value="Respuesta", dataType="String", example="Algo", position=2)
 	private String respuesta;
 
 	@JsonIgnore

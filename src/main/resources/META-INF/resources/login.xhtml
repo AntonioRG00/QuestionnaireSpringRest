@@ -5,7 +5,7 @@
 
 <h:head>
 	<title>Login</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<h:outputStylesheet name="/css/login.css" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,5 +24,8 @@
 			</div>
 		</div>
 	</h:form>
+
+	<h:inputText class="fadeIn fourth col-12 fw-bolder mt-2" style="width=100%" id="mensaje-error" value="#{dispatcherController.errorMessageLogin}" />
+
 </h:body>
 </html>

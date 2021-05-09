@@ -14,13 +14,23 @@ import es.antoniorg.myspringrest.model.Idioma;
 import es.antoniorg.myspringrest.model.PreguntaRespuesta;
 import es.antoniorg.myspringrest.model.RespuestaPorDefecto;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/rest")
+@Api(tags="!RestFinal (Servicio rest con las funciones más importantes)")
 public class FinalRestController {
 
 	private @Autowired IdiomaRepository idiomaRepository;
 
+	@ApiOperation(value = "Obtiene todos los idiomas con sus datos", notes = "Devuelve el JSON final con las respuestas por defecto asociadas o las asignadas individualmente")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "OK", response = Idioma.class),
+			@ApiResponse(code = 204, message = "No Content"),
+			@ApiResponse(code = 500, message = "Internal Server Error") })
 	@GetMapping("/all")
 	public ResponseEntity<List<Idioma>> getAllData() {
 		try {
@@ -29,7 +39,8 @@ public class FinalRestController {
 			idiomaRepository.findAll().forEach(idiomas::add);
 
 			// Asignamos las respuestas por defecto si la pregunta no tiene respuestas
-			idiomas.forEach(i -> i.getAreas().forEach(a -> a.getCategorias().forEach(c -> c.getPreguntas().forEach(p -> {
+			idiomas.forEach(
+					i -> i.getAreas().forEach(a -> a.getCategorias().forEach(c -> c.getPreguntas().forEach(p -> {
 						if (p.getRespuestas().isEmpty()) {
 							for (RespuestaPorDefecto prDefecto : a.getRespuestasPorDefecto()) {
 								p.getRespuestas().add(

@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,5 +37,6 @@ public class RespuestaPorDefecto implements Serializable{
 	private Area area;
 	
 	@Column(name = "puntuacion", nullable = false)
+	@ApiModelProperty(value="Puntuación de la respuesta", dataType="int", example="1", position=1)
 	private int puntuacion;
 }

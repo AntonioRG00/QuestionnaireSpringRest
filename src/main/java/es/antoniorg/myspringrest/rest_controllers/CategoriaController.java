@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.Categoria;
 import es.antoniorg.myspringrest.repository.CategoriaRepository;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/rest_categoria")
+@Api(tags="CategoriaRest")
 public class CategoriaController {
 
 	@Autowired

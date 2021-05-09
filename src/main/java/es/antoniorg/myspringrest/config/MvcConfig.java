@@ -11,10 +11,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		// Si necesitamos simplemente un controlador que nos lleve a una plantilla lo
-		// añadimos desde aquí para no tener que crear un controlador
-
-		registry.addViewController("/login");
+		registry.addViewController("/login.xhtml");
 	}
 
 	@Bean

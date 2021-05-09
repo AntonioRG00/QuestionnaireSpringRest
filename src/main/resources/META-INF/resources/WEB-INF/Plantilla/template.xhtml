@@ -7,6 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=0.7" />
+		<link rel="icon" type="image/png" href="/img/icon.png" />
 		<h:outputStylesheet name="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css" />
 		<h:outputStylesheet name="/css/index.css" />
 		<h:outputScript name="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js" />
@@ -17,8 +18,8 @@
 			<div class="row mt-2">
 				<h:form style="margin-bottom: 10px">
 					<p:menubar>
-						<p:menuitem value="Inicio" icon="pi pi-fw pi-trash"/>
-						<p:menuitem value="Swagger" icon="pi pi-fw pi-trash" />
+						<p:menuitem value="Inicio" outcome="/index.xhtml"/>
+						<p:menuitem value="Swagger-UI" icon="pi pi-fw pi-file" url="/swagger-ui/"/>
 						<f:facet name="options">
 							<p:button value="Salir" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" href="/logout" />
 						</f:facet>

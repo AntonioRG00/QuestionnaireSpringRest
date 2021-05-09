@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,12 +33,15 @@ public class Categoria implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
+	@ApiModelProperty(value="ID de categoría", dataType="Long", example="1", position=1)
 	private Long id;
 	
 	@Column(name = "nombre", nullable = false, length = 25)
+	@ApiModelProperty(value="Nombre de la categoría", dataType="String", example="Nucleo 1.1", position=2)
 	private String nombre;
 	
 	@Column(name = "descripcion", nullable = false, length = 100)
+	@ApiModelProperty(value="Descripción de la categoría", dataType="String", example="Información laboral y económica de la formación", position=3)
 	private String descripcion;
 	
 	@JsonIgnore
@@ -46,12 +50,15 @@ public class Categoria implements Serializable {
 	private Area area;
 	
 	@Column(name = "explicacion", nullable = false, length = 200)
+	@ApiModelProperty(value="Explicación de la categoría", dataType="String", example="Sobre la información laboral y económica", position=4)
 	private String explicacion;
 	
 	@Column(name = "puntuacion", nullable = false)
+	@ApiModelProperty(value="Si todas las respuestas asociadas a la categoría suman un número más alto que esta propiedad se muestra la recomendación por categoría", dataType="int", example="5", position=5)
 	private int puntuacion;
 	
 	@Column(name = "recomendacion", columnDefinition="TEXT")
+	@ApiModelProperty(value="Recomendación", dataType="String", example="Reforzar estos puntos", position=6)
 	private String recomendacion;
 
 	@ToString.Exclude
