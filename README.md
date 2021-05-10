@@ -25,6 +25,12 @@
 - **Por pregunta (Pregunta.puntuación < Respuesta.Valor)**
 - **Por categoría (Categoria.puntuacion < La suma de todos los valores de todas las respuestas seleccionadas asociada a esa categoría)**
 
+## Otras funcionalidades internas
+- **El login es de usuario único, parametrizable desde el application.properties, la contraseña debe estar encriptada en BCrypt**
+- **Se ha protegido el login frente a ataques por fuerza bruta, cada 5 intentos te bloquea 2 minutos (Parametrizable desde su clase)**
+- **Se ha protegido el procesador de texto que se usa para la recomendación frente a ataques XSS**
+- **Se ha limitado el número máximo de usuarios simultaneamente conectados a 3 (Parametrizable desde la clase SecurityConfig)**
+
 ## Tecnologías más usadas
 - **Spring (Boot, Security, JPA, Rest)**
 - **PostgreSQL 13 (Como base de datos general)**
@@ -38,6 +44,8 @@
 
 ## Cosas a tener en cuenta
 - **El proyecto está en UTF-8**
+- **Se han comentado todas las operaciones de los servicios REST menos los GET que además son públicos**
+- **La documentación de Swagger-UI se puede acceder sin  estar logueado**
 - **La aplicación se ha preparado para poder ser exportada a un .jar aunque se podría exportar a .war**
 - **Puerto por defecto 9000 http:localhost:9000/ (Parametrizable en el application.properties)**
 - **Integración perfecta con Heroku**
