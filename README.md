@@ -23,7 +23,7 @@
 
 **Cada respuesta va a tener un valor y este va a ser clave para saber si mostrar la recomendación. Ejemplos:**
 - **Por pregunta (Pregunta.puntuación < Respuesta.Valor)**
-- **Por categoría (Categoria.puntuacion < La suma de todos los valores de todas las respuestas seleccionadas asociada a esa categoría)**
+- **Por categoría (Categoria.puntuacion < La suma de todos los valores de esa categoría)**
 
 ## Otras funcionalidades internas
 - **El login es de usuario único, la contraseña debe estar encriptada en BCrypt**
