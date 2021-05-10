@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class FinalRestController {
 
 	private @Autowired IdiomaRepository idiomaRepository;
 
-	@ApiOperation(value = "Obtiene todos los idiomas con sus datos", notes = "Devuelve el JSON final con las respuestas por defecto asociadas o las asignadas individualmente")
+	@ApiOperation(value = "Obtiene todos los idiomas con sus datos (Ordenado por Idioma.nombre y dentro por su Area.nombre)", notes = "Devuelve el JSON final con las respuestas por defecto asociadas o las asignadas individualmente")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "OK", response = Idioma.class),
 			@ApiResponse(code = 204, message = "No Content"),
@@ -36,18 +37,19 @@ public class FinalRestController {
 		try {
 			List<Idioma> idiomas = new ArrayList<Idioma>();
 
-			idiomaRepository.findAll().forEach(idiomas::add);
+			idiomaRepository.findAll(Sort.by(Sort.Direction.DESC, "nombre")).forEach(idiomas::add);
+			idiomas.forEach(x -> x.getAreas().sort((y, z) -> y.getNombre().compareTo(z.getNombre())));
 
 			// Asignamos las respuestas por defecto si la pregunta no tiene respuestas
-			idiomas.forEach(
-					i -> i.getAreas().forEach(a -> a.getCategorias().forEach(c -> c.getPreguntas().forEach(p -> {
+			idiomas.forEach(i -> i.getAreas().forEach(a -> a.getCategorias().forEach(c -> c.getPreguntas().forEach(p -> {
 						if (p.getRespuestas().isEmpty()) {
 							for (RespuestaPorDefecto prDefecto : a.getRespuestasPorDefecto()) {
-								p.getRespuestas().add(
-										new PreguntaRespuesta(p, prDefecto.getRespuesta(), prDefecto.getPuntuacion()));
+								p.getRespuestas().add(new PreguntaRespuesta(p, prDefecto.getRespuesta(), prDefecto.getPuntuacion()));
 							}
 						}
 					}))));
+			
+			// Odenamos los datos alfabéticamente
 
 			if (idiomas.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
