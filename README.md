@@ -27,7 +27,7 @@
 
 ## Otras funcionalidades internas
 - **El login es de usuario único, parametrizable desde el application.properties, la contraseña debe estar encriptada en BCrypt**
-- **Se ha protegido el login frente a ataques por fuerza bruta, cada 5 intentos te bloquea 2 minutos (Parametrizable desde su clase)**
+- **Se ha protegido el login frente a ataques por fuerza bruta, cada 5 intentos te bloquea de IP 2 minutos (Parametrizable desde su clase)**
 - **Se ha protegido el procesador de texto que se usa para la recomendación frente a ataques XSS**
 - **Se ha limitado el número máximo de usuarios simultaneamente conectados a 3 (Parametrizable desde la clase SecurityConfig)**
 - **Desde el application.properties se puede controlar que es público y que necesita estar loguedo**
