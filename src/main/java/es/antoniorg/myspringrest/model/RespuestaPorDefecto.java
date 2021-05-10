@@ -37,6 +37,6 @@ public class RespuestaPorDefecto implements Serializable{
 	private Area area;
 	
 	@Column(name = "puntuacion", nullable = false)
-	@ApiModelProperty(value="Puntuación de la respuesta", dataType="int", example="1", position=1)
+	@ApiModelProperty(value="PuntuaciÃ³n de la respuesta", dataType="int", example="1", position=1)
 	private int puntuacion;
 }

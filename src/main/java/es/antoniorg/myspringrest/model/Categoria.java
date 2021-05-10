@@ -33,15 +33,15 @@ public class Categoria implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	@ApiModelProperty(value="ID de categor韆", dataType="Long", example="1", position=1)
+	@ApiModelProperty(value="ID de categor铆a", dataType="Long", example="1", position=1)
 	private Long id;
 	
 	@Column(name = "nombre", nullable = false, length = 25)
-	@ApiModelProperty(value="Nombre de la categor韆", dataType="String", example="Nucleo 1.1", position=2)
+	@ApiModelProperty(value="Nombre de la categor铆a", dataType="String", example="Nucleo 1.1", position=2)
 	private String nombre;
 	
 	@Column(name = "descripcion", nullable = false, length = 100)
-	@ApiModelProperty(value="Descripci髇 de la categor韆", dataType="String", example="Informaci髇 laboral y econ髆ica de la formaci髇", position=3)
+	@ApiModelProperty(value="Descripci贸n de la categor铆a", dataType="String", example="Informaci贸n laboral y econ锟絤ica de la formaci贸n", position=3)
 	private String descripcion;
 	
 	@JsonIgnore
@@ -50,15 +50,15 @@ public class Categoria implements Serializable {
 	private Area area;
 	
 	@Column(name = "explicacion", nullable = false, length = 200)
-	@ApiModelProperty(value="Explicaci髇 de la categor韆", dataType="String", example="Sobre la informaci髇 laboral y econ髆ica", position=4)
+	@ApiModelProperty(value="Explicaci贸n de la categor铆a", dataType="String", example="Sobre la informaci贸n laboral y econ贸mica", position=4)
 	private String explicacion;
 	
 	@Column(name = "puntuacion", nullable = false)
-	@ApiModelProperty(value="Si todas las respuestas asociadas a la categor韆 suman un n鷐ero m醩 alto que esta propiedad se muestra la recomendaci髇 por categor韆", dataType="int", example="5", position=5)
+	@ApiModelProperty(value="Si todas las respuestas asociadas a la categor锟絘 suman un n锟絤ero m锟絪 alto que esta propiedad se muestra la recomendaci贸n por categor铆a", dataType="int", example="5", position=5)
 	private int puntuacion;
 	
 	@Column(name = "recomendacion", columnDefinition="TEXT")
-	@ApiModelProperty(value="Recomendaci髇", dataType="String", example="Reforzar estos puntos", position=6)
+	@ApiModelProperty(value="Recomendaci贸n", dataType="String", example="Reforzar estos puntos", position=6)
 	private String recomendacion;
 
 	@ToString.Exclude

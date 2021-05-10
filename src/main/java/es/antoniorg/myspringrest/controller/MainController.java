@@ -53,16 +53,16 @@ public class MainController implements Serializable {
 	/** Idioma para el crud */
 	private @Getter @Setter Idioma idiomaEdit;
 
-	/** Lista con las ·reas de la tabla persistente */
+	/** Lista con las √°reas de la tabla persistente */
 	private @Getter @Setter List<Area> areas;
 
 	/** Area para el crud */
 	private @Getter @Setter Area areaEdit;
 
-	/** Lista con las categorÌas de la tabla persistente */
+	/** Lista con las categor√≠as de la tabla persistente */
 	private @Getter @Setter List<Categoria> categorias;
 
-	/** CategorÌa para el crud */
+	/** Categor√≠a para el crud */
 	private @Getter @Setter Categoria categoriaEdit;
 
 	/** Pregunta para el crud */
@@ -89,10 +89,10 @@ public class MainController implements Serializable {
 	/** Lista con las Respuestas por defecto de la tabla persistente */
 	private @Getter @Setter List<RespuestaPorDefecto> respuestasDefecto;
 
-	/** ¡rbol con todos los datos relacionados */
+	/** √Årbol con todos los datos relacionados */
 	private @Getter @Setter TreeNode arbolDatos;
 
-	/** False: ·rbol contraido, True: ·rbol abierto */
+	/** False: √°rbol contraido, True: √°rbol abierto */
 	private @Getter @Setter boolean arbolShowed;
 
 	@PostConstruct
@@ -128,7 +128,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Idioma
 
-	/** Actualiza el idioma seleccionado para despuÈs llamar a crearIdioma */
+	/** Actualiza el idioma seleccionado para despu√©s llamar a crearIdioma */
 	public void actualizarIdioma(Idioma idioma) {
 		logger.info("actualizarIdioma init: Se procede a actualizar el idioma seleccionado a: " + idioma.toString());
 		idiomaEdit = idioma;
@@ -148,7 +148,7 @@ public class MainController implements Serializable {
 		Collections.rotate(idiomas, 1);
 	}
 
-	/** Elimina el idioma pasado por par·metro */
+	/** Elimina el idioma pasado por par√°metro */
 	public void eliminarIdioma(Idioma idioma) {
 		logger.info("eliminarIdioma init: Se va a borrar el idioma: " + idioma.toString());
 		idiomaRepository.delete(idioma);
@@ -157,7 +157,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Area
 
-	/** Actualiza el area seleccionado para despuÈs llamar a crearArea */
+	/** Actualiza el area seleccionado para despu√©s llamar a crearArea */
 	public void actualizarArea(Area area) {
 		logger.info("actualizarArea init: Se procede a actualizar el area seleccionado a: " + area.toString());
 		areaEdit = area;
@@ -177,22 +177,22 @@ public class MainController implements Serializable {
 		Collections.rotate(areas, 1);
 	}
 
-	/** Elimina el area pasado por par·metro */
+	/** Elimina el area pasado por par√°metro */
 	public void eliminarArea(Area area) {
 		logger.info("eliminarArea init: Se va a borrar el area: " + area.toString());
 		areaRepository.delete(area);
 		limpiarVariables();
 	}
 
-	// -----------------------------------Crud Tabla CategorÌa
+	// -----------------------------------Crud Tabla Categor√≠a
 
-	/** Actualiza la categorÌa seleccionada para despuÈs llamar a crearCategoria */
+	/** Actualiza la categor√≠a seleccionada para despu√°s llamar a crearCategoria */
 	public void actualizarCategoria(Categoria categoria) {
-		logger.info("actualizarCategoria init: Se procede a actualizar la categorÌa seleccionada a: "+ categoria.toString());
+		logger.info("actualizarCategoria init: Se procede a actualizar la categor√≠a seleccionada a: "+ categoria.toString());
 		categoriaEdit = categoria;
 	}
 
-	/** Asigna una nueva categorÌa a la variable categoria editable */
+	/** Asigna una nueva categor√≠a la variable categoria editable */
 	public void crearCategoria() {
 		logger.info("crearCategoria init: Aplastando la variable categoriaEdit");
 		categoriaEdit = new Categoria();
@@ -200,22 +200,22 @@ public class MainController implements Serializable {
 
 	/** Persiste una nueva categoria con la variable categoriaEdit */
 	public void persistCategoria() {
-		logger.info("crearCategoria init: Se procede a persistir la categorÌa " + categoriaEdit.toString());
+		logger.info("crearCategoria init: Se procede a persistir la categor√≠a " + categoriaEdit.toString());
 		categoriaEdit = categoriaRepository.saveAndFlush(categoriaEdit);
 		limpiarVariables();
 		Collections.rotate(categorias, 1);
 	}
 
-	/** Elimina la categoria pasada por par·metro */
+	/** Elimina la categoria pasada por par√°metro */
 	public void eliminarCategoria(Categoria categoria) {
-		logger.info("eliminarCategoria init: Se va a borrar la categorÌa: " + categoria.toString());
+		logger.info("eliminarCategoria init: Se va a borrar la categor√≠a: " + categoria.toString());
 		categoriaRepository.delete(categoria);
 		limpiarVariables();
 	}
 
 	// -----------------------------------Crud Tabla Pregunta
 
-	/** Actualiza la pregunta seleccionada para despuÈs llamar a crearPregunta */
+	/** Actualiza la pregunta seleccionada para despu√©s llamar a crearPregunta */
 	public void actualizarPregunta(Pregunta pregunta) {
 		logger.info("actualizarPregunta init: Se procede a actualizar la pregunta seleccionada a: " + pregunta.toString());
 		preguntaEdit = pregunta;
@@ -235,7 +235,7 @@ public class MainController implements Serializable {
 		Collections.rotate(preguntas, 1);
 	}
 
-	/** Elimina la pregunta pasada por par·metro */
+	/** Elimina la pregunta pasada por par√°metro */
 	public void eliminarPregunta(Pregunta pregunta) {
 		logger.info("eliminarPregunta init: Se va a borrar la pregunta: " + pregunta.toString());
 		preguntaRepository.delete(pregunta);
@@ -244,7 +244,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Respuesta
 
-	/** Actualiza la respuesta seleccionada para despuÈs llamar a crearRespuesta */
+	/** Actualiza la respuesta seleccionada para despu√©s llamar a crearRespuesta */
 	public void actualizarRespuesta(Respuesta respuesta) {
 		logger.info("actualizarRespuesta init: Se procede a actualizar la respuesta seleccionada a: " + respuesta.toString());
 		respuestaEdit = respuesta;
@@ -264,7 +264,7 @@ public class MainController implements Serializable {
 		Collections.rotate(respuestas, 1);
 	}
 
-	/** Elimina la respuesta pasada por par·metro */
+	/** Elimina la respuesta pasada por par√°metro */
 	public void eliminarRespuesta(Respuesta respuesta) {
 		logger.info("eliminarRespuesta init: Se va a borrar la respuesta: " + respuesta.toString());
 		respuestaRepository.delete(respuesta);
@@ -273,7 +273,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Pregunta-Respuesta
 
-	/** Actualiza la PreRes seleccionada para despuÈs llamar a crearRespuesta */
+	/** Actualiza la PreRes seleccionada para despu√©s llamar a crearRespuesta */
 	public void actualizarPreRes(PreguntaRespuesta preRes) {
 		logger.info("actualizarPreRes init: Se procede a actualizar la preRes seleccionada a: " + preRes.toString());
 		preResEdit = preRes;
@@ -293,7 +293,7 @@ public class MainController implements Serializable {
 		Collections.rotate(preRes, 1);
 	}
 
-	/** Elimina la Pregunta-Respuesta pasada por par·metro */
+	/** Elimina la Pregunta-Respuesta pasada por par√°metro */
 	public void eliminarPreRes(PreguntaRespuesta preRes) {
 		logger.info("eliminarPreRes init: Se va a borrar la preRes: " + preRes.toString());
 		preResRepository.delete(preRes);
@@ -302,7 +302,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Area-Respuesta
 
-	/** Actualiza la respuesta por defecto seleccionada para despuÈs llamar a crearRespuestaDefecto */
+	/** Actualiza la respuesta por defecto seleccionada para despu√©s llamar a crearRespuestaDefecto */
 	public void actualizarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
 		logger.info("actualizarRespuestaDefecto init: Se procede a actualizar la respuestaDefecto seleccionada a: " + respuestaDefecto.toString());
 		respuestaDefectoEdit = respuestaDefecto;
@@ -322,7 +322,7 @@ public class MainController implements Serializable {
 		Collections.rotate(respuestasDefecto, 1);
 	}
 
-	/** Elimina la respuesta por defecto pasada por par·metro */
+	/** Elimina la respuesta por defecto pasada por par√°metro */
 	public void eliminarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
 		logger.info("eliminarRespuestaDefecto init: Se va a borrar la respuesta por defecto: " + respuestaDefecto.toString());
 		respuestaDefaultRepository.delete(respuestaDefecto);
@@ -331,9 +331,9 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Funciones
 
-	/** Genera la tabla en forma de ·rbol para visualizar la estructura de datos */
+	/** Genera la tabla en forma de √°rbol para visualizar la estructura de datos */
 	public TreeNode getTreeNode() {
-		TreeNode root = new DefaultTreeNode("Mi¡rbol", null);
+		TreeNode root = new DefaultTreeNode("Mi√Årbol", null);
 
 		TreeNode container = new DefaultTreeNode("Contenedor", root);
 
@@ -370,7 +370,7 @@ public class MainController implements Serializable {
 		return arbolShowed = true;
 	}
 
-	/** Expande o contrae los nodos del ·rbol pasado por par·metro recursivamente */
+	/** Expande o contrae los nodos del √°rbol pasado por par√°metro recursivamente */
 	public void mostrarNodos(TreeNode n, boolean option) {
 		if (n.getChildren().size() == 0) {
 			n.setSelected(false);

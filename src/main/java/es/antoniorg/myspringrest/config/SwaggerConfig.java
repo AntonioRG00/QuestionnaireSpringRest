@@ -36,7 +36,7 @@ public class SwaggerConfig {
 				.title(titulo)
 				.description(descripcion)
 				.version("1.0")
-				.contact(new Contact("Antonio Rodríguez Gundermann","", "antoniorg00@protonmail.com"))
+				.contact(new Contact("Antonio RodrÃ­guez Gundermann","", "antoniorg00@protonmail.com"))
 				.build();
 	}
 }

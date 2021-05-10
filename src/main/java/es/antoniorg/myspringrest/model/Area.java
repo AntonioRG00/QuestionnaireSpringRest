@@ -33,11 +33,11 @@ public class Area implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	@ApiModelProperty(value="ID del ·rea", dataType="Long", example="1", position=1)
+	@ApiModelProperty(value="ID del √Årea", dataType="Long", example="1", position=1)
 	private Long id;
 	
 	@Column(name = "nombre", nullable = false, length = 25)
-	@ApiModelProperty(value="Nombre del ·rea", dataType="String", example="1.1 Fase", position=2)
+	@ApiModelProperty(value="Nombre del √Årea", dataType="String", example="1.1 Fase", position=2)
 	private String nombre;
 	
 	@JsonIgnore

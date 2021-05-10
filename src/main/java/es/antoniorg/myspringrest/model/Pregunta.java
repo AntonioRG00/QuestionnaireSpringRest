@@ -37,7 +37,7 @@ public class Pregunta implements Serializable {
 	private Long id;
 
 	@Column(name = "pregunta", nullable = false, length = 150)
-	@ApiModelProperty(value="Pregunta", dataType="String", example="¿Damos becas?", position=2)
+	@ApiModelProperty(value="Pregunta", dataType="String", example="Â¿Damos becas?", position=2)
 	private String pregunta;
 
 	@JsonIgnore
@@ -46,11 +46,11 @@ public class Pregunta implements Serializable {
 	private Categoria categoria;
 
 	@Column(name = "recomendacion", nullable = false, columnDefinition="TEXT")
-	@ApiModelProperty(value="Recomendacion por pregunta", dataType="String", example="Dar más dinero para las becas", position=3)
+	@ApiModelProperty(value="Recomendacion por pregunta", dataType="String", example="Dar mÃ¡s dinero para las becas", position=3)
 	private String recomendacion;
 
 	@Column(name = "puntuacion_recomendacion", nullable = false)
-	@ApiModelProperty(value="Si la respuesta seleccionada tiene una puntuación más alta que esta propiedad hay que mostrar la recomendación por pregunta", dataType="int", example="5", position=4)
+	@ApiModelProperty(value="Si la respuesta seleccionada tiene una puntuaciÃ³n mÃ¡s alta que esta propiedad hay que mostrar la recomendaciÃ³n por pregunta", dataType="int", example="5", position=4)
 	private int puntuacionRecomendacion;
 
 	@ToString.Exclude
