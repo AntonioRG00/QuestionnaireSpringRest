@@ -1,4 +1,4 @@
-# Servicio Rest con panel de administración para crear datos
+# Servicio Rest con panel de administración
 **Servicio rest implementado con Spring para el proyecto de generación de cuestionarios multilenguaje con recomendaciones para los institutos con formación en oferta dual.**
 
 ## Vista de administrador en el panel
