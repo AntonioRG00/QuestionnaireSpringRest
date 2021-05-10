@@ -39,5 +39,5 @@
 ## Cosas a tener en cuenta
 - **El proyecto está en UTF-8**
 - **La aplicación se ha preparado para poder ser exportada a un .jar aunque se podría exportar a .war**
-- **Puerto por defecto 9000 por lo que la url sería  http:localhost:9000/ (Se puede cambiar en el application.properties)**
+- **Puerto por defecto 9000 por lo que la url sería  http:localhost:9000/ (Parametrizable en el application.properties)**
 - **Integración perfecta con Heroku**
