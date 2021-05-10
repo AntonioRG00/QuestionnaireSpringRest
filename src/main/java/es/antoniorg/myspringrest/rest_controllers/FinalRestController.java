@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/rest")
-@Api(tags="!RestFinal (Servicio rest con las funciones m·s importantes)")
+@Api(tags="!RestFinal (Servicio rest con las funciones m√°s importantes)")
 public class FinalRestController {
 
 	private @Autowired IdiomaRepository idiomaRepository;

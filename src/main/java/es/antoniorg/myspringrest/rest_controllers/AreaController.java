@@ -18,7 +18,7 @@ import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/rest_area")
-@Api(tags="¡reaRest")
+@Api(tags="√ÅreaRest")
 public class AreaController {
 
 	@Autowired

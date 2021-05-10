@@ -34,7 +34,7 @@ public class Idioma implements Serializable {
 	private Long id;
 	
 	@Column(name = "nombre_idioma", nullable = false, length = 50)
-	@ApiModelProperty(value="Nombre del idioma", dataType="String", example="España", position=2)
+	@ApiModelProperty(value="Nombre del idioma", dataType="String", example="EspaÃ±a", position=2)
 	private String nombre;
 	
 	@Column(name = "url_imagen", nullable = false, length = 250)
