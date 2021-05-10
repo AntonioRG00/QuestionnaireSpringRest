@@ -2,8 +2,8 @@
 **Servicio rest implementado con Spring para el proyecto de generación de cuestionarios multilenguaje con recomendaciones para los institutos con formación en oferta dual.**
 
 ## Vista de administrador en el panel
-- **Una vez logueados en la aplicación disponemos de unas tablas crud para trabajar con la estructura de datos de la aplicación.**
-- **Disponemos también de un visualizador de la estructura de datos del JSON a enviar por el servicio rest en http:localhost/rest/all.**
+- **Una vez logueados en la aplicación disponemos de unas tablas crud para trabajar con los datos.**
+- **Un visualizador de la estructura de datos del JSON a enviar por el servicio rest en http:localhost/rest/all.**
 - **Todo está implementado en una single-page app y todos los datos que muestra son actualizados en tiempo real.**
 - **Documentación y testeo para el API-REST con Swagger-UI, se puede acceder desde el panel o sin haberse logueado.**
  
@@ -39,5 +39,5 @@
 ## Cosas a tener en cuenta
 - **El proyecto está en UTF-8**
 - **La aplicación se ha preparado para poder ser exportada a un .jar aunque se podría exportar a .war**
-- **Puerto por defecto 9000 por lo que la url sería  http:localhost:9000/ (Parametrizable en el application.properties)**
+- **Puerto por defecto 9000 http:localhost:9000/ (Parametrizable en el application.properties)**
 - **Integración perfecta con Heroku**
