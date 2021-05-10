@@ -26,7 +26,7 @@
 - **Por categoría (Categoria.puntuacion < La suma de todos los valores de todas las respuestas seleccionadas asociada a esa categoría)**
 
 ## Otras funcionalidades internas
-- **El login es de usuario único, parametrizable desde el application.properties, la contraseña debe estar encriptada en BCrypt**
+- **El login es de usuario único, la contraseña debe estar encriptada en BCrypt**
 - **Se ha protegido el login frente a ataques por fuerza bruta, cada 5 intentos te bloquea de IP 2 minutos (Parametrizable desde su clase)**
 - **Se ha protegido el procesador de texto que se usa para la recomendación frente a ataques XSS**
 - **Número máximo de usuarios simultaneamente conectados: 3 (Parametrizable desde la clase SecurityConfig)**
