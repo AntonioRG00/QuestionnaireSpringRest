@@ -361,13 +361,9 @@ public class MainController implements Serializable {
 		return root;
 	}
 
-	/** Cambia el estado de la variable arbolShowed */
+	/** Cambia el estado de la variable arbolShowed y la devuelve */
 	public boolean arbolShowedReverse() {
-		if (arbolShowed) {
-			return arbolShowed = false;
-		}
-
-		return arbolShowed = true;
+		return arbolShowed = !arbolShowed;
 	}
 
 	/** Expande o contrae los nodos del árbol pasado por parámetro recursivamente */

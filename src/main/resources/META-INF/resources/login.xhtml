@@ -21,11 +21,12 @@
 				<p:inputText id="username" class="fadeIn second col-10 mt-2" placeholder="Usuario" />
 				<p:password id="password" class="fadeIn third col-10 mt-2" placeholder="Contraseña" />
 				<p:commandButton class="fadeIn fourth col-12 fw-bolder mt-2" value="Entrar" ajax="false" />
+				<h:inputText readonly="true" class="fadeIn fourth col-12 fw-bolder mt-2" style="width=100%" id="mensaje-error"
+					value="#{dispatcherController.errorMessageLogin}" />
 			</div>
 		</div>
 	</h:form>
 
-	<h:inputText readonly="true" class="fadeIn fourth col-12 fw-bolder mt-2" style="width=100%" id="mensaje-error" value="#{dispatcherController.errorMessageLogin}" />
 
 </h:body>
 </html>
