@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OrderBy;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -26,7 +28,7 @@ import lombok.ToString;
 
 @Getter @Setter @EqualsAndHashCode(onlyExplicitlyIncluded = true) @NoArgsConstructor @ToString
 @Entity @Table(name = "area")
-public class Area implements Serializable {
+public class Area implements Serializable{
 
 	private static final long serialVersionUID = 2341129915698318755L;
 
@@ -47,6 +49,7 @@ public class Area implements Serializable {
 	
 	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area", orphanRemoval = true)
+	@OrderBy(clause = "nombre")
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	@JsonIgnore

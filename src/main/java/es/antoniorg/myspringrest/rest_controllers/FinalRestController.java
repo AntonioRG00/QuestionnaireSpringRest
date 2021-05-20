@@ -38,8 +38,7 @@ public class FinalRestController {
 			List<Idioma> idiomas = new ArrayList<Idioma>();
 
 			idiomaRepository.findAll(Sort.by(Sort.Direction.DESC, "nombre")).forEach(idiomas::add);
-			idiomas.forEach(x -> x.getAreas().sort((y, z) -> y.getNombre().compareTo(z.getNombre())));
-
+			
 			// Asignamos las respuestas por defecto si la pregunta no tiene respuestas
 			idiomas.forEach(i -> i.getAreas().forEach(a -> a.getCategorias().forEach(c -> c.getPreguntas().forEach(p -> {
 						if (p.getRespuestas().isEmpty()) {
