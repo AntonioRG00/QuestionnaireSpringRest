@@ -36,7 +36,7 @@ public class Pregunta implements Serializable {
 	@ApiModelProperty(value="ID de pregunta", dataType="Long", example="1", position=1)
 	private Long id;
 
-	@Column(name = "pregunta", nullable = false, length = 150)
+	@Column(name = "pregunta", nullable = false, length = 250)
 	@ApiModelProperty(value="Pregunta", dataType="String", example="¿Damos becas?", position=2)
 	private String pregunta;
 
