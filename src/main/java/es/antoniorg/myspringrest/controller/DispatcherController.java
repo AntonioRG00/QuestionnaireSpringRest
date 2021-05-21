@@ -29,7 +29,11 @@ public class DispatcherController {
 		if (session != null) {
 			AuthenticationException ex = (AuthenticationException) session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 			if (ex != null) {
-				errorMessageLogin = ex.getMessage();
+				if(ex.getMessage().equals("Bad credentials")) {
+					errorMessageLogin = "Datos erróneos";
+				} else {					
+					errorMessageLogin = ex.getMessage();
+				}
 			}
 		}
 

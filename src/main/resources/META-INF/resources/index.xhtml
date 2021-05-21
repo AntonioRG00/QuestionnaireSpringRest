@@ -57,7 +57,7 @@
 								oncomplete="PF('EditarAreaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarArea(area)}">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarArea(area)}" onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar el area #{area.nombre}" />
 							</p:commandLink>
