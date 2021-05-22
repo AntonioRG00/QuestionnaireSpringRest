@@ -14,6 +14,12 @@ body {
   font-style: italic;
 }
 
+.descField {
+	background-color: #dedede;
+	font-weight: bolder;
+	color: #e53c3c;
+}
+
 .centrado{
   display: flex;
   justify-content: center;

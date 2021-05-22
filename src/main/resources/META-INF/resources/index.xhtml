@@ -323,13 +323,13 @@
 		</h:form>
 
 		<p:dialog id="EditarIdiomaDialog" widgetVar="EditarIdiomaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear un Idioma" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarIdiomaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
 						<div class="col-md-2">
-							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre:" />
+							<h:outputLabel for="nombreIdioma" style="float:left!important;" value="Nombre:"/>
 						</div>
 						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="50" value="#{mainController.idiomaEdit.nombre}" id="nombreIdioma" required="true"
@@ -346,20 +346,16 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistIdioma()}" onstart="start()"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarIdiomaDialog').hide();stop()">
-								<span class="pi pi-check-circle" />
-								<span>Aceptar</span>
-								<span class="pi pi-check-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarIdiomaDialog').hide()"
+								immediate="true" style="color:white; font-weight: bolder;">
+								<span>Cancelar</span>
 							</p:commandLink>
 						</div>
-						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarIdiomaDialog').hide()"
-								immediate="true">
-								<span class="pi pi-times-circle" />
-								<span>Cancelar</span>
-								<span class="pi pi-times-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="saveButton" type="button" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistIdioma()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarIdiomaDialog').hide();stop()" style="color:black; font-weight: bolder;">
+								<span>Aceptar</span>
 							</p:commandLink>
 						</div>
 					</div>
@@ -368,7 +364,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarAreaDialog" widgetVar="EditarAreaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear área" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear un Área" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarAreaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -412,20 +408,16 @@
 					</div>
 				</div>
 				<div class="row mt-2">
-					<div class="col-6">
-						<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistArea()}" onstart="start()"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarAreaDialog').hide();stop()">
-							<span class="pi pi-check-circle" />
-							<span>Aceptar</span>
-							<span class="pi pi-check-circle" />
+					<div class="col-md-6 mt-2">
+						<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarAreaDialog').hide()"
+							immediate="true" style="color:white; font-weight: bolder;">
+							<span>Cancelar</span>
 						</p:commandLink>
 					</div>
-					<div class="col-6">
-						<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarAreaDialog').hide()"
-							immediate="true">
-							<span class="pi pi-times-circle" />
-							<span>Cancelar</span>
-							<span class="pi pi-times-circle" />
+					<div class="col-md-6 mt-2">
+						<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistArea()}" onstart="start()"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarAreaDialog').hide();stop()" style="color:black; font-weight: bolder;">
+							<span>Aceptar</span>
 						</p:commandLink>
 					</div>
 				</div>
@@ -433,33 +425,33 @@
 		</p:dialog>
 
 		<p:dialog id="EditarCategoriaDialog" widgetVar="EditarCategoriaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear Categoría" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear una Categoría" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false" position="10,10">
 			<h:form id="EditarCategoriaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="nombreCategoria" style="float:left!important;" value="Nombre:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="25" value="#{mainController.categoriaEdit.nombre}" id="nombreCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="descripcionCategoria" style="float:left!important;" value="Descripción:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="100" value="#{mainController.categoriaEdit.descripcion}" id="descripcionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="idAreaCategoria" style="float:left!important;" value="Área:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<p:selectOneMenu id="oneMenuAreaCategoria" value="#{mainController.categoriaEdit.area}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="areaConverter" style="width: 100%">
 
@@ -479,19 +471,19 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="explicacionCategoria" style="float:left!important;" value="Explicación:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="200" value="#{mainController.categoriaEdit.explicacion}" id="explicacionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-12">
-							<h:outputLabel for="maxRecCategoria" style="float:left!important;" value="MaxParaRecomendación:" />
+						<div class="col-md-2">
+							<h:outputLabel for="maxRecCategoria" style="float:left!important;" value="Puntuación:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="10" value="#{mainController.categoriaEdit.puntuacion}" id="puntuacionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 							<p:keyFilter mask="num" for="puntuacionCategoria" />
@@ -499,7 +491,7 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-12">
-							<h:outputLabel for="recomendacionCategoria" style="float:left!important;" value="Recomendación:" />
+							<h:outputLabel for="recomendacionCategoria" styleClass="centrado" value="Recomendación" />
 						</div>
 						<div class="col-12">
 							<p:textEditor value="#{mainController.categoriaEdit.recomendacion}" id="recomendacionCategoria" height="300" required="true"
@@ -507,20 +499,16 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistCategoria()}" onstart="start()"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarCategoriaDialog').hide();stop()">
-								<span class="pi pi-check-circle" />
-								<span>Aceptar</span>
-								<span class="pi pi-check-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarCategoriaDialog').hide()"
+								immediate="true" style="color:white; font-weight: bolder;">
+								<span>Cancelar</span>
 							</p:commandLink>
 						</div>
-						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarCategoriaDialog').hide()"
-								immediate="true">
-								<span class="pi pi-times-circle" />
-								<span>Cancelar</span>
-								<span class="pi pi-times-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistCategoria()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarCategoriaDialog').hide();stop()" style="color:black; font-weight: bolder;">
+								<span>Aceptar</span>
 							</p:commandLink>
 						</div>
 					</div>
@@ -529,24 +517,24 @@
 		</p:dialog>
 
 		<p:dialog id="EditarPreguntaDialog" widgetVar="EditarPreguntaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear una Pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false" position="10,10">
 			<h:form id="EditarPreguntaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="preguntaPregunta" style="float:left!important;" value="Pregunta:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="250" value="#{mainController.preguntaEdit.pregunta}" id="preguntaPregunta" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="idCategoriaPregunta" style="float:left!important;" value="Categoría:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<p:selectOneMenu id="oneMenuCategoriaPregunta" value="#{mainController.preguntaEdit.categoria}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="categoriaConverter" style="width: 100%">
 
@@ -566,10 +554,10 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="perfilPregunta" style="float:left!important;" value="Perfil:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<p:selectOneMenu id="perfilPregunta" value="#{mainController.preguntaEdit.perfil}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="perfilConverter" style="width: 100%">
 
@@ -589,10 +577,10 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-12">
+						<div class="col-md-2">
 							<h:outputLabel for="puntuacionPregunta" style="float:left!important;" value="Puntuación:" />
 						</div>
-						<div class="col-12">
+						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="10" value="#{mainController.preguntaEdit.puntuacionRecomendacion}" id="puntuacionPregunta"
 								required="true" requiredMessage="Campo requerido" />
 							<p:keyFilter mask="num" for="puntuacionPregunta" />
@@ -600,7 +588,7 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-12">
-							<h:outputLabel for="recomendacionPregunta" style="float:left!important;" value="Recomendación:" />
+							<h:outputLabel for="recomendacionPregunta" styleClass="centrado" value="Recomendación" />
 						</div>
 						<div class="col-12">
 							<p:textEditor value="#{mainController.preguntaEdit.recomendacion}" id="recomendacionPregunta" height="300" required="true"
@@ -608,20 +596,16 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPregunta()}" onstart="start()"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreguntaDialog').hide();stop()">
-								<span class="pi pi-check-circle" />
-								<span>Aceptar</span>
-								<span class="pi pi-check-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPreguntaDialog').hide()"
+								immediate="true" style="color:white; font-weight: bolder;">
+								<span>Cancelar</span>
 							</p:commandLink>
 						</div>
-						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPreguntaDialog').hide()"
-								immediate="true">
-								<span class="pi pi-times-circle" />
-								<span>Cancelar</span>
-								<span class="pi pi-times-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPregunta()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreguntaDialog').hide();stop()" style="color:black; font-weight: bolder;">
+								<span>Aceptar</span>
 							</p:commandLink>
 						</div>
 					</div>
@@ -630,7 +614,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarRespuestaDialog" widgetVar="EditarRespuestaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear una Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarRespuestaForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -644,20 +628,16 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-md-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuesta()}" onstart="start()"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDialog').hide();stop()">
-								<span class="pi pi-check-circle" />
-								<span>Aceptar</span>
-								<span class="pi pi-check-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarRespuestaDialog').hide()"
+								immediate="true" style="color:white; font-weight: bolder;">
+								<span>Cancelar</span>
 							</p:commandLink>
 						</div>
-						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarRespuestaDialog').hide()"
-								immediate="true">
-								<span class="pi pi-times-circle" />
-								<span>Cancelar</span>
-								<span class="pi pi-times-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuesta()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDialog').hide();stop()" style="color:black; font-weight: bolder;">
+								<span>Aceptar</span>
 							</p:commandLink>
 						</div>
 					</div>
@@ -666,7 +646,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarPreResDialog" widgetVar="EditarPreResDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear Pregunta-Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear una Pregunta-Respuesta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarPreResForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -727,20 +707,16 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPreRes()}" onstart="start()"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreResDialog').hide();stop()">
-								<span class="pi pi-check-circle" />
-								<span>Aceptar</span>
-								<span class="pi pi-check-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPreResDialog').hide()"
+								immediate="true" style="color:white; font-weight: bolder;">
+								<span>Cancelar</span>
 							</p:commandLink>
 						</div>
-						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPreResDialog').hide()"
-								immediate="true">
-								<span class="pi pi-times-circle" />
-								<span>Cancelar</span>
-								<span class="pi pi-times-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPreRes()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPreResDialog').hide();stop()" style="color:black; font-weight: bolder;">
+								<span>Aceptar</span>
 							</p:commandLink>
 						</div>
 					</div>
@@ -749,7 +725,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarRespuestaDefectoDialog" widgetVar="EditarRespuestaDefectoDialog" modal="true" showEffect="fade" hideEffect="fade"
-			responsive="true" header="Editar/Crear Respuesta por defecto" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			responsive="true" header="Editar/Crear una Respuesta por defecto" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarRespuestaDefectoForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -810,20 +786,16 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuestaDefecto()}"
-								onstart="start()" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDefectoDialog').hide();stop()">
-								<span class="pi pi-check-circle" />
-								<span>Aceptar</span>
-								<span class="pi pi-check-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12"
+								onclick="PF('EditarRespuestaDefectoDialog').hide()" immediate="true" style="color:white; font-weight: bolder;">
+								<span>Cancelar</span>
 							</p:commandLink>
 						</div>
-						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12"
-								onclick="PF('EditarRespuestaDefectoDialog').hide()" immediate="true">
-								<span class="pi pi-times-circle" />
-								<span>Cancelar</span>
-								<span class="pi pi-times-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuestaDefecto()}"
+								onstart="start()" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDefectoDialog').hide();stop()" style="color:black; font-weight: bolder;">
+								<span>Aceptar</span>
 							</p:commandLink>
 						</div>
 					</div>
@@ -832,7 +804,7 @@
 		</p:dialog>
 
 		<p:dialog id="EditarPerfilDialog" widgetVar="EditarPerfilDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
-			header="Editar/Crear Perfil" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			header="Editar/Crear un Perfil" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
 			<h:form id="EditarPerfilForm">
 				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
@@ -846,20 +818,16 @@
 						</div>
 					</div>
 					<div class="row mt-2">
-						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPerfil()}" onstart="start()"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPerfilDialog').hide();stop()">
-								<span class="pi pi-check-circle" />
-								<span>Aceptar</span>
-								<span class="pi pi-check-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPerfilDialog').hide()"
+								immediate="true" style="color:white; font-weight: bolder;">
+								<span>Cancelar</span>
 							</p:commandLink>
 						</div>
-						<div class="col-6">
-							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPerfilDialog').hide()"
-								immediate="true">
-								<span class="pi pi-times-circle" />
-								<span>Cancelar</span>
-								<span class="pi pi-times-circle" />
+						<div class="col-md-6 mt-2">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPerfil()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPerfilDialog').hide();stop()" style="color:black; font-weight: bolder;">
+								<span>Aceptar</span>
 							</p:commandLink>
 						</div>
 					</div>
