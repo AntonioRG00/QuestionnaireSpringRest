@@ -1,8 +1,8 @@
 package es.antoniorg.myspringrest.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,7 +46,7 @@ public class Idioma implements Serializable {
 	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma", orphanRemoval = true)
 	@OrderBy(clause = "nombre")
-	private Set<Area> areas = new HashSet<>();
+	private List<Area> areas = new ArrayList<>();
 
 	public Idioma(String nombreIdioma, String urlImagen) {
 		this.nombre = nombreIdioma;

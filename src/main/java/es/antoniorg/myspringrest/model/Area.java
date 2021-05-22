@@ -55,6 +55,7 @@ public class Area implements Serializable{
 	@JsonIgnore
 	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "area", orphanRemoval = true)
+	@OrderBy(clause = "puntuacion")
 	private List<RespuestaPorDefecto> respuestasPorDefecto = new ArrayList<>();
 
 	public Area(String nombre, Idioma idioma) {

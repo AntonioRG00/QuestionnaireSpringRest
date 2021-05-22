@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OrderBy;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -59,6 +61,7 @@ public class Pregunta implements Serializable {
 
 	@ToString.Exclude
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OrderBy(clause = "puntuacion")
 	private List<PreguntaRespuesta> respuestas = new ArrayList<>();
 
 	public Pregunta(String pregunta, Categoria categoria, String recomendacion, int puntuacionRecomendacion, Perfil perfil) {
