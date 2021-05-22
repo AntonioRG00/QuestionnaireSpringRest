@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import es.antoniorg.myspringrest.model.Area;
 import es.antoniorg.myspringrest.model.Categoria;
 import es.antoniorg.myspringrest.model.Idioma;
+import es.antoniorg.myspringrest.model.Perfil;
 import es.antoniorg.myspringrest.model.Pregunta;
 import es.antoniorg.myspringrest.model.PreguntaRespuesta;
 import es.antoniorg.myspringrest.model.Respuesta;
@@ -24,6 +25,7 @@ import es.antoniorg.myspringrest.model.RespuestaPorDefecto;
 import es.antoniorg.myspringrest.repository.AreaRepository;
 import es.antoniorg.myspringrest.repository.CategoriaRepository;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
+import es.antoniorg.myspringrest.repository.PerfilRepository;
 import es.antoniorg.myspringrest.repository.PreguntaRepository;
 import es.antoniorg.myspringrest.repository.PreguntaRespuestaRepository;
 import es.antoniorg.myspringrest.repository.RespuestaPorDefectoRepository;
@@ -46,6 +48,7 @@ public class MainController implements Serializable {
 	private @Autowired RespuestaRepository respuestaRepository;
 	private @Autowired PreguntaRespuestaRepository preResRepository;
 	private @Autowired RespuestaPorDefectoRepository respuestaDefaultRepository;
+	private @Autowired PerfilRepository perfilRepository;
 
 	/** Lista con los idiomas de la tabla persistente */
 	private @Getter @Setter List<Idioma> idiomas;
@@ -88,6 +91,12 @@ public class MainController implements Serializable {
 
 	/** Lista con las Respuestas por defecto de la tabla persistente */
 	private @Getter @Setter List<RespuestaPorDefecto> respuestasDefecto;
+	
+	/** Perfil para el crud */
+	private @Getter @Setter Perfil perfilEdit;
+	
+	/** Lista con los perfiles de la tabla persistente */
+	private @Getter @Setter List<Perfil> perfiles;
 
 	/** Árbol con todos los datos relacionados */
 	private @Getter @Setter TreeNode arbolDatos;
@@ -113,6 +122,7 @@ public class MainController implements Serializable {
 		respuestaEdit = new Respuesta();
 		preResEdit = new PreguntaRespuesta();
 		respuestaDefectoEdit = new RespuestaPorDefecto();
+		perfilEdit = new Perfil();
 		arbolShowed = false;
 
 		idiomas = idiomaRepository.findAll();
@@ -122,13 +132,14 @@ public class MainController implements Serializable {
 		respuestas = respuestaRepository.findAll();
 		preRes = preResRepository.findAll();
 		respuestasDefecto = respuestaDefaultRepository.findAll();
+		perfiles = perfilRepository.findAll();
 
 		arbolDatos = getTreeNode();
 	}
 
 	// -----------------------------------Crud Tabla Idioma
 
-	/** Actualiza el idioma seleccionado para después llamar a crearIdioma */
+	/** Actualiza el idioma seleccionado para después llamar a persistIdioma */
 	public void actualizarIdioma(Idioma idioma) {
 		logger.info("actualizarIdioma init: Se procede a actualizar el idioma seleccionado a: " + idioma.toString());
 		idiomaEdit = idioma;
@@ -157,7 +168,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Area
 
-	/** Actualiza el area seleccionado para después llamar a crearArea */
+	/** Actualiza el area seleccionado para después llamar a persistArea */
 	public void actualizarArea(Area area) {
 		logger.info("actualizarArea init: Se procede a actualizar el area seleccionado a: " + area.toString());
 		areaEdit = area;
@@ -186,7 +197,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Categoría
 
-	/** Actualiza la categoría seleccionada para despuás llamar a crearCategoria */
+	/** Actualiza la categoría seleccionada para despuás llamar a persistCategoria */
 	public void actualizarCategoria(Categoria categoria) {
 		logger.info("actualizarCategoria init: Se procede a actualizar la categoría seleccionada a: "+ categoria.toString());
 		categoriaEdit = categoria;
@@ -215,7 +226,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Pregunta
 
-	/** Actualiza la pregunta seleccionada para después llamar a crearPregunta */
+	/** Actualiza la pregunta seleccionada para después llamar a persistPregunta */
 	public void actualizarPregunta(Pregunta pregunta) {
 		logger.info("actualizarPregunta init: Se procede a actualizar la pregunta seleccionada a: " + pregunta.toString());
 		preguntaEdit = pregunta;
@@ -244,7 +255,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Respuesta
 
-	/** Actualiza la respuesta seleccionada para después llamar a crearRespuesta */
+	/** Actualiza la respuesta seleccionada para después llamar a persistRespuesta */
 	public void actualizarRespuesta(Respuesta respuesta) {
 		logger.info("actualizarRespuesta init: Se procede a actualizar la respuesta seleccionada a: " + respuesta.toString());
 		respuestaEdit = respuesta;
@@ -273,7 +284,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Pregunta-Respuesta
 
-	/** Actualiza la PreRes seleccionada para después llamar a crearRespuesta */
+	/** Actualiza la PreRes seleccionada para después llamar a persistPreRes */
 	public void actualizarPreRes(PreguntaRespuesta preRes) {
 		logger.info("actualizarPreRes init: Se procede a actualizar la preRes seleccionada a: " + preRes.toString());
 		preResEdit = preRes;
@@ -302,7 +313,7 @@ public class MainController implements Serializable {
 
 	// -----------------------------------Crud Tabla Area-Respuesta
 
-	/** Actualiza la respuesta por defecto seleccionada para después llamar a crearRespuestaDefecto */
+	/** Actualiza la respuesta por defecto seleccionada para después llamar a persistRespuestaDefecto */
 	public void actualizarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
 		logger.info("actualizarRespuestaDefecto init: Se procede a actualizar la respuestaDefecto seleccionada a: " + respuestaDefecto.toString());
 		respuestaDefectoEdit = respuestaDefecto;
@@ -326,6 +337,35 @@ public class MainController implements Serializable {
 	public void eliminarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
 		logger.info("eliminarRespuestaDefecto init: Se va a borrar la respuesta por defecto: " + respuestaDefecto.toString());
 		respuestaDefaultRepository.delete(respuestaDefecto);
+		limpiarVariables();
+	}
+	
+	// -----------------------------------Crud Tabla Perfil
+	
+	/** Actualiza el perfil seleccionado para después llamar a persistPerfil */
+	public void actualizarPerfil(Perfil perfil) {
+		logger.info("actualizarPerfil init: Se procede a actualizar el perfil seleccionado a: " + perfil.toString());
+		perfilEdit = perfil;
+	}
+
+	/** Asigna un nuevo perfil a la variable perfilEdit */
+	public void crearPerfil() {
+		logger.info("crearPerfil init: Aplastando la variable perfilEdit");
+		perfilEdit = new Perfil();
+	}
+
+	/** Persiste un nuevo perfil con la variable perfilEdit */
+	public void persistPerfil() {
+		logger.info("persistPerfil init: Se procede a persistir la el perfil " + perfilEdit.toString());
+		perfilEdit = perfilRepository.saveAndFlush(perfilEdit);
+		limpiarVariables();
+		Collections.rotate(respuestasDefecto, 1);
+	}
+
+	/** Elimina el perfil por defecto pasado por parámetro */
+	public void eliminarPerfil(Perfil perfil) {
+		logger.info("eliminarPerfil init: Se va a borrar el perfil por defecto: " + perfil.toString());
+		perfilRepository.delete(perfil);
 		limpiarVariables();
 	}
 

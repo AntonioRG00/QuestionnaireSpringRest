@@ -52,19 +52,24 @@ public class Pregunta implements Serializable {
 	@Column(name = "puntuacion_recomendacion", nullable = false)
 	@ApiModelProperty(value="Si la respuesta seleccionada tiene una puntuación más alta que esta propiedad hay que mostrar la recomendación por pregunta", dataType="int", example="5", position=4)
 	private int puntuacionRecomendacion;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_perfil")
+	private Perfil perfil;
 
 	@ToString.Exclude
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PreguntaRespuesta> respuestas = new ArrayList<>();
 
-	public Pregunta(String pregunta, Categoria categoria, String recomendacion, int puntuacionRecomendacion) {
+	public Pregunta(String pregunta, Categoria categoria, String recomendacion, int puntuacionRecomendacion, Perfil perfil) {
 		this.pregunta = pregunta;
 		this.categoria = categoria;
 		this.recomendacion = recomendacion;
 		this.puntuacionRecomendacion = puntuacionRecomendacion;
+		this.perfil = perfil;
 	}
 	
 	public String toStringArbol(){
-		return "Pregunta: " + this.pregunta + ", Puntuacion: " + this.puntuacionRecomendacion;
+		return "Pregunta: " + this.pregunta + ", Puntuacion: " + this.puntuacionRecomendacion + ", Perfil: " + this.perfil.getPerfil();
 	}
 }

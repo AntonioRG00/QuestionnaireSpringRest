@@ -9,14 +9,15 @@
 			</p:growl>
 			<p:tabView>
 
-				<p:tab title="Idioma">
+				<p:tab title="Idioma" style="width: 350px;">
 					<p:dataTable var="idioma" value="#{mainController.idiomas}" emptyMessage="No se encontraron idiomas" id="idiomaDataTable"
 						widgetVar="idiomaDataTable"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{idioma.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{idioma.nombre}" filterBy="#{idioma.id}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{idioma.nombre}" filterBy="#{idioma.nombre}"
+							filterMatchMode="contains">
 							<h:outputText value="#{idioma.nombre}" />
 						</p:column>
 
@@ -25,7 +26,8 @@
 								oncomplete="PF('EditarIdiomaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarIdioma(idioma)}" onstart="start()" oncomplete="stop()">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarIdioma(idioma)}" onstart="start()"
+								oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar el idioma #{idioma.nombre}" />
 							</p:commandLink>
@@ -43,7 +45,7 @@
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{area.id}"
 						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
 
-						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{area.nombre}" filterBy="#{area.id}" filterMatchMode="contains">
+						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{area.nombre}" filterBy="#{area.nombre}" filterMatchMode="contains">
 							<h:outputText value="#{area.nombre}" />
 						</p:column>
 
@@ -57,7 +59,8 @@
 								oncomplete="PF('EditarAreaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarArea(area)}" onstart="start()" oncomplete="stop()">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarArea(area)}" onstart="start()"
+								oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar el area #{area.nombre}" />
 							</p:commandLink>
@@ -96,7 +99,8 @@
 								oncomplete="PF('EditarCategoriaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarCategoria(categoria)}" onstart="start()" oncomplete="stop()">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarCategoria(categoria)}" onstart="start()"
+								oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la categoría #{categoria.nombre}" />
 							</p:commandLink>
@@ -106,6 +110,36 @@
 					</p:dataTable>
 					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir una Categoría" action="#{mainController.crearCategoria()}"
 						oncomplete="PF('EditarCategoriaDialog').show()" process="@this" />
+				</p:tab>
+
+				<p:tab title="Perfil" style="width: 350px;">
+					<p:dataTable var="perfil" value="#{mainController.perfiles}" emptyMessage="No se encontraron perfiles" id="perfilDataTable"
+						widgetVar="perfilDataTable"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true" rowKey="#{perfil.id}"
+						paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
+
+						<p:column styleClass="centeredColumnContent" headerText="Nombre" sortBy="#{perfil.perfil}" filterBy="#{perfil.perfil}"
+							filterMatchMode="contains">
+							<h:outputText value="#{perfil.perfil}" />
+						</p:column>
+
+						<p:column headerText="Operaciones" styleClass="centeredColumnContent">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarPerfil(perfil)}"
+								oncomplete="PF('EditarPerfilDialog').show()">
+								<span class="pi pi-pencil btn btn-warning" />
+							</p:commandLink>
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPerfil(perfil)}" onstart="start()"
+								oncomplete="stop()">
+								<span class="pi pi-trash btn btn-danger" />
+								<p:confirm type="popup" header="Confirmación" message="Se va a borrar el perfil #{perfil.perfil}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:autoUpdate />
+					</p:dataTable>
+					<p:commandLink type="button" class="btn btn-info col-12 mt-2" value="Añadir un perfil" action="#{mainController.crearPerfil()}"
+						oncomplete="PF('EditarPerfilDialog').show()" process="@this" />
 				</p:tab>
 
 				<p:tab title="Pregunta">
@@ -130,12 +164,18 @@
 							<h:outputText value="#{pregunta.categoria.nombre}" />
 						</p:column>
 
+						<p:column styleClass="centeredColumnContent" headerText="Perfil" sortBy="#{pregunta.perfil.perfil}"
+							filterBy="#{pregunta.perfil.perfil}" filterMatchMode="contains">
+							<h:outputText value="#{pregunta.perfil.perfil}" />
+						</p:column>
+
 						<p:column styleClass="centeredColumnContent" headerText="Operaciones">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarPregunta(pregunta)}"
 								oncomplete="PF('EditarPreguntaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPregunta(pregunta)}" onstart="start()" oncomplete="stop()">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPregunta(pregunta)}" onstart="start()"
+								oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la pregunta con id #{pregunta.id}" />
 							</p:commandLink>
@@ -164,7 +204,8 @@
 								oncomplete="PF('EditarRespuestaDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuesta(respuesta)}" onstart="start()" oncomplete="stop()">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuesta(respuesta)}" onstart="start()"
+								oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación" message="Se va a borrar la respuesta con id #{respuesta.id}" />
 							</p:commandLink>
@@ -177,8 +218,8 @@
 				</p:tab>
 
 				<p:tab title="Pregunta-Respuesta">
-					<p:dataTable var="preRes" value="#{mainController.preRes}" emptyMessage="No se encontraron relaciones de preguntas con respuestas" id="preResDataTable"
-						widgetVar="preResDataTable"
+					<p:dataTable var="preRes" value="#{mainController.preRes}" emptyMessage="No se encontraron relaciones de preguntas con respuestas"
+						id="preResDataTable" widgetVar="preResDataTable"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 						currentPageReportTemplate="{totalRecords} resultados, Página {currentPage}/{totalPages}" paginator="true"
 						rowKey="#{preRes.pregunta.id}_#{preRes.respuesta.id}" paginatorPosition="bottom" rows="5" rowsPerPageTemplate="5,10,20,{ShowAll|'All'}">
@@ -203,7 +244,8 @@
 								oncomplete="PF('EditarPreResDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(preRes)}" onstart="start()" oncomplete="stop()">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarPreRes(preRes)}" onstart="start()"
+								oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación"
 									message="Se va a borrar la relación entre la pregunta #{preRes.pregunta.id} y la respuesta #{preRes.respuesta.id}" />
@@ -244,7 +286,8 @@
 								oncomplete="PF('EditarRespuestaDefectoDialog').show()">
 								<span class="pi pi-pencil btn btn-warning" />
 							</p:commandLink>
-							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuestaDefecto(respuestaDefecto)}" onstart="start()" oncomplete="stop()">
+							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.eliminarRespuestaDefecto(respuestaDefecto)}"
+								onstart="start()" oncomplete="stop()">
 								<span class="pi pi-trash btn btn-danger" />
 								<p:confirm type="popup" header="Confirmación"
 									message="Se va a borrar la relación entre el área #{respuestaDefecto.area.nombre} y la respuesta #{respuestaDefecto.respuesta.respuesta}" />
@@ -524,6 +567,29 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-12">
+							<h:outputLabel for="perfilPregunta" style="float:left!important;" value="Perfil:" />
+						</div>
+						<div class="col-12">
+							<p:selectOneMenu id="perfilPregunta" value="#{mainController.preguntaEdit.perfil}" effect="fade" var="i" filter="true"
+								filterMatchMode="contains" converter="perfilConverter" style="width: 100%">
+
+								<f:selectItems value="#{mainController.perfiles}" var="perfil" itemLabel="#{perfil.perfil}" itemValue="#{perfil}" />
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{i.perfil}" />
+								</p:column>
+
+								<f:facet name="footer">
+									<h:outputText value="#{mainController.perfiles.size()} perfiles en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+								</f:facet>
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-12">
 							<h:outputLabel for="puntuacionPregunta" style="float:left!important;" value="Puntuación:" />
 						</div>
 						<div class="col-12">
@@ -745,8 +811,8 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-6">
-							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuestaDefecto()}" onstart="start()"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDefectoDialog').hide();stop()">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistRespuestaDefecto()}"
+								onstart="start()" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarRespuestaDefectoDialog').hide();stop()">
 								<span class="pi pi-check-circle" />
 								<span>Aceptar</span>
 								<span class="pi pi-check-circle" />
@@ -755,6 +821,42 @@
 						<div class="col-6">
 							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12"
 								onclick="PF('EditarRespuestaDefectoDialog').hide()" immediate="true">
+								<span class="pi pi-times-circle" />
+								<span>Cancelar</span>
+								<span class="pi pi-times-circle" />
+							</p:commandLink>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="EditarPerfilDialog" widgetVar="EditarPerfilDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
+			header="Editar/Crear Perfil" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false">
+			<h:form id="EditarPerfilForm">
+				<p:autoUpdate />
+				<div class="container-fluid" style="padding: 0px !important;">
+					<div class="row mt">
+						<div class="col-md-2">
+							<h:outputLabel for="nombrePerfil" style="float:left!important;" value="Nombre:" />
+						</div>
+						<div class="col-md-10">
+							<h:inputText class="col-12" maxlength="50" value="#{mainController.perfilEdit.perfil}" id="nombrePerfil" required="true"
+								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<p:commandLink id="saveButton" styleClass="btn btn-info btn-block col-12" action="#{mainController.persistPerfil()}" onstart="start()"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('EditarPerfilDialog').hide();stop()">
+								<span class="pi pi-check-circle" />
+								<span>Aceptar</span>
+								<span class="pi pi-check-circle" />
+							</p:commandLink>
+						</div>
+						<div class="col-6">
+							<p:commandLink id="cancelButton" type="button" styleClass="btn btn-secondary btn-block col-12" onclick="PF('EditarPerfilDialog').hide()"
+								immediate="true">
 								<span class="pi pi-times-circle" />
 								<span>Cancelar</span>
 								<span class="pi pi-times-circle" />
@@ -775,7 +877,8 @@
 			<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
 		</p:confirmDialog>
 
-		<p:dialog modal="true" header="Espere..." widgetVar="statusDialog" id="statusDialog" draggable="false" closable="false" resizable="false" width="120px" style="height=120px">
+		<p:dialog modal="true" header="Espere..." widgetVar="statusDialog" id="statusDialog" draggable="false" closable="false" resizable="false"
+			width="120px" style="height=120px">
 			<p:graphicImage value="/resources/ajax-loader.gif" style="display: block; margin: 0px auto; width:50px" />
 		</p:dialog>
 
