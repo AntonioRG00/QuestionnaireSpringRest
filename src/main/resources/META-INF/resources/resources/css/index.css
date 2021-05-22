@@ -30,6 +30,7 @@ h1 {
 
 .ui-tabs .ui-tabs-panel{
 	padding: 1px 1px !important;
+	text-align: center;
 }
 
 .ui-selectonemenu-item {
@@ -37,5 +38,18 @@ h1 {
 }
 
 thead{
+	text-align: center;
+}
+
+.ui-tabs-header {
+	text-align: center;
+	width: 225px;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+	width: 100%;
+}
+
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
 	text-align: center;
 }
