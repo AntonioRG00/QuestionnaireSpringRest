@@ -35,7 +35,7 @@ public class Perfil implements Serializable {
 	private Long id;
 	
 	@Column(name = "perfil", nullable = false, length = 40)
-	@ApiModelProperty(value="Perfil", dataType="String", example="Alumno", position=2)
+	@ApiModelProperty(value="Nombre del perfil", dataType="String", example="Alumno", position=2)
 	private String perfil;
 	
 	@JsonIgnore
