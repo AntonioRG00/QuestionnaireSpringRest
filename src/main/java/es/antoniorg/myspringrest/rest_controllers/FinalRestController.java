@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.Idioma;
+import es.antoniorg.myspringrest.model.Perfil;
 import es.antoniorg.myspringrest.model.PreguntaRespuesta;
 import es.antoniorg.myspringrest.model.RespuestaPorDefecto;
 import es.antoniorg.myspringrest.repository.IdiomaRepository;
+import es.antoniorg.myspringrest.repository.PerfilRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -26,6 +28,7 @@ import io.swagger.annotations.ApiResponses;
 public class FinalRestController {
 
 	private @Autowired IdiomaRepository idiomaRepository;
+	private @Autowired PerfilRepository perfilRepository;
 
 	@ApiOperation(value = "Obtiene todos los idiomas con sus datos (Ordenado por Idioma.nombre y dentro por su Area.nombre)", notes = "Devuelve el JSON final con las respuestas por defecto asociadas o las asignadas individualmente")
 	@ApiResponses(value = { 
@@ -54,6 +57,30 @@ public class FinalRestController {
 
 			return new ResponseEntity<>(idiomas, HttpStatus.OK);
 
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@ApiOperation(value = "Obtiene todos los perfiles")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "OK", response = Idioma.class),
+			@ApiResponse(code = 204, message = "No Content"),
+			@ApiResponse(code = 500, message = "Internal Server Error") })
+	@GetMapping("/perfiles")
+	public ResponseEntity<List<Perfil>> getAllPerfiles(){
+		try {
+			
+			List<Perfil> perfiles = new ArrayList<>();
+			
+			perfilRepository.findAll().forEach(perfiles::add);
+			
+			if(perfiles.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			
+			return new ResponseEntity<>(perfiles, HttpStatus.OK);
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
