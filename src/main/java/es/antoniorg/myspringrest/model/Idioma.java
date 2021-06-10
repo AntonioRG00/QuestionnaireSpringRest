@@ -47,6 +47,11 @@ public class Idioma implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma", orphanRemoval = true)
 	@OrderBy(clause = "nombre")
 	private List<Area> areas = new ArrayList<>();
+	
+	@ToString.Exclude
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma", orphanRemoval = true)
+	@OrderBy(clause = "id")
+	private List<Perfil> perfiles = new ArrayList<>();
 
 	public Idioma(String nombreIdioma, String urlImagen) {
 		this.nombre = nombreIdioma;

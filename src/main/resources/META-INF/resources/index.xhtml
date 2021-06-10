@@ -123,6 +123,11 @@
 							filterMatchMode="contains">
 							<h:outputText value="#{perfil.perfil}" />
 						</p:column>
+						
+						<p:column styleClass="centeredColumnContent" headerText="Idioma" sortBy="#{perfil.idioma.nombre}" filterBy="#{perfil.idioma.nombre}"
+							filterMatchMode="contains">
+							<h:outputText value="#{perfil.idioma.nombre}" />
+						</p:column>
 
 						<p:column headerText="Operaciones" styleClass="centeredColumnContent">
 							<p:commandLink style="text-decoration: none;" process="@this" action="#{mainController.actualizarPerfil(perfil)}"
@@ -815,6 +820,36 @@
 						<div class="col-md-10">
 							<h:inputText class="col-12" maxlength="50" value="#{mainController.perfilEdit.perfil}" id="nombrePerfil" required="true"
 								requiredMessage="Campo requerido" />
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-md-2">
+							<h:outputLabel for="perfilIdioma" style="float:left!important;" value="Idioma:" />
+						</div>
+						<div class="col-md-10">
+							<p:selectOneMenu id="perfilIdioma" value="#{mainController.perfilEdit.idioma}" effect="fade" var="i" filter="true"
+								filterMatchMode="contains" converter="idiomaConverter" style="width: 100%">
+
+								<f:selectItems value="#{mainController.idiomas}" var="idioma" itemLabel="#{idioma.nombre}" itemValue="#{idioma}" />
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Bandera" />
+									</f:facet>
+									<p:graphicImage value="#{i.urlImagen}" width="35px" height="25px" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header" style="text-align: center;">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{i.nombre}" />
+								</p:column>
+
+								<f:facet name="footer">
+									<h:outputText value="#{mainController.idiomas.size()} idiomas en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+								</f:facet>
+							</p:selectOneMenu>
 						</div>
 					</div>
 					<div class="row mt-2">

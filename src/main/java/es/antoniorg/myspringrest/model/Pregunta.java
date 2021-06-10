@@ -2,6 +2,7 @@ package es.antoniorg.myspringrest.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -73,6 +74,14 @@ public class Pregunta implements Serializable {
 	}
 	
 	public String toStringArbol(){
-		return "Pregunta: " + this.pregunta + ", Puntuacion: " + this.puntuacionRecomendacion + ", Perfil: " + this.perfil.getPerfil();
+		String aux = "";
+		for(int i=0 ; i<this.pregunta.length() ; i++) {
+			if(aux.length() > 40) {
+				aux += "..";
+				break;
+			}
+			aux += this.pregunta.toCharArray()[i];
+		}
+		return "Pregunta: " + aux + ", Puntuacion: " + this.puntuacionRecomendacion + ", Perfil: " + this.perfil.getPerfil();
 	}
 }

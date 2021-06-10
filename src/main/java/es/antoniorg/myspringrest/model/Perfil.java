@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,6 +39,11 @@ public class Perfil implements Serializable {
 	@Column(name = "perfil", nullable = false, length = 40)
 	@ApiModelProperty(value="Nombre del perfil", dataType="String", example="Alumno", position=2)
 	private String perfil;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "id_idioma")
+	private Idioma idioma;
 	
 	@JsonIgnore
 	@ToString.Exclude
