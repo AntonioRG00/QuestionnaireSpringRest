@@ -1,6 +1,7 @@
 package es.antoniorg.myspringrest.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -105,6 +106,9 @@ public class MainController implements Serializable {
 
 	/** False: árbol contraido, True: árbol abierto */
 	private @Getter @Setter boolean arbolShowed;
+	
+	/** Contiene los posibles perfiles a seleccionar por pregunta */
+	private @Getter @Setter List<Perfil> posiblesPerfiles;
 
 	@PostConstruct
 	public void init() {
@@ -121,6 +125,7 @@ public class MainController implements Serializable {
 		preResEdit = new PreguntaRespuesta();
 		respuestaDefectoEdit = new RespuestaPorDefecto();
 		perfilEdit = new Perfil();
+		posiblesPerfiles = new ArrayList<>();
 		arbolShowed = false;
 
 		idiomas = idiomaRepository.findAll();
@@ -228,12 +233,14 @@ public class MainController implements Serializable {
 	public void actualizarPregunta(Pregunta pregunta) {
 		logger.info("IP: " + getClientIP() + " -> actualizarPregunta: Se procede a actualizar la pregunta seleccionada a: " + pregunta.toString());
 		preguntaEdit = pregunta;
+		posiblesPerfiles = pregunta.getCategoria().getArea().getIdioma().getPerfiles();
 	}
 
 	/** Asigna una nueva pregunta a la variable pregunta editable */
 	public void crearPregunta() {
 		logger.info("IP: " + getClientIP() + " -> crearPregunta: Aplastando la variable preguntaEdit");
 		preguntaEdit = new Pregunta();
+		posiblesPerfiles = new ArrayList<>();
 	}
 
 	/** Persiste una nueva pregunta con la variable preguntaEdit */
@@ -417,6 +424,17 @@ public class MainController implements Serializable {
 		}	
 	}
 	
+	/** Actualiza los posibles perfiles según la categoría seleccionada en pregunta */
+	public void onChangeCategoriaInPregunta() {
+		if(preguntaEdit.getCategoria() == null) {
+			posiblesPerfiles = new ArrayList<>();
+		} else {
+			posiblesPerfiles = preguntaEdit.getCategoria().getArea().getIdioma().getPerfiles();
+		}
+	}
+	
+	
+	/** Devuelve la IP del usuario */
 	private String getClientIP() {
 		String xfHeader = request.getHeader("X-Forwarded-For");
 		if (xfHeader == null) {

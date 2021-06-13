@@ -533,8 +533,8 @@
 
 		<p:dialog id="EditarPreguntaDialog" widgetVar="EditarPreguntaDialog" modal="true" showEffect="fade" hideEffect="fade" responsive="true"
 			header="Editar/Crear una Pregunta" dynamic="true" closeOnEscape="true" fitViewport="true" width="75%" resizable="false" position="10,10">
+			<p:ajax event="close" update="@this"/>
 			<h:form id="EditarPreguntaForm">
-				<p:autoUpdate />
 				<div class="container-fluid" style="padding: 0px !important;">
 					<div class="row">
 						<div class="col-md-2">
@@ -550,10 +550,13 @@
 							<h:outputLabel for="idCategoriaPregunta" style="float:left!important;" value="Categoría:" />
 						</div>
 						<div class="col-md-10">
-							<p:selectOneMenu id="oneMenuCategoriaPregunta" value="#{mainController.preguntaEdit.categoria}" effect="fade" var="i" filter="true"
+							<p:selectOneMenu id="idCategoriaPregunta" value="#{mainController.preguntaEdit.categoria}" effect="fade" var="i" filter="true"
 								filterMatchMode="contains" converter="categoriaConverter" style="width: 100%">
 
+								<f:selectItem value="#{null}" itemLabel="Selecciona una categoría" itemValue="#{null}"/>
 								<f:selectItems value="#{mainController.categorias}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}" />
+
+								<p:ajax event="change" process="@this" listener="#{mainController.onChangeCategoriaInPregunta}" update="perfilPregunta"/>
 
 								<p:column>
 									<f:facet name="header" style="text-align: center;">
@@ -567,26 +570,27 @@
 								</f:facet>
 							</p:selectOneMenu>
 						</div>
-					</div>
+					</div>			
 					<div class="row mt-2">
 						<div class="col-md-2">
 							<h:outputLabel for="perfilPregunta" style="float:left!important;" value="Perfil:" />
 						</div>
 						<div class="col-md-10">
 							<p:selectOneMenu id="perfilPregunta" value="#{mainController.preguntaEdit.perfil}" effect="fade" var="i" filter="true"
-								filterMatchMode="contains" converter="perfilConverter" style="width: 100%">
-
-								<f:selectItems value="#{mainController.perfiles}" var="perfil" itemLabel="#{perfil.perfil}" itemValue="#{perfil}" />
-
+								filterMatchMode="contains" converter="perfilConverter" style="width: 100%" required="true"
+								requiredMessage="Campo requerido">
+	
+								<f:selectItems value="#{mainController.posiblesPerfiles}" var="perfil" itemLabel="#{perfil.perfil}" itemValue="#{perfil}" />
+	
 								<p:column>
 									<f:facet name="header" style="text-align: center;">
 										<h:outputText value="Nombre" />
 									</f:facet>
 									<h:outputText value="#{i.perfil}" />
 								</p:column>
-
+	
 								<f:facet name="footer">
-									<h:outputText value="#{mainController.perfiles.size()} perfiles en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
+									<h:outputText value="#{mainController.posiblesPerfiles.size()} perfiles en total" style="font-weight:bold" styleClass="p-py-1 p-d-block" />
 								</f:facet>
 							</p:selectOneMenu>
 						</div>
