@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -63,7 +66,7 @@ public class Categoria implements Serializable {
 
 	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria", orphanRemoval = true)
-	private List<Pregunta> preguntas = new ArrayList<Pregunta>();
+	private List<Pregunta> preguntas = new ArrayList<>();
 
 	public Categoria(String nombre, String descripcion, Area area, String explicacion, int puntuacion, String recomendacion) {
 		this.nombre = nombre;

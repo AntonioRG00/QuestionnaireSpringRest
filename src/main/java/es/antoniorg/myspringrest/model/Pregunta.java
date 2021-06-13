@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.OrderBy;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,6 +46,7 @@ public class Pregunta implements Serializable {
 
 	@JsonIgnore
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 
@@ -60,7 +63,7 @@ public class Pregunta implements Serializable {
 	private Perfil perfil;
 
 	@ToString.Exclude
-	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pregunta", orphanRemoval = true)
 	@OrderBy(clause = "puntuacion")
 	private List<PreguntaRespuesta> respuestas = new ArrayList<>();
 

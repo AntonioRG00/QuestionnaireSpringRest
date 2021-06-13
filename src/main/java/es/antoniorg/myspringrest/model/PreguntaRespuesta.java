@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -30,16 +33,19 @@ public class PreguntaRespuesta implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "pregunta_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@EqualsAndHashCode.Include
 	private Pregunta pregunta;
 	
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "respuesta_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@EqualsAndHashCode.Include
 	private Respuesta respuesta;
 	
 	@Column(name = "puntuacion", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ApiModelProperty(value="Puntuación de la respuesta", dataType="int", example="1", position=1)
 	private int puntuacion;
 }
