@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
@@ -40,6 +41,7 @@ public class MainController implements Serializable {
 	private static final long serialVersionUID = 8929086073643011545L;
 
 	private Logger logger = LoggerFactory.getLogger(MainController.class);
+	private @Autowired HttpServletRequest request;
 
 	private @Autowired IdiomaRepository idiomaRepository;
 	private @Autowired AreaRepository areaRepository;
@@ -106,11 +108,7 @@ public class MainController implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		logger.info("MainController init");
-
 		limpiarVariables();
-
-		logger.info("MainController end");
 	}
 
 	/** Limpia todas las variables y recarga las tablas */
@@ -141,19 +139,19 @@ public class MainController implements Serializable {
 
 	/** Actualiza el idioma seleccionado para después llamar a persistIdioma */
 	public void actualizarIdioma(Idioma idioma) {
-		logger.info("actualizarIdioma init: Se procede a actualizar el idioma seleccionado a: " + idioma.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarIdioma init: Se procede a actualizar el idioma seleccionado a: " + idioma.toString());
 		idiomaEdit = idioma;
 	}
 
 	/** Asigna un nuevo idioma a la variable idioma editable */
 	public void crearIdioma() {
-		logger.info("crearIdioma init: Aplastando la variable idiomaEdit");
+		logger.info("IP: " + getClientIP() + " -> crearIdioma: Aplastando la variable idiomaEdit");
 		idiomaEdit = new Idioma();
 	}
 
 	/** Persiste un nuevo idioma con la variable idiomaEdit */
 	public void persistIdioma() {
-		logger.info("crearIdioma init: Se procede a persistir el idioma " + idiomaEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> crearIdioma: Se procede a persistir el idioma " + idiomaEdit.toString());
 		idiomaEdit = idiomaRepository.saveAndFlush(idiomaEdit);
 		limpiarVariables();
 		Collections.rotate(idiomas, 1);
@@ -161,7 +159,7 @@ public class MainController implements Serializable {
 
 	/** Elimina el idioma pasado por parámetro */
 	public void eliminarIdioma(Idioma idioma) {
-		logger.info("eliminarIdioma init: Se va a borrar el idioma: " + idioma.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarIdioma: Se va a borrar el idioma: " + idioma.toString());
 		idiomaRepository.delete(idioma);
 		limpiarVariables();
 	}
@@ -170,19 +168,19 @@ public class MainController implements Serializable {
 
 	/** Actualiza el area seleccionado para después llamar a persistArea */
 	public void actualizarArea(Area area) {
-		logger.info("actualizarArea init: Se procede a actualizar el area seleccionado a: " + area.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarArea: Se procede a actualizar el area seleccionado a: " + area.toString());
 		areaEdit = area;
 	}
 
 	/** Asigna un nuevo area a la variable area editable */
 	public void crearArea() {
-		logger.info("crearArea init: Aplastando la variable areaEdit");
+		logger.info("IP: " + getClientIP() + " -> crearArea: Aplastando la variable areaEdit");
 		areaEdit = new Area();
 	}
 
 	/** Persiste un nuevo area con la variable areaEdit */
 	public void persistArea() {
-		logger.info("crearArea init: Se procede a persistir el area " + areaEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> crearArea: Se procede a persistir el area " + areaEdit.toString());
 		areaEdit = areaRepository.saveAndFlush(areaEdit);
 		limpiarVariables();
 		Collections.rotate(areas, 1);
@@ -190,7 +188,7 @@ public class MainController implements Serializable {
 
 	/** Elimina el area pasado por parámetro */
 	public void eliminarArea(Area area) {
-		logger.info("eliminarArea init: Se va a borrar el area: " + area.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarArea: Se va a borrar el area: " + area.toString());
 		areaRepository.delete(area);
 		limpiarVariables();
 	}
@@ -199,19 +197,19 @@ public class MainController implements Serializable {
 
 	/** Actualiza la categoría seleccionada para despuás llamar a persistCategoria */
 	public void actualizarCategoria(Categoria categoria) {
-		logger.info("actualizarCategoria init: Se procede a actualizar la categoría seleccionada a: "+ categoria.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarCategoria: Se procede a actualizar la categoría seleccionada a: "+ categoria.toString());
 		categoriaEdit = categoria;
 	}
 
 	/** Asigna una nueva categoría la variable categoria editable */
 	public void crearCategoria() {
-		logger.info("crearCategoria init: Aplastando la variable categoriaEdit");
+		logger.info("IP: " + getClientIP() + " -> crearCategoria: Aplastando la variable categoriaEdit");
 		categoriaEdit = new Categoria();
 	}
 
 	/** Persiste una nueva categoria con la variable categoriaEdit */
 	public void persistCategoria() {
-		logger.info("crearCategoria init: Se procede a persistir la categoría " + categoriaEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> crearCategoria: Se procede a persistir la categoría " + categoriaEdit.toString());
 		categoriaEdit = categoriaRepository.saveAndFlush(categoriaEdit);
 		limpiarVariables();
 		Collections.rotate(categorias, 1);
@@ -219,7 +217,7 @@ public class MainController implements Serializable {
 
 	/** Elimina la categoria pasada por parámetro */
 	public void eliminarCategoria(Categoria categoria) {
-		logger.info("eliminarCategoria init: Se va a borrar la categoría: " + categoria.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarCategoria: Se va a borrar la categoría: " + categoria.toString());
 		categoriaRepository.delete(categoria);
 		limpiarVariables();
 	}
@@ -228,19 +226,19 @@ public class MainController implements Serializable {
 
 	/** Actualiza la pregunta seleccionada para después llamar a persistPregunta */
 	public void actualizarPregunta(Pregunta pregunta) {
-		logger.info("actualizarPregunta init: Se procede a actualizar la pregunta seleccionada a: " + pregunta.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarPregunta: Se procede a actualizar la pregunta seleccionada a: " + pregunta.toString());
 		preguntaEdit = pregunta;
 	}
 
 	/** Asigna una nueva pregunta a la variable pregunta editable */
 	public void crearPregunta() {
-		logger.info("crearPregunta init: Aplastando la variable preguntaEdit");
+		logger.info("IP: " + getClientIP() + " -> crearPregunta: Aplastando la variable preguntaEdit");
 		preguntaEdit = new Pregunta();
 	}
 
 	/** Persiste una nueva pregunta con la variable preguntaEdit */
 	public void persistPregunta() {
-		logger.info("crearPregunta init: Se procede a persistir la pregunta " + preguntaEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> crearPregunta: Se procede a persistir la pregunta " + preguntaEdit.toString());
 		preguntaEdit = preguntaRepository.saveAndFlush(preguntaEdit);
 		limpiarVariables();
 		Collections.rotate(preguntas, 1);
@@ -248,7 +246,7 @@ public class MainController implements Serializable {
 
 	/** Elimina la pregunta pasada por parámetro */
 	public void eliminarPregunta(Pregunta pregunta) {
-		logger.info("eliminarPregunta init: Se va a borrar la pregunta: " + pregunta.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarPregunta: Se va a borrar la pregunta: " + pregunta.toString());
 		preguntaRepository.delete(pregunta);
 		limpiarVariables();
 	}
@@ -257,19 +255,19 @@ public class MainController implements Serializable {
 
 	/** Actualiza la respuesta seleccionada para después llamar a persistRespuesta */
 	public void actualizarRespuesta(Respuesta respuesta) {
-		logger.info("actualizarRespuesta init: Se procede a actualizar la respuesta seleccionada a: " + respuesta.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarRespuesta: Se procede a actualizar la respuesta seleccionada a: " + respuesta.toString());
 		respuestaEdit = respuesta;
 	}
 
 	/** Asigna una nueva respuesta a la variable respuesta editable */
 	public void crearRespuesta() {
-		logger.info("crearRespuesta init: Aplastando la variable respuestaEdit");
+		logger.info("IP: " + getClientIP() + " -> crearRespuesta: Aplastando la variable respuestaEdit");
 		respuestaEdit = new Respuesta();
 	}
 
 	/** Persiste una nueva respuesta con la variable respuestaEdit */
 	public void persistRespuesta() {
-		logger.info("persistRespuesta init: Se procede a persistir la respuesta " + respuestaEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> persistRespuesta: Se procede a persistir la respuesta " + respuestaEdit.toString());
 		respuestaEdit = respuestaRepository.saveAndFlush(respuestaEdit);
 		limpiarVariables();
 		Collections.rotate(respuestas, 1);
@@ -277,7 +275,7 @@ public class MainController implements Serializable {
 
 	/** Elimina la respuesta pasada por parámetro */
 	public void eliminarRespuesta(Respuesta respuesta) {
-		logger.info("eliminarRespuesta init: Se va a borrar la respuesta: " + respuesta.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarRespuesta: Se va a borrar la respuesta: " + respuesta.toString());
 		respuestaRepository.delete(respuesta);
 		limpiarVariables();
 	}
@@ -286,19 +284,19 @@ public class MainController implements Serializable {
 
 	/** Actualiza la PreRes seleccionada para después llamar a persistPreRes */
 	public void actualizarPreRes(PreguntaRespuesta preRes) {
-		logger.info("actualizarPreRes init: Se procede a actualizar la preRes seleccionada a: " + preRes.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarPreRes: Se procede a actualizar la preRes seleccionada a: " + preRes.toString());
 		preResEdit = preRes;
 	}
 
 	/** Asigna una nueva Pregunta-Respuesta a la variable PreRes editable */
 	public void crearPreRes() {
-		logger.info("crearPreRes init: Aplastando la variable preResEdit");
+		logger.info("IP: " + getClientIP() + " -> crearPreRes: Aplastando la variable preResEdit");
 		preResEdit = new PreguntaRespuesta();
 	}
 
 	/** Persiste una nueva Pregunta-Respuesta con la variable preResEdit */
 	public void persistPreRes() {
-		logger.info("persistPreRes init: Se procede a persistir la preRes " + preResEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> persistPreRes: Se procede a persistir la preRes " + preResEdit.toString());
 		preResEdit = preResRepository.saveAndFlush(preResEdit);
 		limpiarVariables();
 		Collections.rotate(preRes, 1);
@@ -306,7 +304,7 @@ public class MainController implements Serializable {
 
 	/** Elimina la Pregunta-Respuesta pasada por parámetro */
 	public void eliminarPreRes(PreguntaRespuesta preRes) {
-		logger.info("eliminarPreRes init: Se va a borrar la preRes: " + preRes.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarPreRes: Se va a borrar la preRes: " + preRes.toString());
 		preResRepository.delete(preRes);
 		limpiarVariables();
 	}
@@ -315,19 +313,19 @@ public class MainController implements Serializable {
 
 	/** Actualiza la respuesta por defecto seleccionada para después llamar a persistRespuestaDefecto */
 	public void actualizarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
-		logger.info("actualizarRespuestaDefecto init: Se procede a actualizar la respuestaDefecto seleccionada a: " + respuestaDefecto.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarRespuestaDefecto: Se procede a actualizar la respuestaDefecto seleccionada a: " + respuestaDefecto.toString());
 		respuestaDefectoEdit = respuestaDefecto;
 	}
 
 	/** Asigna una nueva respuesta por defecto a la variable respuestaDefectoEdit editable */
 	public void crearRespuestaDefecto() {
-		logger.info("crearRespuestaDefecto init: Aplastando la variable respuestaDefectoEdit");
+		logger.info("IP: " + getClientIP() + " -> crearRespuestaDefecto: Aplastando la variable respuestaDefectoEdit");
 		respuestaDefectoEdit = new RespuestaPorDefecto();
 	}
 
 	/** Persiste una nueva respuesta por defecto con la variable respuestaDefectoEdit */
 	public void persistRespuestaDefecto() {
-		logger.info("persistRespuestaDefecto init: Se procede a persistir la resupuesta por defecto " + respuestaDefectoEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> persistRespuestaDefecto: Se procede a persistir la resupuesta por defecto " + respuestaDefectoEdit.toString());
 		respuestaDefectoEdit = respuestaDefaultRepository.saveAndFlush(respuestaDefectoEdit);
 		limpiarVariables();
 		Collections.rotate(respuestasDefecto, 1);
@@ -335,7 +333,7 @@ public class MainController implements Serializable {
 
 	/** Elimina la respuesta por defecto pasada por parámetro */
 	public void eliminarRespuestaDefecto(RespuestaPorDefecto respuestaDefecto) {
-		logger.info("eliminarRespuestaDefecto init: Se va a borrar la respuesta por defecto: " + respuestaDefecto.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarRespuestaDefecto: Se va a borrar la respuesta por defecto: " + respuestaDefecto.toString());
 		respuestaDefaultRepository.delete(respuestaDefecto);
 		limpiarVariables();
 	}
@@ -344,19 +342,19 @@ public class MainController implements Serializable {
 	
 	/** Actualiza el perfil seleccionado para después llamar a persistPerfil */
 	public void actualizarPerfil(Perfil perfil) {
-		logger.info("actualizarPerfil init: Se procede a actualizar el perfil seleccionado a: " + perfil.toString());
+		logger.info("IP: " + getClientIP() + " -> actualizarPerfil: Se procede a actualizar el perfil seleccionado a: " + perfil.toString());
 		perfilEdit = perfil;
 	}
 
 	/** Asigna un nuevo perfil a la variable perfilEdit */
 	public void crearPerfil() {
-		logger.info("crearPerfil init: Aplastando la variable perfilEdit");
+		logger.info("IP: " + getClientIP() + " -> crearPerfil: Aplastando la variable perfilEdit");
 		perfilEdit = new Perfil();
 	}
 
 	/** Persiste un nuevo perfil con la variable perfilEdit */
 	public void persistPerfil() {
-		logger.info("persistPerfil init: Se procede a persistir la el perfil " + perfilEdit.toString());
+		logger.info("IP: " + getClientIP() + " -> persistPerfil: Se procede a persistir la el perfil " + perfilEdit.toString());
 		perfilEdit = perfilRepository.saveAndFlush(perfilEdit);
 		limpiarVariables();
 		Collections.rotate(respuestasDefecto, 1);
@@ -364,7 +362,7 @@ public class MainController implements Serializable {
 
 	/** Elimina el perfil por defecto pasado por parámetro */
 	public void eliminarPerfil(Perfil perfil) {
-		logger.info("eliminarPerfil init: Se va a borrar el perfil por defecto: " + perfil.toString());
+		logger.info("IP: " + getClientIP() + " -> eliminarPerfil: Se va a borrar el perfil por defecto: " + perfil.toString());
 		perfilRepository.delete(perfil);
 		limpiarVariables();
 	}
@@ -416,6 +414,14 @@ public class MainController implements Serializable {
 			}
 			n.setExpanded(option);
 			n.setSelected(false);
+		}	
+	}
+	
+	private String getClientIP() {
+		String xfHeader = request.getHeader("X-Forwarded-For");
+		if (xfHeader == null) {
+			return request.getRemoteAddr();
 		}
+		return xfHeader.split(",")[0];
 	}
 }

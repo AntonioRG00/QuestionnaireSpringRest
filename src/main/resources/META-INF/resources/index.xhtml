@@ -499,8 +499,18 @@
 							<h:outputLabel for="recomendacionCategoria" styleClass="centrado" value="Recomendación" />
 						</div>
 						<div class="col-12">
-							<p:textEditor value="#{mainController.categoriaEdit.recomendacion}" id="recomendacionCategoria" height="300" required="true"
-								requiredMessage="Campo requerido" />
+							<p:textEditor value="#{mainController.categoriaEdit.recomendacion}" id="recomendacionCategoria" height="300" required="true" requiredMessage="Campo requerido">
+								<f:facet name="toolbar">
+									<span class="ql-formats">
+										<button class="ql-bold"></button>
+                						<button class="ql-italic"></button>
+                						<button class="ql-underline"></button>
+                						<button class="ql-strike"></button>
+										<button class="ql-image"></button>
+										<button class="ql-link"></button>
+									</span>
+								</f:facet>
+							</p:textEditor>
 						</div>
 					</div>
 					<div class="row mt-2">
@@ -596,8 +606,18 @@
 							<h:outputLabel for="recomendacionPregunta" styleClass="centrado" value="Recomendación" />
 						</div>
 						<div class="col-12">
-							<p:textEditor value="#{mainController.preguntaEdit.recomendacion}" id="recomendacionPregunta" height="300" required="true"
-								requiredMessage="Campo requerido" />
+							<p:textEditor value="#{mainController.preguntaEdit.recomendacion}" id="recomendacionPregunta" height="300" required="true" requiredMessage="Campo requerido">
+								<f:facet name="toolbar">
+									<span class="ql-formats">
+										<button class="ql-bold"></button>
+                						<button class="ql-italic"></button>
+                						<button class="ql-underline"></button>
+                						<button class="ql-strike"></button>
+										<button class="ql-image"></button>
+										<button class="ql-link"></button>
+									</span>
+								</f:facet>
+							</p:textEditor>						
 						</div>
 					</div>
 					<div class="row mt-2">

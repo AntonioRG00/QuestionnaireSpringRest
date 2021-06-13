@@ -32,7 +32,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, LoginAttemptsExceded {
 		String ip = getClientIP();
 		if (loginAttemptService.isBlocked(ip)) {
-			throw new LoginAttemptsExceded("Máximo de intentos superados");
+			throw new LoginAttemptsExceded("Máximo de intentos superados para la ip: " + getClientIP());
 		}
 
 		List<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
