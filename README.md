@@ -5,7 +5,7 @@
 - **Una vez logueados en la aplicación disponemos de unas tablas crud para trabajar con los datos.**
 - **Un visualizador de la estructura de datos del JSON a enviar por el servicio rest en http:localhost/rest/all.**
 - **Single-page app y todos los datos que muestra son actualizados en tiempo real.**
-- **Documentación para el API-REST con Swagger-UI, se puede acceder desde el panel o sin haberse logueado.**
+- **Documentación para el API-REST con Swagger-UI (Documentacin pública)**
  
 ![image](https://user-images.githubusercontent.com/60214254/121851239-2e89d600-ccee-11eb-8f43-5407fa0ff5e2.png)
 ![imagen](https://user-images.githubusercontent.com/60214254/117728015-228b8f80-b1e9-11eb-833a-123ebaff7a5b.png)
