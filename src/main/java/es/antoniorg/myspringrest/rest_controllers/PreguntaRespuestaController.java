@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.antoniorg.myspringrest.model.PreguntaRespuesta;
-import es.antoniorg.myspringrest.model.PreguntaRespuestaPK;
 import es.antoniorg.myspringrest.repository.PreguntaRespuestaRepository;
 import io.swagger.annotations.Api;
 
@@ -44,8 +43,8 @@ public class PreguntaRespuestaController {
 	}
 
 	@GetMapping("/preguntarespuesta/{idPregunta}/{idRespuesta}")
-	public ResponseEntity<PreguntaRespuesta> getPreguntaRespuestaById(@PathVariable("idPregunta") Long idPregunta, @PathVariable("idRespuesta") Long idRespuesta) {
-		Optional<PreguntaRespuesta> preguntaData = prRepository.findById(new PreguntaRespuestaPK(idPregunta, idRespuesta));
+	public ResponseEntity<PreguntaRespuesta> getPreguntaRespuestaById(@PathVariable("id") Long id) {
+		Optional<PreguntaRespuesta> preguntaData = prRepository.findById(id);
 
 		if (preguntaData.isPresent()) {
 			return new ResponseEntity<>(preguntaData.get(), HttpStatus.OK);

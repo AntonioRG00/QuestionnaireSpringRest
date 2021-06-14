@@ -429,7 +429,7 @@ public class MainController implements Serializable {
 		if(preguntaEdit.getCategoria() == null) {
 			posiblesPerfiles = new ArrayList<>();
 		} else {
-			posiblesPerfiles = preguntaEdit.getCategoria().getArea().getIdioma().getPerfiles();
+			posiblesPerfiles = perfilRepository.getPerfilesByIdIdioma(preguntaEdit.getCategoria().getArea().getIdioma().getId());
 		}
 	}
 	
