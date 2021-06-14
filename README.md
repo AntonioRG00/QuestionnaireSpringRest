@@ -22,8 +22,8 @@
 **Hay dos tipos de recomendaciones, por categoría y por pregunta. Cada una de estas tablas tienen una puntuación y si es superada hay que mostrar la recomendación**
 
 **Cada respuesta va a tener un valor y este va a ser clave para saber si mostrar la recomendación. Ejemplos:**
-- **Por pregunta (Pregunta.puntuación < Respuesta.Valor)**
-- **Por categoría (Categoria.puntuacion < La suma de todos los valores de esa categoría)**
+- **Por pregunta (Pregunta.puntuación >= Respuesta.Valor) Mostrar recomendacion**
+- **Por categoría (Categoria.puntuacion >= La suma de todos los valores de esa categoría) Mostrar recomendacion**
 
 ## Otras funcionalidades internas
 - **El login es de usuario único, la contraseña debe estar encriptada en BCrypt**
