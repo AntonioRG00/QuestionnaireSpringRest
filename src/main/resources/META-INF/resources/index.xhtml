@@ -378,7 +378,7 @@
 							<h:outputLabel for="nombreArea" style="float:left!important;" value="Nombre:" />
 						</div>
 						<div class="col-md-10">
-							<h:inputText class="col-12" value="#{mainController.areaEdit.nombre}" id="nombreArea" required="true" requiredMessage="Campo requerido" />
+							<h:inputText maxlength="40" class="col-12" value="#{mainController.areaEdit.nombre}" id="nombreArea" required="true" requiredMessage="Campo requerido" />
 						</div>
 					</div>
 					<div class="row mt-2">
@@ -439,7 +439,7 @@
 							<h:outputLabel for="nombreCategoria" style="float:left!important;" value="Nombre:" />
 						</div>
 						<div class="col-md-10">
-							<h:inputText class="col-12" maxlength="25" value="#{mainController.categoriaEdit.nombre}" id="nombreCategoria" required="true"
+							<h:inputText class="col-12" maxlength="40" value="#{mainController.categoriaEdit.nombre}" id="nombreCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
@@ -448,7 +448,7 @@
 							<h:outputLabel for="descripcionCategoria" style="float:left!important;" value="Descripción:" />
 						</div>
 						<div class="col-md-10">
-							<h:inputText class="col-12" maxlength="100" value="#{mainController.categoriaEdit.descripcion}" id="descripcionCategoria" required="true"
+							<h:inputText class="col-12" maxlength="200" value="#{mainController.categoriaEdit.descripcion}" id="descripcionCategoria" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>
@@ -541,7 +541,7 @@
 							<h:outputLabel for="preguntaPregunta" style="float:left!important;" value="Pregunta:" />
 						</div>
 						<div class="col-md-10">
-							<h:inputText class="col-12" maxlength="250" value="#{mainController.preguntaEdit.pregunta}" id="preguntaPregunta" required="true"
+							<h:inputText class="col-12" maxlength="350" value="#{mainController.preguntaEdit.pregunta}" id="preguntaPregunta" required="true"
 								requiredMessage="Campo requerido" />
 						</div>
 					</div>

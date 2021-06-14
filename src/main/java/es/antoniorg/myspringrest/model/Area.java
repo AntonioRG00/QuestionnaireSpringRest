@@ -38,7 +38,7 @@ public class Area implements Serializable{
 	@ApiModelProperty(value="ID del Área", dataType="Long", example="1", position=1)
 	private Long id;
 	
-	@Column(name = "nombre", nullable = false, length = 25)
+	@Column(name = "nombre", nullable = false, length = 40)
 	@ApiModelProperty(value="Nombre del Área", dataType="String", example="1.1 Fase", position=2)
 	private String nombre;
 	

@@ -36,11 +36,11 @@ public class Categoria implements Serializable {
 	@ApiModelProperty(value="ID de categoría", dataType="Long", example="1", position=1)
 	private Long id;
 	
-	@Column(name = "nombre", nullable = false, length = 25)
+	@Column(name = "nombre", nullable = false, length = 40)
 	@ApiModelProperty(value="Nombre de la categoría", dataType="String", example="Nucleo 1.1", position=2)
 	private String nombre;
 	
-	@Column(name = "descripcion", nullable = false, length = 100)
+	@Column(name = "descripcion", nullable = false, length = 200)
 	@ApiModelProperty(value="Descripción de la categoría", dataType="String", example="Información laboral y econ�mica de la formación", position=3)
 	private String descripcion;
 	
