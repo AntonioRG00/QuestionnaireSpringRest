@@ -40,7 +40,7 @@
 - **Swagger-UI (Documentación para el rest {Se puede acceder públicamente desde localhost/swagger-ui/})**
 - **Lombok**
 - **Webjars (Bootstrap, popper...)**
-- **Java 15**
+- **Java 11 (Usaba java 15 pero al final no ha hecho falta lo he bajado por compatibilidad)**
 - **Gradle 7**
 
 ## Cosas a tener en cuenta
