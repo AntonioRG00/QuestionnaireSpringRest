@@ -17,7 +17,7 @@
 
 **Todas las operaciones están en cascada por lo que al borrar un Idioma, estaríamos borrando sus áreas->categorías->preguntas**
 
-**Hay 5 tablas (Idioma, Área, Categoría, Pregunta y Respuesta) una vez creados los datos disponemos de otras dos pestañas(Pregunta-Respuesta y Respuesta-Default), estas sirven para crear asociaciones de una respuesta a una pregunta con una puntuación o dejar las asociaciones por defecto si la pregunta no tiene asociadas respuestas.**
+**Hay 6 tablas (Idioma, Área, Categoría, Perfil, Pregunta y Respuesta) una vez creados los datos disponemos de otras dos pestañas(Pregunta-Respuesta y Respuesta-Default), estas sirven para crear asociaciones de una respuesta a una pregunta con una puntuación o dejar las asociaciones por defecto si la pregunta no tiene asociadas respuestas.**
 
 **Hay dos tipos de recomendaciones, por categoría y por pregunta. Cada una de estas tablas tienen una puntuación y si es superada hay que mostrar la recomendación**
 
