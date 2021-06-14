@@ -44,7 +44,7 @@
 - **Gradle 7**
 
 ## Cosas a tener en cuenta
-- **El proyecto está en UTF-8**
+- **El proyecto está en UTF-8 (Hay que especificarlo manualmente si se usa eclipse)**
 - **Se han comentado todas las operaciones de los servicios REST menos los GET que además son públicos**
 - **La documentación de Swagger-UI se puede acceder sin  estar logueado**
 - **La aplicación se ha preparado para poder ser exportada a un .jar aunque se podría exportar a .war**
