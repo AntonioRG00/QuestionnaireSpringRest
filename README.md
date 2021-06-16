@@ -51,3 +51,7 @@
 - **Puerto por defecto 9000 http:localhost:9000/ (Parametrizable en el application.properties)**
 - **Integración perfecta con Heroku**
 
+## Como desplegar la aplicacion
+- **Si va a ser desde el Spring Tool Suite tendremos tener instalado lombok. Una vez instalado, click derecho y Run as Spring Boot Aplication**
+- **Nota: La conexión a la base de datos/usuario está en el application.properties, hay un ejemplo de conexión**
+
