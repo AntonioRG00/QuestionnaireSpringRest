@@ -51,6 +51,3 @@
 - **Puerto por defecto 9000 http:localhost:9000/ (Parametrizable en el application.properties)**
 - **Integración perfecta con Heroku**
 
-# Felicidades joven has superado el mucho texto desafio
-![imagen](https://user-images.githubusercontent.com/60214254/117734939-cdee1180-b1f4-11eb-8bc9-aa11e6796f49.png)
-
