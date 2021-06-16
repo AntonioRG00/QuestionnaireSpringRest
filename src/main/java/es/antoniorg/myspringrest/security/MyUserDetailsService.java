@@ -33,10 +33,12 @@ public class MyUserDetailsService implements UserDetailsService {
 		String ip = getClientIP();
 		if (loginAttemptService.isBlocked(ip)) {
 			throw new LoginAttemptsExceded("Máximo de intentos superados para la ip: " + getClientIP());
+		} else if(!username.equals(usuario)) {
+			throw new UsernameNotFoundException("El usuario no existe");
 		}
 
 		List<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
-		roles.add(new SimpleGrantedAuthority("ADMIN"));
+		//roles.add(new SimpleGrantedAuthority("ADMIN"));
 		
 		return new User(usuario, contrasena, true, true, true, true, roles);
 	}
