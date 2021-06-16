@@ -53,5 +53,6 @@
 
 ## Como desplegar la aplicacion
 - **Si va a ser desde el Spring Tool Suite tendremos tener instalado lombok. Una vez instalado, click derecho y Run as Spring Boot Aplication**
-- **Nota: La conexión a la base de datos/usuario está en el application.properties, hay un ejemplo de conexión**
+- **La conexión a la base de datos/usuario está en el application.properties, hay un ejemplo de conexión**
+- **Las tablas una vez que esté bien puesta la conexión, spring se encargará de autogenerar las tablas**
 
